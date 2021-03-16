@@ -1,0 +1,178 @@
+model Pacman
+
+-- enumerations
+
+enum StatutPartie {enCours, enPause, terminee}
+enum ContenuCase {vide, fruit, petiteGomme, grosseGomme}
+enum Direction {nord, sud, est, ouest}
+enum Couleur {rouge, rose, cyan, orange}
+enum StatutFantome {chasseur, vulnerable, mort}
+
+-- classes
+
+class Partie
+attributes
+  score: Integer
+  niveau: Integer
+  tempsNiveau: Integer
+  statutPartie: StatutPartie
+operations
+  initialisation(niveau: Integer)
+  tick()
+end
+
+class Grille
+end
+
+abstract class Case
+attributes
+  occupe: Boolean
+end
+
+class Mur < Case
+end
+
+class Jouable < Case
+end
+
+abstract class Objet
+operations
+  getPoints(): Integer
+end
+
+class PetiteGomme < Objet
+attributes
+  points: Integer
+    init: 10
+end
+
+class GrosseGomme < Objet
+attributes
+  points: Integer
+    init: 50
+end
+
+abstract class Fruit
+end
+
+class Cerise < Fruit
+attributes
+  points: Integer
+    init: 100
+end
+
+class Fraise < Fruit
+attributes
+  points: Integer
+    init: 300
+end
+
+class Orange < Fruit
+attributes
+  points: Integer
+    init: 500
+end
+
+class Pomme < Fruit
+attributes
+  points: Integer
+    init: 700
+end
+
+class Melon < Fruit
+attributes
+  points: Integer
+    init: 1000
+end
+
+class GalaxianBoss < Fruit
+attributes
+  points: Integer
+    init: 2000
+end
+
+class Cloche < Fruit
+attributes
+  points: Integer
+    init: 3000
+end
+
+class Cle < Fruit
+attributes
+  points: Integer
+    init: 5000
+end
+
+abstract class Entite
+attributes
+  posX: Real
+  posY: Real
+  vitesseDeplacement: Real
+operations
+  meurt()
+end
+
+class PacMan < Entite
+attributes
+  vies: Integer
+  directionCourante: Direction
+  directionVoulue: Direction
+operations
+  deplacer(direction: Direction)
+  manger()
+end
+
+abstract class Fantome < Entite
+attributes
+  couleur: Couleur
+  statut: StatutFantome
+operations
+  setStatut(statut: StatutFantome)
+end
+
+class Blinky < Fantome
+operations
+  deplacer(pacman: PacMan)
+end
+
+class Pinky < Fantome
+operations
+  deplacer(pacman: PacMan)
+end
+
+class Inky < Fantome
+operations
+  deplacer(pacman: PacMan)
+end
+
+class Clyde < Fantome
+operations
+  deplacer()
+end
+
+-- associations
+
+aggregation bibliotheque between
+  Partie[1] role partie
+  Grille[1..*] role niveaux
+end
+
+composition enCours between
+  Partie[1] role partie
+  Grille[1] role grille
+end
+
+composition appartiennent between
+  Grille[1] role grille
+  Fantome[4] role fantomes
+end
+
+composition appartient between
+  Grille[0..1] role grille
+  PacMan[1] role pacman
+end
+
+composition contient between
+  Jouable[0..1] role case
+  Objet[1] role objet
+end
