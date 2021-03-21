@@ -10,9 +10,15 @@ enum StatutFantome {chasseur, vulnerable, mort}
 
 -- classes
 
+class Score
+attributes
+  joueur: String
+  score: Integer
+end
+
 class Partie
 attributes
-  score: Integer
+  scoreActuel: Integer
   niveau: Integer
   tempsNiveau: Integer
   statutPartie: StatutPartie
@@ -52,7 +58,7 @@ attributes
     init: 50
 end
 
-abstract class Fruit
+abstract class Fruit < Objet
 end
 
 class Cerise < Fruit
@@ -153,26 +159,47 @@ end
 -- associations
 
 aggregation bibliotheque between
-  Partie[1] role partie
-  Grille[1..*] role niveaux
+  Partie[1] role partieStockNiveaux
+  Grille[1..*] role niveaux ordered
 end
 
 composition enCours between
   Partie[1] role partie
-  Grille[1] role grille
+  Grille[1] role grilleEnCours
 end
 
 composition appartiennent between
-  Grille[1] role grille
+  Grille[1] role grilleFantomes
   Fantome[4] role fantomes
 end
 
 composition appartient between
-  Grille[0..1] role grille
+  Grille[0..1] role grillePacMan
   PacMan[1] role pacman
 end
 
 composition contient between
-  Jouable[0..1] role case
+  Jouable[0..1] role caseContient
   Objet[1] role objet
 end
+
+composition compose between
+  Case[1] role caseCompose
+  Grille[4..*] role grille
+end
+
+aggregation scores between
+  Partie[*] role partieScores
+  Score[1] role scores
+end
+
+-- pre/post conditions & invariants
+
+constraints
+
+context Partie
+inv NiveauActuelInfTotalNiveaux: self.niveau <= self.niveaux->size()
+
+context Partie::initialisation(niveau: Integer)
+pre: niveau <= self.niveaux->size()
+post: self.grilleEnCours = self.niveaux->at(niveau)
