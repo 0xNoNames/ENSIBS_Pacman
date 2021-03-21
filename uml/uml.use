@@ -23,7 +23,7 @@ attributes
   tempsNiveau: Integer
   statutPartie: StatutPartie
 operations
-  initialisation(niveau: Integer)
+  initialisation()
   tick()
 end
 
@@ -126,6 +126,7 @@ attributes
 operations
   deplacer(direction: Direction)
   manger()
+  meurt()
 end
 
 abstract class Fantome < Entite
@@ -134,6 +135,14 @@ attributes
   statut: StatutFantome
 operations
   setStatut(statut: StatutFantome)
+  begin
+    self.statut := statut;
+  end
+
+  meurt()
+  begin
+    self.statut := #mort;
+  end
 end
 
 class Blinky < Fantome
@@ -158,9 +167,9 @@ end
 
 -- associations
 
-aggregation bibliotheque between
-  Partie[1] role partieStockNiveaux
-  Grille[1..*] role niveaux ordered
+composition grilleInitiale between
+  Partie[1] role partieGrilleInitiale
+  Grille[1] role niveauInitial
 end
 
 composition enCours between
@@ -185,7 +194,7 @@ end
 
 composition compose between
   Case[1] role caseCompose
-  Grille[4..*] role grille
+  Grille[868] role grille -- 28 en largeur, 31 en hauteur
 end
 
 aggregation scores between
@@ -198,8 +207,18 @@ end
 constraints
 
 context Partie
-inv NiveauActuelInfTotalNiveaux: self.niveau <= self.niveaux->size()
+inv NombreNiveaux: self.niveau >=0 and self.niveau <= 256
 
-context Partie::initialisation(niveau: Integer)
-pre: niveau <= self.niveaux->size()
-post: self.grilleEnCours = self.niveaux->at(niveau)
+context Entite
+inv HorsGrille: self.posX >= 0 and self.posX < 28 and self.posY >= 0 and self.posY < 31
+
+context Fantome::meurt()
+pre PreMortemFantome: self.statut = #vulnerable
+post PostMortemFantome: self.statut = #mort
+
+context Fantome::setStatut(statut: StatutFantome)
+post SetStatutFantome: self.statut = statut
+
+context PacMan::meurt()
+pre PreMortemPacMan: self.vies >= 1
+post PostMortemPacMan: self.vies = self.vies@pre - 1 and self.posX = 14.5 and self.posY = 24.5
