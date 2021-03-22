@@ -12,240 +12,232 @@
     <node id="PacMan" sizeCalculated="true" type="Class">
         <name>PacMan</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>1069.0</x>
-            <y>306.0</y>
+            <x>932.0</x>
+            <y>289.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Fraise" sizeCalculated="true" type="Class">
         <name>Fraise</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>62.0</x>
-            <y>623.0</y>
+            <x>60.0</x>
+            <y>612.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Objet" sizeCalculated="true" type="Class">
         <name>Objet</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>210.0</x>
-            <y>332.0</y>
+            <x>167.0</x>
+            <y>330.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="GrosseGomme" sizeCalculated="true" type="Class">
         <name>GrosseGomme</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>420.0</x>
-            <y>434.0</y>
+            <x>365.0</x>
+            <y>423.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Orange" sizeCalculated="true" type="Class">
         <name>Orange</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>125.0</x>
-            <y>567.0</y>
+            <x>123.0</x>
+            <y>556.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Case" sizeCalculated="true" type="Class">
         <name>Case</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>273.0</x>
-            <y>172.0</y>
+            <x>244.0</x>
+            <y>163.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Inky" sizeCalculated="true" type="Class">
         <name>Inky</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>809.0</x>
-            <y>446.0</y>
+            <x>718.0</x>
+            <y>424.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Cerise" sizeCalculated="true" type="Class">
         <name>Cerise</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>10.0</x>
-            <y>568.0</y>
+            <x>8.0</x>
+            <y>557.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Pomme" sizeCalculated="true" type="Class">
         <name>Pomme</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>193.0</x>
-            <y>624.0</y>
+            <x>191.0</x>
+            <y>613.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="GalaxianBoss" sizeCalculated="true" type="Class">
         <name>GalaxianBoss</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>321.0</x>
-            <y>631.0</y>
+            <x>319.0</x>
+            <y>620.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Jouable" sizeCalculated="true" type="Class">
         <name>Jouable</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>246.0</x>
-            <y>258.0</y>
+            <x>203.0</x>
+            <y>256.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Cloche" sizeCalculated="true" type="Class">
         <name>Cloche</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>372.0</x>
-            <y>573.0</y>
+            <x>370.0</x>
+            <y>562.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Fruit" sizeCalculated="true" type="Class">
         <name>Fruit</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>212.0</x>
-            <y>508.0</y>
+            <x>210.0</x>
+            <y>497.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Mur" sizeCalculated="true" type="Class">
         <name>Mur</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>419.0</x>
-            <y>264.0</y>
+            <x>326.0</x>
+            <y>258.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Entite" sizeCalculated="true" type="Class">
         <name>Entite</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>886.0</x>
-            <y>180.0</y>
+            <x>795.0</x>
+            <y>158.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Clyde" sizeCalculated="true" type="Class">
         <name>Clyde</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>960.0</x>
-            <y>494.0</y>
+            <x>869.0</x>
+            <y>472.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Score" sizeCalculated="true" type="Class">
         <name>Score</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>777.0</x>
-            <y>41.0</y>
+            <x>703.0</x>
+            <y>39.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Fantome" sizeCalculated="true" type="Class">
         <name>Fantome</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>705.0</x>
-            <y>315.0</y>
+            <x>614.0</x>
+            <y>293.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Grille" sizeCalculated="true" type="Class">
         <name>Grille</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>474.0</x>
-            <y>179.0</y>
+            <x>405.0</x>
+            <y>178.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="PetiteGomme" sizeCalculated="true" type="Class">
         <name>PetiteGomme</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>280.0</x>
-            <y>434.0</y>
+            <x>263.0</x>
+            <y>422.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Pinky" sizeCalculated="true" type="Class">
         <name>Pinky</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>598.0</x>
-            <y>444.0</y>
+            <x>507.0</x>
+            <y>422.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Cle" sizeCalculated="true" type="Class">
         <name>Cle</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>439.0</x>
-            <y>631.0</y>
+            <x>437.0</x>
+            <y>620.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Blinky" sizeCalculated="true" type="Class">
         <name>Blinky</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>706.0</x>
-            <y>497.0</y>
+            <x>615.0</x>
+            <y>475.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Melon" sizeCalculated="true" type="Class">
         <name>Melon</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>250.0</x>
-            <y>569.0</y>
+            <x>248.0</x>
+            <y>558.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Partie" sizeCalculated="true" type="Class">
         <name>Partie</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>419.0</x>
-            <y>9.0</y>
+            <x>350.0</x>
+            <y>8.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Couleur" sizeCalculated="true" type="Enumeration">
         <name>Couleur</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>608.0</x>
-            <y>578.0</y>
+            <x>687.0</x>
+            <y>569.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="StatutFantome" sizeCalculated="true" type="Enumeration">
         <name>StatutFantome</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>732.0</x>
-            <y>577.0</y>
-        </strategy>
-        <hidden>false</hidden>
-    </node>
-    <node id="ContenuCase" sizeCalculated="true" type="Enumeration">
-        <name>ContenuCase</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>1117.0</x>
-            <y>573.0</y>
+            <x>811.0</x>
+            <y>568.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="Direction" sizeCalculated="true" type="Enumeration">
         <name>Direction</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>980.0</x>
-            <y>574.0</y>
+            <x>1059.0</x>
+            <y>565.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
     <node id="StatutPartie" sizeCalculated="true" type="Enumeration">
         <name>StatutPartie</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>853.0</x>
-            <y>576.0</y>
+            <x>932.0</x>
+            <y>567.0</y>
         </strategy>
         <hidden>false</hidden>
     </node>
@@ -346,18 +338,6 @@
         <target>Grille</target>
         <name>grilleInitiale</name>
         <properties>
-            <edgeproperty id="grilleInitiale::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
-                <name>partieGrilleInitiale</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>grilleInitiale::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="grilleInitiale::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -370,12 +350,12 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="grilleInitiale::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
-                <name>niveauInitial</name>
+            <edgeproperty id="grilleInitiale::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>partieGrilleInitiale</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <attached>grilleInitiale::WayPoint::1</attached>
+                    <attached>grilleInitiale::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
@@ -391,6 +371,18 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="grilleInitiale::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>niveauInitial</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>grilleInitiale::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -438,18 +430,6 @@
         <target>Grille</target>
         <name>compose</name>
         <properties>
-            <edgeproperty id="compose::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
-                <name>caseCompose</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>compose::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="compose::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -462,8 +442,20 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
+            <edgeproperty id="compose::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>caseCompose</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>compose::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
             <edgeproperty id="compose::target::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>868</name>
+                <name>4..868</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
@@ -530,18 +522,6 @@
         <target>Objet</target>
         <name>contient</name>
         <properties>
-            <edgeproperty id="contient::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
-                <name>0..1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>contient::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>BOTTOM</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="contient::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
                 <name>caseContient</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -551,6 +531,18 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="contient::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
+                <name>0..1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>contient::WayPoint::0</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>BOTTOM</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -622,18 +614,6 @@
         <target>Score</target>
         <name>scores</name>
         <properties>
-            <edgeproperty id="scores::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
-                <name>partieScores</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>scores::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="scores::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
                 <name>*</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -646,12 +626,12 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="scores::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
-                <name>scores</name>
+            <edgeproperty id="scores::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>partieScores</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <attached>scores::WayPoint::1</attached>
+                    <attached>scores::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
@@ -667,6 +647,18 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="scores::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>scores</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>scores::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
@@ -806,18 +798,6 @@
         <target>Grille</target>
         <name>enCours</name>
         <properties>
-            <edgeproperty id="enCours::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
-                <name>partie</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <attached>enCours::WayPoint::0</attached>
-                    <offset_x>8</offset_x>
-                    <offset_y>8</offset_y>
-                    <placement>TOP</placement>
-                </strategy>
-                <hidden>false</hidden>
-            </edgeproperty>
             <edgeproperty id="enCours::source::multiplicity" sizeCalculated="true" type="multiplicity" userDefined="false" visible="true">
                 <name>1</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
@@ -830,12 +810,12 @@
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="enCours::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
-                <name>grilleEnCours</name>
+            <edgeproperty id="enCours::source::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>partie</name>
                 <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
-                    <attached>enCours::WayPoint::1</attached>
+                    <attached>enCours::WayPoint::0</attached>
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>TOP</placement>
@@ -851,6 +831,18 @@
                     <offset_x>8</offset_x>
                     <offset_y>8</offset_y>
                     <placement>BOTTOM</placement>
+                </strategy>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="enCours::target::rolename" sizeCalculated="true" type="rolename" userDefined="false" visible="true">
+                <name>grilleEnCours</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToAttached">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <attached>enCours::WayPoint::1</attached>
+                    <offset_x>8</offset_x>
+                    <offset_y>8</offset_y>
+                    <placement>TOP</placement>
                 </strategy>
                 <hidden>false</hidden>
             </edgeproperty>

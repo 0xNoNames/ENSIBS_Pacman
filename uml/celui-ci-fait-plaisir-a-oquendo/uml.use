@@ -3,7 +3,6 @@ model Pacman
 -- enumerations
 
 enum StatutPartie {enCours, enPause, terminee}
-enum ContenuCase {vide, fruit, petiteGomme, grosseGomme}
 enum Direction {nord, sud, est, ouest}
 enum Couleur {rouge, rose, cyan, orange}
 enum StatutFantome {chasseur, vulnerable, mort}
@@ -32,7 +31,8 @@ end
 
 abstract class Case
 attributes
-  occupe: Boolean
+  x: Integer
+  y: Integer
 end
 
 class Mur < Case
@@ -124,9 +124,15 @@ attributes
   directionCourante: Direction
   directionVoulue: Direction
 operations
-  deplacer(direction: Direction)
-  manger()
+  setDirectionVoulue(direction: Direction)
+  deplacer()
   meurt()
+--  begin
+--	  if self.vies > 1 then self.vies := self.vies - 1
+--	  else self.vies := 0;
+--         self.grillePacMan.partie.statutPartie := #terminee;
+--    end
+--	end
 end
 
 abstract class Fantome < Entite
@@ -177,14 +183,9 @@ composition enCours between
   Grille[1] role grilleEnCours
 end
 
-composition appartiennent between
-  Grille[1] role grilleFantomes
-  Fantome[4] role fantomes
-end
-
-composition appartient between
-  Grille[0..1] role grillePacMan
-  PacMan[1] role pacman
+composition estSur between
+  Jouable[1] role x
+  Entite[0..5] role x
 end
 
 composition contient between
@@ -194,7 +195,7 @@ end
 
 composition compose between
   Case[1] role caseCompose
-  Grille[868] role grille -- 28 en largeur, 31 en hauteur
+  Grille[4..868] role grille -- 28 en largeur, 31 en hauteur
 end
 
 aggregation scores between
@@ -212,6 +213,9 @@ inv NombreNiveaux: self.niveau >=0 and self.niveau <= 256
 context Entite
 inv HorsGrille: self.posX >= 0 and self.posX < 28 and self.posY >= 0 and self.posY < 31
 
+context Case
+inv CaseCoordsDifferentes: Case.allInstances->forAll(c1, c2 | c1.x <> c2.x and c1.y <> c2.y)
+
 context Fantome::meurt()
 pre PreMortemFantome: self.statut = #vulnerable
 post PostMortemFantome: self.statut = #mort
@@ -222,3 +226,9 @@ post SetStatutFantome: self.statut = statut
 context PacMan::meurt()
 pre PreMortemPacMan: self.vies >= 1
 post PostMortemPacMan: self.vies = self.vies@pre - 1 and self.posX = 14.5 and self.posY = 24.5
+
+context PacMan::setDirectionVoulue(direction: Direction)
+post SetDirectionVoulue: self.directionVoulue = direction
+
+context Clyde::deplacer()
+post ClydeBouge: self.posX <> self.posX@pre and self.posY <> self.posY@pre
