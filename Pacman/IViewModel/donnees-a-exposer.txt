@@ -1,0 +1,6 @@
+état de la partie
+points
+niveau
+boucle de jeu
+déplacement des fantomes
+passage de niveau
