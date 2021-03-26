@@ -17,16 +17,19 @@ end
 
 class Partie
 attributes
+  player: String
   scoreActuel: Integer
   niveau: Integer
   tempsNiveau: Integer
   statutPartie: StatutPartie
 operations
-  initialisation()
-  tick()
+  jeu()
 end
 
 class Grille
+attributes
+  largeur: Integer
+  longueur: Integer
 end
 
 abstract class Case
@@ -111,9 +114,8 @@ end
 
 abstract class Entite
 attributes
-  posX: Real
-  posY: Real
-  vitesseDeplacement: Real
+  posX: Integer
+  posY: Integer
 operations
   meurt()
 end
@@ -144,7 +146,7 @@ operations
   begin
     self.statut := statut;
   end
-
+  deplacer()
   meurt()
   begin
     self.statut := #mort;
@@ -152,31 +154,18 @@ operations
 end
 
 class Blinky < Fantome
-operations
-  deplacer(pacman: PacMan)
 end
 
 class Pinky < Fantome
-operations
-  deplacer(pacman: PacMan)
 end
 
 class Inky < Fantome
-operations
-  deplacer(pacman: PacMan)
 end
 
 class Clyde < Fantome
-operations
-  deplacer()
 end
 
 -- associations
-
-composition grilleInitiale between
-  Partie[1] role partieGrilleInitiale
-  Grille[1] role niveauInitial
-end
 
 composition enCours between
   Partie[1] role partie
@@ -184,8 +173,8 @@ composition enCours between
 end
 
 composition estSur between
-  Jouable[1] role x
-  Entite[0..5] role x
+  Jouable[1] role case
+  Entite[0..5] role entite_presente
 end
 
 composition contient between
@@ -194,8 +183,8 @@ composition contient between
 end
 
 composition compose between
-  Case[1] role caseCompose
-  Grille[4..868] role grille -- 28 en largeur, 31 en hauteur
+  Grille[1] role grille -- 28 en largeur, 31 en hauteur
+  Case[4..868] role caseCompose
 end
 
 aggregation scores between
@@ -210,11 +199,14 @@ constraints
 context Partie
 inv NombreNiveaux: self.niveau >=0 and self.niveau <= 256
 
-context Entite
-inv HorsGrille: self.posX >= 0 and self.posX < 28 and self.posY >= 0 and self.posY < 31
-
 context Case
 inv CaseCoordsDifferentes: Case.allInstances->forAll(c1, c2 | c1.x <> c2.x and c1.y <> c2.y)
+
+context Case
+inv CaseDedans : Case.allInstances->forAll(c1 | c1.y <= c1.grille.longueur and c1.x <= c1.grille.largeur)
+
+context Grille
+inv BonNombreCase : caseCompose -> size() = longueur * largeur
 
 context Fantome::meurt()
 pre PreMortemFantome: self.statut = #vulnerable
@@ -225,10 +217,7 @@ post SetStatutFantome: self.statut = statut
 
 context PacMan::meurt()
 pre PreMortemPacMan: self.vies >= 1
-post PostMortemPacMan: self.vies = self.vies@pre - 1 and self.posX = 14.5 and self.posY = 24.5
+post PostMortemPacMan: self.vies = self.vies@pre - 1
 
 context PacMan::setDirectionVoulue(direction: Direction)
 post SetDirectionVoulue: self.directionVoulue = direction
-
-context Clyde::deplacer()
-post ClydeBouge: self.posX <> self.posX@pre and self.posY <> self.posY@pre
