@@ -3,7 +3,7 @@ package Pacman.Data;
 import Pacman.Logic.Objet;
 
 /**
- * L'interfacte IObjet permet à la Data d'obtenir les informations concernant
+ * L'interface IObjet permet à la Data d'obtenir les informations concernant
  * les différents Objet pouvant se trouver dans les Cases (à savoir les gommes
  * et les Fruit)
  * 
