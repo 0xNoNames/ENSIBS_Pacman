@@ -1,6 +1,6 @@
 package Pacman.Data;
 
-import Pacman.Model.Objet;
+import Pacman.Logic.Objet;
 
 /**
  * L'interfacte IObjet permet à la Data d'obtenir les informations concernant

@@ -1,6 +1,6 @@
 package Pacman.Data;
 
-import Pacman.Model.Fruit;
+import Pacman.Logic.Fruit;
 
 /**
  * L'interface IFruit permet au Model d'obtenir des informations concernant

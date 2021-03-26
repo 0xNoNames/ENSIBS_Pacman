@@ -1,4 +1,4 @@
-package Pacman.Model;
+package Pacman.Logic;
 
 public class Fruit {
     

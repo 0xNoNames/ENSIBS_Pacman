@@ -1,6 +1,6 @@
 package Pacman.Data;
 
-import Pacman.Model.Grille;
+import Pacman.Logic.Grille;
 
 /**
  * L'interface IGrille permet au Model d'obtenir les informations concernant la

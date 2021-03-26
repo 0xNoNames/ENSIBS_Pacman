@@ -1,4 +1,4 @@
-package Pacman.Model;
+package Pacman.Logic;
 
 public interface IPartie {
    	public void tick();
