@@ -1,4 +1,4 @@
-package Pacman.IModelData;
+package Pacman.Data;
 
 /**
  * L'interface IEntite permet à la Data d'obtenir les informations concernant

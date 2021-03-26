@@ -1,6 +1,4 @@
-package Pacman.IViewModel;
-
-import Pacman.Model.EStatutPartie;
+package Pacman.Model;
 
 public interface IPartie {
    	public void tick();

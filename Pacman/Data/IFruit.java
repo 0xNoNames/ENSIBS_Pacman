@@ -1,4 +1,4 @@
-package Pacman.IModelData;
+package Pacman.Data;
 
 import Pacman.Model.Fruit;
 
