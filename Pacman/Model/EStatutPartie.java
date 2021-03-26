@@ -1,5 +1,7 @@
-import Pacman.Model.EStatutPartie;
+package Pacman.Model;
 
 public enum EStatutPartie {
-	pause,enCours,terminée
+	PAUSE,
+	EN_COURS,
+	TERMINEE
 }
