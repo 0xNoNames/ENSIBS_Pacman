@@ -1,5 +1,0 @@
-grille initiale
-vitesse des entites
-changements de vitesse des entites
-points des fruits
-niveaux auxquels les fruits spawnent

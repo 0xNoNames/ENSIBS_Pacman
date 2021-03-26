@@ -1,5 +1,5 @@
 package Pacman.Logic;
 
-public class Fruit {
+public abstract class Fruit extends Objet {
     
 }

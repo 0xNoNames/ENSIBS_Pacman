@@ -1,5 +1,5 @@
 package Pacman.Logic;
 
-public abstract class Objet {
+public abstract class Case {
     
 }
