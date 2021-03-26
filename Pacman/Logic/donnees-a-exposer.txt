@@ -1,0 +1,23 @@
+PARTIE
+X- état de la partie
+X- score actuel
+X- temps niveau (pour le combo)
+X- initialisation
+X- tick
+- LabyrintheActuel
+-
+
+ENTITE
+X- entite position
+
+X- fantome status
+X- fantome couleur
+X- fantome directioncourante
+X- fantome directtion
+
+X- pacman directionCourante
+X- pacman DirectionVoulue
+
+CASE
+-
+

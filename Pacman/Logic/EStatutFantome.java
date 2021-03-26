@@ -1,6 +1,6 @@
 package Pacman.Logic;
 
-public enum EStatutFantome {
+public enum EStatutPartie {
     CHASSEUR,
     VULNERABLE,
     MORT
