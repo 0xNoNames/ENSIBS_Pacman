@@ -1,5 +1,6 @@
 package Pacman.Data;
 
+import Pacman.Logic.ECouleur;
 import Pacman.Logic.Fruit;
 import Pacman.Logic.Grille;
 import Pacman.Logic.Objet;
@@ -7,12 +8,12 @@ import Pacman.Logic.Objet;
 public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
 {
     @Override
-    public double getVitessePacman(int niveau) {
+    public double getVitessePacman() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public double getVitesseFantome(int niveau) {
+    public double getVitesseFantome(int niveau, ECouleur couleur) {
         throw new UnsupportedOperationException();
     }
 

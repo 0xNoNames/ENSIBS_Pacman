@@ -1,5 +1,7 @@
 package Pacman.Data;
 
+import Pacman.Logic.ECouleur;
+
 /**
  * L'interface IEntite permet à la Data d'obtenir les informations concernant
  * les entités.
@@ -13,7 +15,7 @@ public interface IEntite {
      * @param niveau niveau pour lequel on désire la vitesse de Pacman
      * @return vitesse de Pacman en cases par seconde
      */
-    public double getVitessePacman(int niveau);
+    public double getVitessePacman();
 
     /**
      * Permet d'obtenir la vitesse des Fantome en fonction du niveau atteint.
@@ -21,7 +23,7 @@ public interface IEntite {
      * @param niveau niveau pour lequel on désire la vitesse des Fantome
      * @return vitesse des Fantome en cases par seconde
      */
-    public double getVitesseFantome(int niveau);
+    public double getVitesseFantome(int niveau, ECouleur couleur);
 
     /**
      * Permet d'obtenir la position initiale de Pacman dans la Grille à
