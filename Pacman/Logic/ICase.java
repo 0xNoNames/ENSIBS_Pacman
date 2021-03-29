@@ -1,5 +1,6 @@
 package Pacman.Logic;
 
+
 /**
  * L'interface ICase permet à la View d'obtenir les informations concernant
  * la case actuelle.
