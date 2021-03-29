@@ -1,0 +1,96 @@
+{
+    "_comment0": "Vitesses des entités selon leur niveau : vitesseBase*coeff",
+    "vitesseBase": 11,
+    "vitessePacman":
+    {
+        "1": 0.8,
+        "2": 0.9,
+        "5": 1,
+        "21": 0.9
+    },
+    "vitesseBlinky":
+    {
+        "1": 0.80,
+        "2": 0.90,
+        "5": 1
+    },
+    "vitessePinky":
+    {
+        "1": 0.75,
+        "2": 0.85,
+        "5": 0.95
+    },
+    "vitesseInky":
+    {
+        "1": 0.75,
+        "2": 0.85,
+        "5": 0.95
+    },
+    "vitesseClyde":
+    {
+        "1": 0.75,
+        "2": 0.85,
+        "5": 0.95
+    },
+
+    "_comment1": "Positions initiales des entités : [x, y]",
+    "positionInitialePacman": [13.5, 23],
+    "positionInitialeFantomes":
+    {
+        "Blinky": [13.5, 11],
+        "Inky": [11.5, 14],
+        "Pinky": [13.5, 14],
+        "Clyde": [15.5, 14]
+    },
+
+    "_comment2": "Dans quels niveaux apparaissent quels fruits",
+    "niveauFruit":
+    {
+        "1": "Cerise",
+        "2": "Fraise",
+        "3": "Orange",
+        "5": "Pomme",
+        "7": "Melon",
+        "9": "GalaxianBoss",
+        "11": "Cloche",
+        "13": "Clé"
+    },
+
+    "_comment3": "Combien de points rapporte chaque objet",
+    "pointsObjet":
+    {
+        "PetiteGomme": 10,
+        "GrosseGomme": 50,
+        "Cerise": 100,
+        "Fraise": 300,
+        "Orange": 500,
+        "Pomme": 700,
+        "Melon": 1000,
+        "GalaxianBoss": 2000,
+        "Cloche": 3000,
+        "Clé": 5000
+    },
+
+    "_comment4": "État de la grille au début de chaque niveau",
+    "_comment5": "m_ur, p_etite, G_rosse, v_ide",
+    "grille":
+    [
+        ["28m"],
+        ["1m", "12p", "2m", "12p", "1m"],
+        ["1m", "1p", "4m", "1p", "5m", "1p", "2m", "1p", "5m", "1p", "4m", "1p", "1m"],
+        ["1m", "1G", "4m", "1p", "5m", "1p", "2m", "1p", "5m", "1p", "4m", "1G", "1m"],
+        ["1m", "1p", "4m", "1p", "5m", "1p", "2m", "1p", "5m", "1p", "4m", "1p", "1m"],
+        ["1m", "26p", "1m"],
+        ["1m", "1p", "4m", "1p", "2m", "1p", "8m", "1p", "2m", "1p", "4m", "1p", "1m"],
+        ["1m", "1p", "4m", "1p", "2m", "1p", "8m", "1p", "2m", "1p", "4m", "1p", "1m"],
+        ["1m", "6p", "2m", "4p", "2m", "4p", "2m", "6p", "1m"],
+        ["6m", "1p", "5m", "1v", "2m", "1v", "5m", "1p", "6m"],
+        ["5v", "1m", "1p", "5m", "1v", "2m", "1v", "5m", "1p", "1m", "5v"],
+        ["5v", "1m", "1p", "2m", "10v", "2m", "1p", "1m", "5v"],
+        ["5v", "1m", "1p", "2m", "1v", "3m", "2v", "3m", "1v", "2m", "1p", "1m", "5v"],
+        ["6m", "1p", "2m", "1v", "1m", "6v", "1m", "1v", "2m", "1p", "6m"],
+        ["6v", "1p", "3v", "1m", "6v", "1m", "3v", "1p", "6v"],
+        ["6m", "1p", "2m", "1v", "1m", "6v", "1m", "1v", "2m", "1p", "6m"],
+        ["5v", "1m", "1p", "2m", "1v", "8m", "1v", "2m", "1p", "1m", "5v"]
+    ]
+}

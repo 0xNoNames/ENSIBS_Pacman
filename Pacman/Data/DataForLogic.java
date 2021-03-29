@@ -8,7 +8,7 @@ import Pacman.Logic.Objet;
 public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
 {
     @Override
-    public double getVitessePacman() {
+    public double getVitessePacman(int niveau) {
         throw new UnsupportedOperationException();
     }
 
@@ -18,12 +18,12 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
     }
 
     @Override
-    public int[] getPositionInitialePacman() {
+    public double[] getPositionInitialePacman() {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public int[] getPositionInitialeFantome() {
+    public double[] getPositionInitialeFantome() {
         throw new UnsupportedOperationException();
     }
 
