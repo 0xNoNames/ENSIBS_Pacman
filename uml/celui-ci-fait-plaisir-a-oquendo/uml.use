@@ -53,12 +53,16 @@ class PetiteGomme < Objet
 attributes
   points: Integer
     init: 10
+operations
+  getPoints(): Integer
 end
 
 class GrosseGomme < Objet
 attributes
   points: Integer
     init: 50
+operations
+  getPoints(): Integer
 end
 
 abstract class Fruit < Objet
@@ -68,48 +72,64 @@ class Cerise < Fruit
 attributes
   points: Integer
     init: 100
+operations
+  getPoints(): Integer
 end
 
 class Fraise < Fruit
 attributes
   points: Integer
     init: 300
+operations
+  getPoints(): Integer
 end
 
 class Orange < Fruit
 attributes
   points: Integer
     init: 500
+operations
+  getPoints(): Integer
 end
 
 class Pomme < Fruit
 attributes
   points: Integer
     init: 700
+operations
+  getPoints(): Integer
 end
 
 class Melon < Fruit
 attributes
   points: Integer
     init: 1000
+operations
+  getPoints(): Integer
 end
 
 class GalaxianBoss < Fruit
 attributes
   points: Integer
     init: 2000
+operations
+  getPoints(): Integer
 end
 
 class Cloche < Fruit
 attributes
   points: Integer
     init: 3000
+operations
+  getPoints(): Integer
 end
 
 class Cle < Fruit
 attributes
   points: Integer
     init: 5000
+operations
+  getPoints(): Integer
 end
 
 abstract class Entite
@@ -146,11 +166,11 @@ operations
   begin
     self.statut := statut;
   end
-  deplacer()
   meurt()
   begin
     self.statut := #mort;
   end
+  deplacer(x : Integer, y : Integer)
 end
 
 class Blinky < Fantome
@@ -192,10 +212,9 @@ aggregation scores between
   Score[1] role scores
 end
 
--- pre/post conditions & invariants
-
 constraints
 
+-- invariants
 context Partie
 inv NombreNiveaux: self.niveau >=0 and self.niveau <= 256
 
@@ -208,12 +227,54 @@ inv CaseDedans : Case.allInstances->forAll(c1 | c1.y <= c1.grille.longueur and c
 context Grille
 inv BonNombreCase : caseCompose -> size() = longueur * largeur
 
+-- pre/post conditions
+
+context PetiteGomme::getPoints():Integer
+post ValuePoints : result = self.points
+
+context GrosseGomme::getPoints():Integer
+post ValuePoints : result = self.points
+
+context Cerise::getPoints():Integer
+post ValuePoints : result = self.points
+
+context Fraise::getPoints():Integer
+post ValuePoints : result = self.points
+
+context Orange::getPoints():Integer
+post ValuePoints : result = self.points
+
+context Pomme::getPoints():Integer
+post ValuePoints : result = self.points
+
+context Melon::getPoints():Integer
+post ValuePoints : result = self.points
+
+context GalaxianBoss::getPoints():Integer
+post ValuePoints : result = self.points
+
+context Cloche::getPoints():Integer
+post ValuePoints : result = self.points
+
+context Cle::getPoints():Integer
+post ValuePoints : result = self.points
+
+context Partie::jeu()
+pre TempsPossible : self.tempsNiveau > 0
+pre StatutDepart : self.statutPartie = #enPause
+post TempsValide : self.tempsNiveau = 0
+post BonStatut : self.statutPartie = #terminee
+
 context Fantome::meurt()
 pre PreMortemFantome: self.statut = #vulnerable
 post PostMortemFantome: self.statut = #mort
 
 context Fantome::setStatut(statut: StatutFantome)
 post SetStatutFantome: self.statut = statut
+
+
+context Fantom::deplacer(dx : Integer, dy : Integer)
+post 
 
 context PacMan::meurt()
 pre PreMortemPacMan: self.vies >= 1
