@@ -7,4 +7,14 @@ package Pacman.Logic;
  */
 public class Clyde extends Fantome {
     
+    /**
+     * Constructeur de la classe Clyde
+     */
+    public Clyde() {
+        this.couleur = ECouleur.ORANGE;
+    }
+
+    public void deplacer() {
+        
+    }
 }

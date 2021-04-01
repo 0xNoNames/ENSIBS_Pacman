@@ -5,7 +5,7 @@ package Pacman.Logic;
  * 
  * @author François JULLION
  */
-public abstract class Entite {
+public abstract class Entite implements IEntite{
     
     /**
      * 
@@ -16,11 +16,6 @@ public abstract class Entite {
      * 
      */
     private double posY;
-
-    /**
-     * 
-     */
-    private double vitesseDeplacement;
 
     /**
      * 
@@ -37,8 +32,6 @@ public abstract class Entite {
     public double getposY() {
         return this.posY;
     }
-
-    public abstract double getvitesseDeplacement();
 
     public abstract void meurt();
 

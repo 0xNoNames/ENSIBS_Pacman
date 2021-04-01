@@ -33,6 +33,11 @@ public class Partie implements IPartie{
 	 */
 	private EStatutPartie EtatPartie;
 	
+	/**
+	 * 
+	 */
+	private int temps_partie;
+
 	/*
 	 * 
 	 */
@@ -41,6 +46,7 @@ public class Partie implements IPartie{
 		this.Grille = d.getGrilleInitiale();
 		this.Score = 0;
 		this.Niveau = 0;
+		this.temps_partie = 300;
 		this.EtatPartie = EStatutPartie.EN_PAUSE;
 	}
 
@@ -48,7 +54,9 @@ public class Partie implements IPartie{
      * Permet d'avancer dans le temps.
      */
     public void tick() {
-		/* TODO */
+		while(temps_partie!=0 && this.getVies()>0) {
+			
+		}
 	}
 
     /**
@@ -75,8 +83,7 @@ public class Partie implements IPartie{
      * @return retourne un entier représentant les vies du joueurs.
      */
     public int getVies() {
-		/* TODO */
-		return 0;
+		return this.Grille.getPacman().getVie();
 	}
 
     /**
@@ -103,7 +110,6 @@ public class Partie implements IPartie{
      * @return retourne une matrice de Case.
      */
     public Case[][] getGrille() {
-		/* TODO */
-		return this.Grille.get;
+		return this.Grille.getCases();
 	}
 }

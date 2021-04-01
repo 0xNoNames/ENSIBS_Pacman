@@ -15,10 +15,58 @@ public class Grille {
     /**
      * 
      */
-    private Pacman p;
+    private Pacman pac;
 
     /**
      * 
      */
-    private Blinky b;
+    private Blinky blinky;
+
+    /**
+     * 
+     */
+    private Clyde clide;
+
+    /**
+     * 
+     */
+    private Inky inky;
+
+    /**
+     * 
+     */
+    private Pinky pinky;
+
+    public Grille(int x, int y) {
+        this.pac = new Pacman();
+        this.clide = new Clyde();
+        this.inky = new Inky();
+        this.pinky = new Pinky();
+        this.blinky = new Blinky();
+        this.cases = new Case[x][y];
+    }
+
+    public Pacman getPacman() {
+        return this.pac;
+    }
+
+    public Pinky getPinky() {
+        return this.pinky;
+    }
+
+    public Clyde getClyde() {
+        return this.clide;
+    }
+
+    public Inky getInky() {
+        return this.inky;
+    }
+
+    public Blinky getBlinky() {
+        return this.blinky;
+    }
+
+    public Case[][] getCases() {
+        return this.cases;
+    }
 }

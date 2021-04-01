@@ -7,4 +7,17 @@ package Pacman.Logic;
  */
 public class Pinky extends Fantome {
     
+    /**
+     * 
+     */
+    public Pinky() {
+        this.couleur = ECouleur.ROSE;
+    }
+
+    /**
+     * 
+     */
+    public void deplacer(Pacman p) {
+        
+    }
 }

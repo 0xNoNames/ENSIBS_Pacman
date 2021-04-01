@@ -5,7 +5,7 @@ package Pacman.Logic;
  * 
  * @author François JULLION
  */
-public class Jouable extends Case {
+public class Jouable extends Case implements ICase{
     /**
      * 
      */
@@ -13,5 +13,9 @@ public class Jouable extends Case {
 
     public Jouable() {
         this.objet = null;
+    }
+
+    public Objet getObjet() {
+        return this.objet;
     }
 }
