@@ -19,7 +19,7 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
     private double[] vitessePacman;
     private Map<ECouleur, double[]> vitesseFantome;
     private double[] posInitPacman;
-    private double[] posInitBlinky, posInitInky, posInitPinky, posInitClyde;
+    private Map<ECouleur, double[]> posInitFantome;
     private Fruit[] fruitNiveau;
     private Grille grilleInitiale;
     private Map<String, Integer> pointsObjet;
@@ -74,12 +74,32 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
 
     @Override
     public double[] getPositionInitialePacman() {
-        throw new UnsupportedOperationException();
+        // si la position initiale de pacman n'a encore jamais été demandée
+        if (posInitPacman == null)
+        {
+            posInitPacman = ParseConfig.getPositionInitialePacman();
+        }
+
+        return posInitPacman;
     }
 
     @Override
     public double[] getPositionInitialeFantome(ECouleur couleur) {
-        throw new UnsupportedOperationException();
+        // si aucune position initiale n'a encore été demandée
+        if (posInitFantome == null)
+        {
+            posInitFantome = new HashMap<ECouleur, double[]>();
+        }
+
+        // si la pos init du fantome demandé n'a pas encore été demandée
+        if (posInitFantome.get(couleur) == null)
+        {
+            double[] posInit =
+                ParseConfig.getPositionInitialeFantome(couleur);
+            posInitFantome.put(couleur, posInit);
+        }
+
+        return posInitFantome.get(couleur);
     }
 
     @Override
@@ -88,12 +108,12 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
     }
 
     @Override
-    public Grille getGrilleInitiale() {
+    public int getPoints(Objet objet) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public int getPoints(Objet objet) {
+    public Grille getGrilleInitiale() {
         throw new UnsupportedOperationException();
     }
 }

@@ -1,0 +1,3 @@
+rm ./Pacman/*/*.class
+javac ./Pacman/Data/Test.java
+java Pacman.Data.Test
