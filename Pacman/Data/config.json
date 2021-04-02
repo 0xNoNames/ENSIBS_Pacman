@@ -5,14 +5,14 @@
     {
         "1": 0.8,
         "2": 0.9,
-        "5": 1,
+        "5": 1.0,
         "21": 0.9
     },
     "vitesseBlinky":
     {
         "1": 0.80,
         "2": 0.90,
-        "5": 1
+        "5": 1.0
     },
     "vitessePinky":
     {
@@ -34,13 +34,13 @@
     },
 
     "_comment1": "Positions initiales des entités : [x, y]",
-    "positionInitialePacman": [13.5, 23],
+    "positionInitialePacman": [13.5, 23.0],
     "positionInitialeFantomes":
     {
-        "Blinky": [13.5, 11],
-        "Inky": [11.5, 14],
-        "Pinky": [13.5, 14],
-        "Clyde": [15.5, 14]
+        "Blinky": [13.5, 11.0],
+        "Inky": [11.5, 14.0],
+        "Pinky": [13.5, 14.0],
+        "Clyde": [15.5, 14.0]
     },
 
     "_comment2": "Dans quels niveaux apparaissent quels fruits",
