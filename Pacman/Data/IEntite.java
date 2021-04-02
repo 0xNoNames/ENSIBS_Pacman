@@ -37,7 +37,8 @@ public interface IEntite {
      * Permet d'obtenir la position initiale des Fantome dans la Grille à
      * l'instant 0 d'un niveau
      * 
+     * @param couleur couleur du fantome duquel on désire la position initiale
      * @return talbeau de deux réels où [0] = posX et [1] = posY
      */
-    public double[] getPositionInitialeFantome();
+    public double[] getPositionInitialeFantome(ECouleur couleur);
 }

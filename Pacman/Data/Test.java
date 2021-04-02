@@ -1,6 +1,8 @@
 package Pacman.Data;
 
-public class TestDataForLogic {
+import Pacman.Logic.ECouleur;
+
+public class Test {
     public static void main(String args[]) {
         DataForLogic data = new DataForLogic();
     }
