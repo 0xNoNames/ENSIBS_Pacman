@@ -10,12 +10,43 @@ public abstract class Entite implements IEntite{
     /**
      * 
      */
-    private double posX;
+    protected double posX;
 
     /**
      * 
      */
-    private double posY;
+    protected double posY;
+
+    /**
+     * 
+     */
+    protected EDirection dirCourante;
+
+    /**
+     * 
+     */
+    protected EDirection dirVoulue;
+
+    /**
+     * 
+     */
+    protected Grille grille;
+
+    /**
+     * 
+     * @return
+     */
+    public EDirection getDirectionCourante() {
+        return this.dirCourante;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public EDirection getDirectionVoulue() {
+        return this.dirVoulue;
+    }
 
     /**
      * 
@@ -33,6 +64,9 @@ public abstract class Entite implements IEntite{
         return this.posY;
     }
 
+    public void setGrille(Grille g) {
+        this.grille = g;
+    }
     public abstract void meurt();
 
 }

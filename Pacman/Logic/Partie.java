@@ -65,7 +65,6 @@ public class Partie implements IPartie{
 			inky.deplacer(pac);
 			blinky.deplacer(pac);
 			clyde.deplacer();
-			
 		}
 	}
 

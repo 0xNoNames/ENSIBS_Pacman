@@ -7,30 +7,11 @@ package Pacman.Logic;
  */
 public class Pacman extends Entite {
     
-    /**
-     * 
-     */
-    private double posX;
 
     /**
      * 
      */
-    private double posY;
-
-    /**
-     * 
-     */
-    private int vie;
-
-    /**
-     * 
-     */
-    private EDirection dist_courante;
-
-    /**
-     * 
-     */
-    private EDirection dist_voulue;
+    private int vies;
 
     /**
      * 
@@ -39,11 +20,11 @@ public class Pacman extends Entite {
     public Pacman() {
         this.posX = 0.0;
         this.posY = 0.0;
-        this.vie = 3;
+        this.vies = 3;
     }
 
     public void meurt() {
-        vie --;
+        vies --;
     }
 
     public double[] getPosition() {
@@ -61,24 +42,8 @@ public class Pacman extends Entite {
         return null;
     }
 
-    public EDirection getDirectionCourante() {
-        return this.dist_courante;
-    }
-
-    public EDirection getDirectionVoulue() {
-        return this.dist_voulue;
-    }
-
     public int getVie() {
-        return this.vie;
-    }
-
-    public void setDirectionCourante(EDirection d) {
-        this.dist_courante = d;
-    }
-
-    public void setDirectionVoulue(EDirection d) {
-        this.dist_voulue = d;
+        return this.vies;
     }
 
     public void deplacer() {
