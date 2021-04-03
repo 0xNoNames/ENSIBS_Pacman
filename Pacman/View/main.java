@@ -1,7 +1,5 @@
 package Pacman.View;
 
-import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
-
 public class main {
 
     entreeClavier keyboard;
