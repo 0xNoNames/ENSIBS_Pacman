@@ -18,4 +18,8 @@ public class Jouable extends Case implements ICase{
     public Objet getObjet() {
         return this.objet;
     }
+
+    public void setObjet(Objet o) {
+        this.objet = o;
+    }
 }

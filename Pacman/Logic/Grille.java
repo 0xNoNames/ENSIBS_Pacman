@@ -37,13 +37,13 @@ public class Grille {
      */
     private Pinky pinky;
 
-    public Grille(int x, int y) {
+    public Grille(Case[][] c) {
         this.pac = new Pacman();
         this.clide = new Clyde();
         this.inky = new Inky();
         this.pinky = new Pinky();
         this.blinky = new Blinky();
-        this.cases = new Case[x][y];
+        this.cases = c;
     }
 
     public Pacman getPacman() {

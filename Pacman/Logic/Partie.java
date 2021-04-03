@@ -54,7 +54,17 @@ public class Partie implements IPartie{
      * Permet d'avancer dans le temps.
      */
     public void tick() {
+		Pacman pac = this.Grille.getPacman();
+		Blinky blinky = this.Grille.getBlinky();
+		Inky inky = this.Grille.getInky();
+		Clyde clyde = this.Grille.getClyde();
+		Pinky pinky = this.Grille.getPinky();
 		while(temps_partie!=0 && this.getVies()>0) {
+			pac.deplacer();
+			pinky.deplacer(pac);
+			inky.deplacer(pac);
+			blinky.deplacer(pac);
+			clyde.deplacer();
 			
 		}
 	}
