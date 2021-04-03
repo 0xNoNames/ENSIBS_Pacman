@@ -16,22 +16,22 @@ public class Partie implements IPartie{
 	/*
 	 * 
 	 */
-	private Grille Grille;
+	private Grille grille;
 	
 	/*
 	 * 
 	 */
-	private int Score;
+	private int score;
 	
 	/*
 	 * 
 	 */
-	private int Niveau;
+	private int niveau;
 	
 	/*
 	 * 
 	 */
-	private EStatutPartie EtatPartie;
+	private EStatutPartie etatPartie;
 	
 	/**
 	 * 
@@ -43,28 +43,60 @@ public class Partie implements IPartie{
 	 */
 	public Partie() {
 		DataForLogic d = new DataForLogic();
-		this.Grille = d.getGrilleInitiale();
-		this.Score = 0;
-		this.Niveau = 0;
+		this.grille = d.getGrilleInitiale();
+		this.score = 0;
+		this.niveau = 0;
 		this.temps_partie = 300;
-		this.EtatPartie = EStatutPartie.EN_PAUSE;
+		this.etatPartie = EStatutPartie.EN_PAUSE;
 	}
 
 	/**
      * Permet d'avancer dans le temps.
      */
     public void tick() {
-		Pacman pac = this.Grille.getPacman();
-		Blinky blinky = this.Grille.getBlinky();
-		Inky inky = this.Grille.getInky();
-		Clyde clyde = this.Grille.getClyde();
-		Pinky pinky = this.Grille.getPinky();
-		while(temps_partie!=0 && this.getVies()>0) {
-			pac.deplacer();
-			pinky.deplacer(pac);
-			inky.deplacer(pac);
-			blinky.deplacer(pac);
-			clyde.deplacer();
+		if(etatPartie == EStatutPartie.EN_COURS) {
+			Pacman pac = this.grille.getPacman();
+			Blinky blinky = this.grille.getBlinky();
+			Inky inky = this.grille.getInky();
+			Clyde clyde = this.grille.getClyde();
+			Pinky pinky = this.grille.getPinky();
+			Case[][] tab = this.grille.getCases();
+			Fantome[] fantomes = {inky,clyde,pinky,blinky};
+			while(temps_partie!=0 && this.getVies()>0) {
+				pac.deplacer();
+				pinky.deplacer(pac);
+				inky.deplacer(pac);
+				blinky.deplacer(pac);
+				clyde.deplacer();
+				/* Pacman mange */
+				int pacX = (int) pac.posX;
+				int pacY = (int) pac.posY;
+				Jouable pacCase = (Jouable) tab[pacX][pacY]
+				if(pacCase.getObjet() != null ){
+					Objet o = pacCase.getObjet();
+					this.score += d.getPoints(o);
+					if(o.getClass() instanceof GrosseGomme) {
+						/* Erreur chiante */
+					}
+				}
+				/* Fantom meme case pacman */
+				for(Fantome f : fantomes) {
+					int fantomeX = (int) f.getposX();
+					int fantomeY = (int) f.getposY();
+					if(fantomeX == pacX && fantomeY == pacY) {
+						if(f.getStatut() == EStatutFantome.CHASSEUR) {
+							pac.meurt();
+						} else if(f.getStatut() == EStatutFantome.VULNERABLE){
+							f.meurt();
+						}
+					}
+				}
+				/* Grille contient encore des pacGommes */
+				if(noGomme()) {
+					this.etatPartie = EStatutPartie.EN_PAUSE;
+					this.initialisation();
+				}
+			}
 		}
 	}
 
@@ -72,9 +104,9 @@ public class Partie implements IPartie{
      * Permet d'initialiser la partie.
      */
     public void initialisation() {
-		this.Grille = d.getGrilleInitiale();
-		this.Niveau ++;
-		this.EtatPartie = EStatutPartie.EN_COURS;
+		this.grille = d.getGrilleInitiale();
+		this.niveau ++;
+		this.etatPartie = EStatutPartie.EN_COURS;
 	}
 
     /**
@@ -83,7 +115,7 @@ public class Partie implements IPartie{
      * @return retourne un entier représentant le niveau.
      */
     public int getNiveau() {
-		return this.Niveau;
+		return this.niveau;
 	}
 
     /**
@@ -92,7 +124,7 @@ public class Partie implements IPartie{
      * @return retourne un entier représentant les vies du joueurs.
      */
     public int getVies() {
-		return this.Grille.getPacman().getVie();
+		return this.grille.getPacman().getVie();
 	}
 
     /**
@@ -101,7 +133,7 @@ public class Partie implements IPartie{
      * @return retourne un entier représentant le score du joueur.
      */
     public int getScore() {
-		return this.Score;
+		return this.score;
 	}
 
     /**
@@ -110,7 +142,7 @@ public class Partie implements IPartie{
      * @return retourne une valeur de type EStatusPartie.
      */
     public EStatutPartie getEtatPartie() {
-		return this.EtatPartie;
+		return this.etatPartie;
 	}
 
     /**
@@ -119,6 +151,21 @@ public class Partie implements IPartie{
      * @return retourne une matrice de Case.
      */
     public Case[][] getGrille() {
-		return this.Grille.getCases();
+		return this.grille.getCases();
+	}
+
+	private boolean noGomme() {
+		Case[][] tab = this.grille.getCases();
+		for(int i=0; i<tab.length;i++) {
+			for(int j=0;j<tab[i].length;i++) {
+				if(tab[i][j] instanceof Jouable) {
+					Jouable j = (Jouable) tab[i][j];
+					if(j.getObjet() != null) {
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 }

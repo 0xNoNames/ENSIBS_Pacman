@@ -64,9 +64,14 @@ public abstract class Entite implements IEntite{
         return this.posY;
     }
 
+    /**
+     * 
+     * @param g
+     */
     public void setGrille(Grille g) {
         this.grille = g;
     }
+
     public abstract void meurt();
 
 }
