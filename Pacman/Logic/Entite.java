@@ -54,7 +54,7 @@ public abstract class Entite implements IEntite{
     }
 
     /**
-     * 
+     * Permet de récupérer la coordonnée en X de l'entité
      * @return
      */
     public double getposX() {
@@ -62,7 +62,7 @@ public abstract class Entite implements IEntite{
     }
 
     /**
-     * 
+     * Permet de récupérer la coordonnée en Y de l'entité
      * @return
      */
     public double getposY() {
@@ -70,16 +70,40 @@ public abstract class Entite implements IEntite{
     }
 
     /**
-     * 
-     * @param g
+     * Permet de définir la coordonnée X de l'entité
+     * @param x, la futur coordonnée X de l'entité
+     */
+    public void setPosX(double x) {
+        this.posX = x;
+    }
+
+    /**
+     * Permet de définir la coordonnée Y de l'entité
+     * @param y, la futur coordonnée Y de l'entité
+     */
+    public void setPosY(double y) {
+        this.posY = y;
+    }
+
+    /**
+     * Permet de définir la grille sur laquelle l'entité se situe
+     * @param g, une grille de jeu
      */
     public void setGrille(Grille g) {
         this.grille = g;
     }
 
+    /**
+     * Permet de définir la partie dans laquelle l'entité se situe
+     * @param p, une partie de jeu
+     */
     public void setPartie(Partie p) {
         this.partie = p;
     }
+
+    /**
+     * Fonction abstraite permettant d'actionner la mort d'une entité
+     */
     public abstract void meurt();
 
 
@@ -88,10 +112,10 @@ public abstract class Entite implements IEntite{
     // ------------------------------------------
 
     /**
-     * 
-     * @param direction
-     * @param posActuelle
-     * @return
+     * Permet de calculer la future position d'une entité selon une direction et la position actuelle
+     * @param direction, une direction de type enumération
+     * @param posActuelle, tableau d'entiers représentant les coordonnées actuelles de l'entité dans la grille
+     * @return les coordonnées future de l'entité
      */
     protected int[] calculPosDirection(EDirection direction, int[] posActuelle)
     {
@@ -119,27 +143,24 @@ public abstract class Entite implements IEntite{
     }
 
     /**
-     * 
-     * @param position
-     * @return
+     * Permet de savoir si la position est possible
+     * @param position, tableau  d'entiers représentant les coordonnées de l'entité dans la grille
+     * @return vrai si position possible, faux sinon
      */
     protected boolean estPositionPossible(int[] position)
     {
         boolean positionPossible = false;
-        if(false) {
-            // TODO
-        } else if(position[0]<0 || position[0]>=grille.getCases().length || position[1]<0 || position[1]>=grille.getCases()[0].length) {
+        if(position[0]<0 || position[0]>=grille.getCases().length || position[1]<0 || position[1]>=grille.getCases()[0].length) {
             positionPossible = true;
         } else if(grille.getCases()[position[0]][position[1]] instanceof Jouable){
             positionPossible = true;        
         }
-
         return positionPossible;
     }
 
     /**
-     * 
-     * @return
+     * Permet de récupérer la position actuelle de l'entité dans la grille
+     * @return tableau d'entiers contenant la position actuelle
      */
     protected int[] getPositionActuelle()
     {

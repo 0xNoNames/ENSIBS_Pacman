@@ -2,34 +2,34 @@ package Pacman.Logic;
 import Pacman.Data.DataForLogic;
 
 /**
- * 
+ * Classe représentant une partie de jeu
  * 
  * @author François JULLION
  */
 public class Partie implements IPartie{
 
-	/*
-	 *
+	/**
+	 * Variable permettant de récuperer les outils de la couche Data
 	 */
 	public static DataForLogic d;
 
 	/**
-	 * 
+	 * Variable représentant le nombre entier de tick par Seconde
 	 */
-	public static int tickParSeconde;
+	public static int tickParSeconde = 60;
 
 	/*
-	 * 
+	 * Variable représentant la grille de jeu
 	 */
 	private Grille grille;
 	
 	/*
-	 * 
+	 * Variable représentant le score actuel de la partie
 	 */
 	private int score;
 	
 	/*
-	 * 
+	 * Variable représentant le niveau actuel de la partie
 	 */
 	private int niveau;
 	
@@ -41,83 +41,21 @@ public class Partie implements IPartie{
 	/**
 	 * 
 	 */
-	private int temps_partie;
+	private int compteurPartie;
 
 	/*
-	 * 
+	 * Constructeur de la classe Partie
 	 */
 	public Partie() {
 		DataForLogic d = new DataForLogic();
 		this.grille = d.getGrilleInitiale();
 		this.score = 0;
 		this.niveau = 0;
-		this.temps_partie = 300*60;
+		this.compteurPartie = 0;
 		this.etatPartie = EStatutPartie.EN_PAUSE;
-		this.tickParSeconde = 60;
 	}
 
 	/**
-     * Permet d'avancer dans le temps.
-     */
-    public void tick() {
-		if(etatPartie == EStatutPartie.EN_COURS) {
-			/* Récupération des entités de la grille */
-			Pacman pac = this.grille.getPacman();
-			Blinky blinky = this.grille.getBlinky();
-			Inky inky = this.grille.getInky();
-			Clyde clyde = this.grille.getClyde();
-			Pinky pinky = this.grille.getPinky();
-			/* Définition de la partie pour chaque entité*/
-			pac.setPartie(this);
-			blinky.setPartie(this);
-			inky.setPartie(this);
-			clyde.setPartie(this);
-			pinky.setPartie(this);
-			/* Récupération du tableau de case de la grille*/
-			Case[][] tab = this.grille.getCases();
-			/* Définition d'un tableau représentant l'ensemble des fantomes */
-			Fantome[] fantomes = {inky,clyde,pinky,blinky};
-			while(temps_partie!=0 && this.getVies()>0) {
-				pac.deplacer();
-				pinky.deplacer(pac);
-				inky.deplacer(pac);
-				blinky.deplacer(pac);
-				clyde.deplacer();
-				/* Pacman mange */
-				int pacX = (int) pac.posX;
-				int pacY = (int) pac.posY;
-				Jouable pacCase = (Jouable) tab[pacX][pacY];
-				if(pacCase.getObjet() != null ){
-					Objet o = pacCase.getObjet();
-					this.score += d.getPoints(o);
-					if(o instanceof GrosseGomme) {
-						for(Fantome f : fantomes) {
-							f.setStatut(EStatutFantome.VULNERABLE);
-						}
-					}
-				}
-				/* Fantom meme case pacman */
-				for(Fantome f : fantomes) {
-					int fantomeX = (int) f.getposX();
-					int fantomeY = (int) f.getposY();
-					if(fantomeX == pacX && fantomeY == pacY) {
-						if(f.getStatut() == EStatutFantome.CHASSEUR) {
-							pac.meurt();
-						} else if(f.getStatut() == EStatutFantome.VULNERABLE){
-							f.meurt();
-						}
-					}
-				}
-				/* Grille contient encore des pacGommes */
-				if(noGomme()) {
-					this.etatPartie = EStatutPartie.EN_PAUSE;
-					this.initialisation();
-				}
-			}
-		}
-	}
-
-    /**
      * Permet d'initialiser la partie.
      */
     public void initialisation() {
@@ -170,6 +108,76 @@ public class Partie implements IPartie{
     public Case[][] getGrille() {
 		return this.grille.getCases();
 	}
+
+	/**
+     * Permet d'avancer dans le temps.
+     */
+    public void tick() {
+		if(etatPartie == EStatutPartie.EN_COURS) {
+			/* Récupération des entités de la grille */
+			Pacman pac = this.grille.getPacman();
+			Blinky blinky = this.grille.getBlinky();
+			Inky inky = this.grille.getInky();
+			Clyde clyde = this.grille.getClyde();
+			Pinky pinky = this.grille.getPinky();
+			/* Définition de la partie pour chaque entité*/
+			pac.setPartie(this);
+			blinky.setPartie(this);
+			inky.setPartie(this);
+			clyde.setPartie(this);
+			pinky.setPartie(this);
+			/* Récupération du tableau de case de la grille*/
+			Case[][] tab = this.grille.getCases();
+			/* Définition d'un tableau représentant l'ensemble des fantomes */
+			Fantome[] fantomes = {inky,clyde,pinky,blinky};
+			while(this.niveau<=256 && this.getVies()>0) {
+				pac.deplacer();
+				pinky.deplacer(pac);
+				inky.deplacer(pac);
+				blinky.deplacer(pac);
+				clyde.deplacer();
+				/* Pacman mange */
+				int pacX = (int) pac.posX;
+				int pacY = (int) pac.posY;
+				Jouable pacCase = (Jouable) tab[pacX][pacY];
+				if(pacCase.getObjet() != null ){
+					Objet o = pacCase.getObjet();
+					this.score += d.getPoints(o);
+					if(o instanceof GrosseGomme) {
+						for(Fantome f : fantomes) {
+							f.setStatut(EStatutFantome.VULNERABLE);
+						}
+					}
+				}
+				/* Fantom meme case pacman */
+				for(Fantome f : fantomes) {
+					int fantomeX = (int) f.getposX();
+					int fantomeY = (int) f.getposY();
+					if(fantomeX == pacX && fantomeY == pacY) {
+						if(f.getStatut() == EStatutFantome.CHASSEUR) {
+							pac.meurt();
+						} else if(f.getStatut() == EStatutFantome.VULNERABLE){
+							f.meurt();
+							if(this.compteurPartie - pac.getTickDernierFantomeMange() < tickParSeconde * 1.5) {
+								pac.setCompteurCombo(pac.getCompteurCombo()+1);
+							} else {
+								pac.setCompteurCombo(1);
+							}
+							this.score += d.getPointsCombo(pac.getCompteurCombo());
+							pac.setTickDernierFantomeMange(compteurPartie);
+						}
+					}
+				}
+				/* Grille contient encore des pacGommes */
+				if(noGomme()) {
+					this.etatPartie = EStatutPartie.EN_PAUSE;
+					this.initialisation();
+				}
+				compteurPartie++;
+			}
+		}
+	}
+
 
 	/**
 	 * Permet de savoir si il ne reste pas de gomme sur la grille
