@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import Pacman.Logic.ECouleur;
+import Pacman.Logic.EDirection;
 
 /**
  * DataForView stocke les différentes données susceptibles d'être demandées par
@@ -18,7 +19,9 @@ public class DataForView implements ISprites {
     private static String cheminSpriteComplet = "/Pacman/Data/sprites.png";
     private BufferedImage spriteComplet;
     private Image[] pacmanSprites, mortPacmanSprites, fantomesSprites,
-        mortFantomesSprites, gommesSprites;
+        mortFantomesSprites, gommesSprites, fruitSprites, pointsSprites,
+        lettresChiffresSprites, rgoSprites;
+    private Image grilleSprite;
     
     public DataForView()
     {
@@ -73,7 +76,7 @@ public class DataForView implements ISprites {
     }
 
     @Override
-    public Image[] getFantomesSprites(ECouleur couleur) {
+    public Image[] getFantomesSprites(ECouleur couleur, EDirection direction) {
         // si ces sprites n'ont pas encore été demandés
         if (fantomesSprites == null)
         {
@@ -96,6 +99,12 @@ public class DataForView implements ISprites {
         }
 
         return fantomesSprites;
+    }
+
+    @Override
+    public Image[] getVulnerableFantomesSprites()
+    {
+        return null;
     }
 
     @Override
@@ -128,31 +137,92 @@ public class DataForView implements ISprites {
 
     @Override
     public Image[] getFruitSprites() {
-        // TODO Auto-generated method stub
-        return null;
+        // si ces sprites n'ont pas encore été demandés
+        if (fruitSprites == null)
+        {
+            fruitSprites = new Image[8];
+
+            // ces sprites sont répartis en 4 lignes 2 colonnes
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    fruitSprites[i * 2 + j] = spriteComplet.getSubimage(
+                        169 + i * 20, 164 + j * 40, 16, 16
+                    );
+                }
+            }
+        }
+
+        return fruitSprites;
     }
 
     @Override
     public Image[] getLettresChiffres() {
-        // TODO Auto-generated method stub
-        return null;
+        // si ces sprites n'ont pas encore été demandés
+        if (lettresChiffresSprites == null)
+        {
+            lettresChiffresSprites = new Image[10];
+
+            // ces sprites sont tous en ligne
+            for (int i = 0; i < 10 ; i++)
+            {
+                lettresChiffresSprites[i] =
+                    spriteComplet.getSubimage(12 + 10 * i, 184, 7, 7);
+            }
+        }
+
+        return lettresChiffresSprites;
     }
 
     @Override
     public Image[] getPoints() {
-        // TODO Auto-generated method stub
-        return null;
+        // si ces sprites n'ont pas encore été demandés
+        if (pointsSprites == null)
+        {
+            pointsSprites = new Image[12];
+
+            // ces sprites sont en partie en colonne...
+            for (int i = 0; i < 8; i++)
+            {
+                pointsSprites[i] =
+                    spriteComplet.getSubimage(166, 7 + i * 20, 22, 9);
+            }
+
+            // ...et en partie en ligne
+            for (int i = 8; i < 12; i++)
+            {
+                pointsSprites[i] =
+                    spriteComplet.getSubimage(1 + i * 20, 227, 17, 9);
+            }
+        }
+
+        return pointsSprites;
     }
 
     @Override
     public Image getGrille() {
-        // TODO Auto-generated method stub
-        return null;
+        // si ce sprite n'a pas encore été demandé
+        if (grilleSprite == null)
+        {
+            grilleSprite = spriteComplet.getSubimage(321, 28, 224, 248);
+        }
+        
+        return grilleSprite;
     }
 
     @Override
     public Image[] getRGOSprite() {
-        // TODO Auto-generated method stub
-        return null;
+        // si ces sprites n'ont pas encore été demandés
+        if (rgoSprites == null)
+        {
+            rgoSprites = new Image[3];
+
+            rgoSprites[0] = spriteComplet.getSubimage(201, 3, 48, 9);
+            rgoSprites[1] = spriteComplet.getSubimage(11, 193, 81, 9);
+            rgoSprites[2] = spriteComplet.getSubimage(214, 73, 24, 9);
+        }
+        
+        return rgoSprites;
     }
 }

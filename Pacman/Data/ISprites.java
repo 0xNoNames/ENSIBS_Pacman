@@ -2,6 +2,7 @@ package Pacman.Data;
 
 import java.awt.Image;
 import Pacman.Logic.ECouleur;
+import Pacman.Logic.EDirection;
 
 /**
  * L'interface ISprites permet à la View d'obtenir les sprites des différentes
@@ -54,7 +55,9 @@ public interface ISprites {
      * @param couleur couleur du fantôme demandé
      * @return Tableau d'Image
      */
-    public Image[] getFantomesSprites(ECouleur couleur);
+    public Image[] getFantomesSprites(ECouleur couleur, EDirection direction);
+
+    public Image[] getVulnerableFantomesSprites();
 
     /**
      * Permet d'obtenir un tableau des sprites de l'animation de mort d'un Fantome
