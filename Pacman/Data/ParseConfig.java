@@ -44,7 +44,7 @@ class ParseConfig {
     /**
      * Chemin du fichier config.json dans le .jar.
      */
-    private static String cheminConfig = "/Pacman/Data/config.json";
+    private static String cheminConfig = "config.json";
     
     /**
      * Stocke config.json désérialisé afin de ne pas constamment le relire.

@@ -19,7 +19,7 @@ public class DataForView implements ISprites {
     /**
      * Chemin vers la spritemap
      */
-    private static String cheminSpriteComplet = "/Pacman/Data/sprites.png";
+    private static String cheminSpriteComplet = "sprites.png";
     
     /**
      * Spritemap sous forme de java.awt.image.BufferedImage
@@ -108,8 +108,6 @@ public class DataForView implements ISprites {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println(spriteComplet);
     }
 
     @Override
@@ -171,9 +169,12 @@ public class DataForView implements ISprites {
         return mortPacmanSprites;
     }
 
+    /**
+     * Découpe tous les sprites des fantômes et les place dans fantomesSprites
+     */
     private void chargerFantomesSprites()
     {
-        fantomesSprites = new Image[34];
+        fantomesSprites = new Image[36];
 
         // les fantomes normaux sont sur 4 lignes 8 colonnes
         for (int i = 0; i < 4; i++)
@@ -186,14 +187,11 @@ public class DataForView implements ISprites {
             }
         }
 
-        // TODO nettoyer
-        // il manque l'état vulnérable
-        fantomesSprites[32] = spriteComplet.getSubimage(1, 164, 16, 16);
-        fantomesSprites[33] = spriteComplet.getSubimage(21, 164, 16, 16);
-
-        // il manque l'état mort
-        fantomesSprites[34] = spriteComplet.getSubimage(41, 164, 16, 16);
-        fantomesSprites[35] = spriteComplet.getSubimage(61, 164, 16, 16);
+        // les fantomes vulnérables et morts sont sur une ligne
+        for (int i = 32; i < 36; i++)
+        {
+            fantomesSprites[i] = spriteComplet.getSubimage(1 + 20 * (i - 32), 164, 16, 16);
+        }
     }
 
     @Override
