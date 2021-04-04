@@ -41,4 +41,13 @@ public interface IEntite {
      * @return talbeau de deux réels où [0] = posX et [1] = posY
      */
     public double[] getPositionInitialeFantome(ECouleur couleur);
+
+    /**
+     * Permet d'obtenir le nombre de points que vaut un combo de dégustation de
+     * fantômes.
+     * 
+     * @param nbrFantomesManges nombre de fantômes mangés durant le combo
+     * @return nombre de points pour nbrFantomesManges fantômes mangés
+     */
+    public int getPointsCombo(int nbrFantomesManges);
 }

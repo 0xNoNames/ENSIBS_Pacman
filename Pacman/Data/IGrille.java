@@ -11,7 +11,7 @@ import Pacman.Logic.Grille;
 public interface IGrille {
     /**
      * Permet d'obtenir la Grille initalisée contenant toutes les Gommes ainsi
-     * que Pacman et les 4 Fantomes à leurs positions initiales.
+     * que Pacman et les 4 Fantomes à leurs positions initiales. // TODO vérifier
      * 
      * @return Grille représentant l'instant 0 d'un niveau et dont tous les
      * attributs sont instanciés

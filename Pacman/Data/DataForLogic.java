@@ -1,7 +1,6 @@
 package Pacman.Data;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import Pacman.Logic.ECouleur;
 import Pacman.Logic.Fruit;
@@ -17,12 +16,12 @@ import Pacman.Logic.Objet;
 public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
 {
     private double[] vitessePacman;
-    private Map<ECouleur, double[]> vitesseFantome;
+    private HashMap<ECouleur, double[]> vitesseFantome;
     private double[] posInitPacman;
-    private Map<ECouleur, double[]> posInitFantome;
+    private HashMap<ECouleur, double[]> posInitFantome;
     private Fruit[] fruitNiveau;
-    private Grille grilleInitiale;
-    private Map<String, Integer> pointsObjet;
+    private HashMap<String, Integer> pointsObjet;
+    private int[] pointsCombo;
 
     @Override
     public double getVitessePacman(int niveau) {
@@ -104,16 +103,55 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
 
     @Override
     public Fruit getFruitNiveau(int niveau) {
-        throw new UnsupportedOperationException();
+        // si aucun fruit n'a encore été demandé
+        if (fruitNiveau == null)
+        {
+            fruitNiveau = ParseConfig.getFruitNiveau();
+        }
+
+        return fruitNiveau[niveau - 1];
     }
 
     @Override
     public int getPoints(Objet objet) {
-        throw new UnsupportedOperationException();
+        // si aucun nombre de points n'a encore été demandé
+        if (pointsObjet == null)
+        {
+            pointsObjet = ParseConfig.getPointsObjet();
+        }
+
+        // on trouve la clé correspondante à l'objet envoyé
+        String cle = objet.getClass().toString();
+        String[] cleSplittee = cle.split("\\.");
+        cle = cleSplittee[cleSplittee.length - 1];
+        
+        // on enlève les accents
+        if (cle.equals("Cle")) cle = "Clé";
+
+        return pointsObjet.get(cle);
     }
 
     @Override
     public Grille getGrilleInitiale() {
-        throw new UnsupportedOperationException();
+        /* afin d'éviter tout problème de confusion de Grille avec leurs
+         * références, on ne mettra pas en place de stratégie de cache ici */
+        Grille grille = ParseConfig.getGrilleInitiale();
+        
+        // on ajoute aussi les entités
+        // TODO
+
+        return grille;
+    }
+
+    @Override
+    public int getPointsCombo(int nbrFantomesManges)
+    {
+        // si aucun nombre de points n'a encore été mangé
+        if (pointsCombo == null)
+        {
+            pointsCombo = ParseConfig.getPointsCombo();
+        }
+
+        return pointsCombo[nbrFantomesManges - 1];
     }
 }

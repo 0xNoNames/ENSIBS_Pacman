@@ -1,6 +1,6 @@
 {
     "_comment0": "Vitesses des entités selon leur niveau : vitesseBase*coeff",
-    "vitesseBase": 11,
+    "vitesseBase": 3,
     "vitessePacman":
     {
         "1": 0.8,
@@ -70,6 +70,10 @@
         "Cloche": 3000,
         "Clé": 5000
     },
+    "pointsCombo":
+    [
+        200, 400, 800, 1600
+    ]
 
     "_comment4": "État de la grille au début de chaque niveau",
     "_comment5": "m_ur, p_etite, G_rosse, v_ide",
