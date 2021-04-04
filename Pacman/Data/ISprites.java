@@ -21,7 +21,7 @@ public interface ISprites {
      * 
      * @return Tableau d'Image
      */
-    public Image[] getPacmanSprites();
+    public Image[] getPacmanSprites(EDirection direction);
 
     /**
      * Permet d'obtenir un tableau des sprites de l'animation de mort de Pacman

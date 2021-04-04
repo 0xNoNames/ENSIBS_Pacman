@@ -37,7 +37,7 @@ public class DataForView implements ISprites {
     }
 
     @Override
-    public Image[] getPacmanSprites() {
+    public Image[] getPacmanSprites(EDirection direction) {
         // si ces sprites n'ont pas encore été demandés
         if (pacmanSprites == null)
         {
