@@ -55,11 +55,27 @@ public class Grille {
     }
 
     /**
+     * Permet définir l'entité pacman de la grille
+     * @param p, une entité Pacman
+     */
+    public void setPacman(Pacman p) {
+        this.pac = p;
+    }
+
+    /**
      * Permet de récupérer l'entité Pinky présente dans la grille
      * @return l'entité pinky
      */
     public Pinky getPinky() {
         return this.pinky;
+    }
+
+    /**
+     * Permet définir l'entite Pinky de la grille
+     * @param p, une entite Pinky
+     */
+    public void setPinky(Pinky p) {
+        this.pinky = p;
     }
 
     /**
@@ -71,11 +87,27 @@ public class Grille {
     }
 
     /**
+     * Permet définir l'entite Clyde de la grille
+     * @param p, une entite Clyde
+     */
+    public void setClyde(Clyde c) {
+        this.clide = c;
+    }
+
+    /**
      * Permet de récupérer l'entité Inky présente dans la grille
      * @return l'entité Inky
      */
     public Inky getInky() {
         return this.inky;
+    }
+
+    /**
+     * Permet définir l'entite Inky de la grille
+     * @param p, une entite Inky
+     */
+    public void setInky(Inky i) {
+        this.inky = i;
     }
 
     /**
@@ -86,6 +118,14 @@ public class Grille {
         return this.blinky;
     }
 
+    /**
+     * Permet définir l'entite BLinky de la grille
+     * @param p, une Blinky Pinky
+     */
+    public void setBlinky(Blinky b){
+        this.blinky = b;
+    }
+    
     /**
      * Permet de récupérer le tableau 2D de cases
      * @return tableau 2D de cases
