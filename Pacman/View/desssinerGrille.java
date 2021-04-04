@@ -15,6 +15,7 @@ import Pacman.Logic.Jouable;
  */
 public class desssinerGrille {
 
+    // Dessine les éléments de la grille.
     public void desssinerGrille(Case[][] grille, JFrame fenetre, DataForView data) {
         JLabel imageLabel;
         for (Case[] ligne : grille) {
