@@ -43,6 +43,7 @@ public class Grille {
         this.inky = new Inky();
         this.pinky = new Pinky();
         this.blinky = new Blinky();
+        // TODO set les positions des entités
         this.cases = c;
     }
 

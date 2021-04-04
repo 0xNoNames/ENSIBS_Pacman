@@ -62,6 +62,7 @@ public class Partie implements IPartie{
 			Pinky pinky = this.grille.getPinky();
 			Case[][] tab = this.grille.getCases();
 			Fantome[] fantomes = {inky,clyde,pinky,blinky};
+
 			while(temps_partie!=0 && this.getVies()>0) {
 				pac.deplacer();
 				pinky.deplacer(pac);
@@ -71,12 +72,12 @@ public class Partie implements IPartie{
 				/* Pacman mange */
 				int pacX = (int) pac.posX;
 				int pacY = (int) pac.posY;
-				Jouable pacCase = (Jouable) tab[pacX][pacY]
-				if(pacCase.getObjet() != null ){
+				Jouable pacCase = (Jouable) tab[pacX][pacY];
+				if(pacCase.getObjet() != null){
 					Objet o = pacCase.getObjet();
 					this.score += d.getPoints(o);
-					if(o.getClass() instanceof GrosseGomme) {
-						/* Erreur chiante */
+					if(o instanceof GrosseGomme) {
+						
 					}
 				}
 				/* Fantom meme case pacman */

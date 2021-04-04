@@ -15,6 +15,6 @@ public class Clyde extends Fantome {
     }
 
     public void deplacer() {
-        
+        // TODO choisir une directionvoulue aléatoirement tous les x ticks
     }
 }

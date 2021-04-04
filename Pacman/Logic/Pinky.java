@@ -18,6 +18,6 @@ public class Pinky extends Fantome {
      * 
      */
     public void deplacer(Pacman p) {
-        
+        this.deplacerVersPacman(p);
     }
 }

@@ -15,6 +15,6 @@ public class Inky extends Fantome {
     }
 
     public void deplacer(Pacman p) {
-        
+        this.deplacerVersPacman(p);
     }
 }
