@@ -73,8 +73,7 @@
     "pointsCombo":
     [
         200, 400, 800, 1600
-    ]
-
+    ],
     "_comment4": "État de la grille au début de chaque niveau",
     "_comment5": "m_ur, p_etite, G_rosse, v_ide",
     "grille":

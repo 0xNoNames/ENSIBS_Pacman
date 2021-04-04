@@ -3,9 +3,11 @@ package Pacman.Data;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -40,9 +42,9 @@ class ParseConfig {
     // ------------------------------------------------------------------------
 
     /**
-     * Chemin du fichier config.json.
+     * Chemin du fichier config.json dans le .jar.
      */
-    private static String cheminConfig = "./Pacman/Data/config.json";
+    private static String cheminConfig = "/Pacman/Data/config.json";
     
     /**
      * Stocke config.json désérialisé afin de ne pas constamment le relire.
@@ -72,7 +74,8 @@ class ParseConfig {
             
             try
             {
-                reader = new FileReader(cheminConfig);
+                InputStream input = ParseConfig.class.getResourceAsStream(cheminConfig);
+                reader = new BufferedReader(new InputStreamReader(input));
                 objetJson = (JSONObject) parser.parse(reader);
             }
             catch (FileNotFoundException e)

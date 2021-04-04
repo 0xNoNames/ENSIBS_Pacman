@@ -6,6 +6,7 @@ import Pacman.Logic.ECouleur;
 import Pacman.Logic.Fruit;
 import Pacman.Logic.Grille;
 import Pacman.Logic.Objet;
+import Pacman.Logic.Pacman;
 
 /**
  * DataForLogic stocke les différentes données susceptibles d´être demandées
@@ -132,7 +133,7 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
     }
 
     @Override
-    public Grille getGrilleInitiale() {
+    public Grille getGrilleInitiale(Pacman pacman) {
         /* afin d'éviter tout problème de confusion de Grille avec leurs
          * références, on ne mettra pas en place de stratégie de cache ici */
         Grille grille = ParseConfig.getGrilleInitiale();

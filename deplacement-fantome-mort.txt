@@ -1,0 +1,9 @@
+sin = opposé / hyp
+cos = adjacent / hyp
+tan = opposé / adj
+
+droite qui passe par posInit et par fantome
+ y = a * x + b
+ a = (fantomeY - posInitY) / (fantomeX - posInitX)
+ b = posInitY -  a *posInitX
+-> on a l'équation de la droite que doit parcourir fantome pour aller jusque posInit

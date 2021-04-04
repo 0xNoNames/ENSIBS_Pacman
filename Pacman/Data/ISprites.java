@@ -1,7 +1,6 @@
-package Pacman.View;
+package Pacman.Data;
 
 import java.awt.Image;
-import javax.swing.ImageIcon;
 import Pacman.Logic.ECouleur;
 
 /**
