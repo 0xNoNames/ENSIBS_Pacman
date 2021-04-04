@@ -117,10 +117,9 @@ public abstract class Entite implements IEntite{
      * @param posActuelle, tableau d'entiers représentant les coordonnées actuelles de l'entité dans la grille
      * @return les coordonnées future de l'entité
      */
-    protected int[] calculPosDirection(EDirection direction, int[] posActuelle)
-    {
+    protected int[] calculPosDirection(EDirection direction, int[] posActuelle) {
         int[] posVoulue = {0,0};
-        switch(dirVoulue) {
+        switch(direction) {
             case EST:
                 posVoulue[0] = posActuelle[0] + 1;
                 posVoulue[1] = posActuelle[1];
@@ -138,7 +137,6 @@ public abstract class Entite implements IEntite{
                 posVoulue[1] = posActuelle[1] + 1;
                 break;
         }
-
         return posVoulue;
     }
 
@@ -147,8 +145,7 @@ public abstract class Entite implements IEntite{
      * @param position, tableau  d'entiers représentant les coordonnées de l'entité dans la grille
      * @return vrai si position possible, faux sinon
      */
-    protected boolean estPositionPossible(int[] position)
-    {
+    protected boolean estPositionPossible(int[] position) {
         boolean positionPossible = false;
         if(position[0]<0 || position[0]>=grille.getCases().length || position[1]<0 || position[1]>=grille.getCases()[0].length) {
             positionPossible = true;
@@ -162,8 +159,7 @@ public abstract class Entite implements IEntite{
      * Permet de récupérer la position actuelle de l'entité dans la grille
      * @return tableau d'entiers contenant la position actuelle
      */
-    protected int[] getPositionActuelle()
-    {
+    protected int[] getPositionActuelle(){
         int[] position = {(int)this.posX, (int)this.posY};
         return position;
     }
