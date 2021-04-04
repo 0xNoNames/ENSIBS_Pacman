@@ -34,21 +34,27 @@ public class Partie implements IPartie{
 	private int niveau;
 	
 	/*
-	 * 
+	 * Variable représentant l'état de la partie actuelle
 	 */
 	private EStatutPartie etatPartie;
 	
 	/**
-	 * 
+	 * Variable représentant le nombre de tick total effectué pendant la partie
 	 */
 	private int compteurPartie;
 
-	/*
+	/**
+	 * Variable représentant le pacman de la partie
+	 */
+	private Pacman pac;
+
+	/** 
 	 * Constructeur de la classe Partie
 	 */
 	public Partie() {
 		DataForLogic d = new DataForLogic();
-		this.grille = d.getGrilleInitiale();
+		this.pac = new Pacman();
+		this.grille = d.getGrilleInitiale(pac);
 		this.score = 0;
 		this.niveau = 0;
 		this.compteurPartie = 0;
@@ -59,7 +65,7 @@ public class Partie implements IPartie{
      * Permet d'initialiser la partie.
      */
     public void initialisation() {
-		this.grille = d.getGrilleInitiale();
+		this.grille = d.getGrilleInitiale(pac);
 		this.niveau ++;
 		this.etatPartie = EStatutPartie.EN_COURS;
 	}
@@ -115,7 +121,6 @@ public class Partie implements IPartie{
     public void tick() {
 		if(etatPartie == EStatutPartie.EN_COURS) {
 			/* Récupération des entités de la grille */
-			Pacman pac = this.grille.getPacman();
 			Blinky blinky = this.grille.getBlinky();
 			Inky inky = this.grille.getInky();
 			Clyde clyde = this.grille.getClyde();
