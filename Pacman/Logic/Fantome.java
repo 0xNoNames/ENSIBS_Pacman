@@ -58,12 +58,24 @@ public class Fantome extends Entite {
 
     /**
      * 
+     */
+    public void setStatut(EStatutFantome s) {
+        this.statut = s;
+    }
+
+    /**
+     * 
      * @return
      */
     public void meurt() {
         this.statut = EStatutFantome.MORT;
     }
 
+    /**
+     * 
+     * @param p
+     * @return
+     */
     protected EDirection directionVoulueVersPacman(Pacman p)
     {
         double diffX = p.getposX() - this.getposX();
@@ -83,6 +95,12 @@ public class Fantome extends Entite {
         }
     }
 
+    /**
+     * 
+     * @param direction
+     * @param posActuelle
+     * @return
+     */
     protected int[] calculPosDirection(EDirection direction, int[] posActuelle)
     {
         int[] posVoulue = {0,0};
@@ -108,6 +126,11 @@ public class Fantome extends Entite {
         return posVoulue;
     }
 
+    /**
+     * 
+     * @param position
+     * @return
+     */
     protected boolean estPositionPossible(int[] position)
     {
         boolean positionPossible = false;
@@ -122,12 +145,20 @@ public class Fantome extends Entite {
         return positionPossible;
     }
 
+    /**
+     * 
+     * @return
+     */
     protected int[] getPositionActuelle()
     {
         int[] position = {(int)this.posX, (int)this.posY};
         return position;
     }
 
+    /**
+     * 
+     * @param p
+     */
     protected void deplacerVersPacman(Pacman p)
     {
         /* Calcul de la direction Voulue */
@@ -149,13 +180,12 @@ public class Fantome extends Entite {
         }
         
         /* Si une direction est possible on déplace */
-        // TODO
         if(deplacementVouluPossible) {
-            //this.posX += d.getVitesseFantome() * ;
-            //this.posy += d.getVitesseFantome() * ;
+            this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
+            this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
         } else if(deplacementCourantPossible) {
-            //this.posX +=
-            //this.posy = 
+            this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
+            this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
         }
     }
 }

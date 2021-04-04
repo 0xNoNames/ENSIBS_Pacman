@@ -13,6 +13,11 @@ public class Partie implements IPartie{
 	 */
 	public static DataForLogic d;
 
+	/**
+	 * 
+	 */
+	public static int tickParSeconde;
+
 	/*
 	 * 
 	 */
@@ -46,8 +51,9 @@ public class Partie implements IPartie{
 		this.grille = d.getGrilleInitiale();
 		this.score = 0;
 		this.niveau = 0;
-		this.temps_partie = 300;
+		this.temps_partie = 300*60;
 		this.etatPartie = EStatutPartie.EN_PAUSE;
+		this.tickParSeconde = 60;
 	}
 
 	/**
@@ -55,14 +61,22 @@ public class Partie implements IPartie{
      */
     public void tick() {
 		if(etatPartie == EStatutPartie.EN_COURS) {
+			/* Récupération des entités de la grille */
 			Pacman pac = this.grille.getPacman();
 			Blinky blinky = this.grille.getBlinky();
 			Inky inky = this.grille.getInky();
 			Clyde clyde = this.grille.getClyde();
 			Pinky pinky = this.grille.getPinky();
+			/* Définition de la partie pour chaque entité*/
+			pac.setPartie(this);
+			blinky.setPartie(this);
+			inky.setPartie(this);
+			clyde.setPartie(this);
+			pinky.setPartie(this);
+			/* Récupération du tableau de case de la grille*/
 			Case[][] tab = this.grille.getCases();
+			/* Définition d'un tableau représentant l'ensemble des fantomes */
 			Fantome[] fantomes = {inky,clyde,pinky,blinky};
-
 			while(temps_partie!=0 && this.getVies()>0) {
 				pac.deplacer();
 				pinky.deplacer(pac);
@@ -73,11 +87,13 @@ public class Partie implements IPartie{
 				int pacX = (int) pac.posX;
 				int pacY = (int) pac.posY;
 				Jouable pacCase = (Jouable) tab[pacX][pacY];
-				if(pacCase.getObjet() != null){
+				if(pacCase.getObjet() != null ){
 					Objet o = pacCase.getObjet();
 					this.score += d.getPoints(o);
 					if(o instanceof GrosseGomme) {
-						
+						for(Fantome f : fantomes) {
+							f.setStatut(EStatutFantome.VULNERABLE);
+						}
 					}
 				}
 				/* Fantom meme case pacman */
@@ -155,13 +171,17 @@ public class Partie implements IPartie{
 		return this.grille.getCases();
 	}
 
+	/**
+	 * Permet de savoir si il ne reste pas de gomme sur la grille
+	 * @return retourne un boolean indiquant si il n'y a plus de gommes sur la grille
+	 */
 	private boolean noGomme() {
 		Case[][] tab = this.grille.getCases();
 		for(int i=0; i<tab.length;i++) {
 			for(int j=0;j<tab[i].length;i++) {
 				if(tab[i][j] instanceof Jouable) {
-					Jouable j = (Jouable) tab[i][j];
-					if(j.getObjet() != null) {
+					Jouable jouable = (Jouable) tab[i][j];
+					if(jouable.getObjet() != null) {
 						return false;
 					}
 				}
