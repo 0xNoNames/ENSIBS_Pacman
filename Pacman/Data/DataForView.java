@@ -16,11 +16,87 @@ import Pacman.Logic.EDirection;
  * @author Louis-Baptiste Sobolewski
  */
 public class DataForView implements ISprites {
+    /**
+     * Chemin vers la spritemap
+     */
     private static String cheminSpriteComplet = "/Pacman/Data/sprites.png";
+    
+    /**
+     * Spritemap sous forme de java.awt.image.BufferedImage
+     */
     private BufferedImage spriteComplet;
-    private Image[] pacmanSprites, mortPacmanSprites, fantomesSprites,
-        mortFantomesSprites, gommesSprites, fruitSprites, pointsSprites,
-        lettresChiffresSprites, rgoSprites;
+
+    /**
+     * Tableau des sprites de Pacman
+     * 0: gauche fermé, 1: gauche ouvert
+     * 2: droite fermé, 3: droite ouvert
+     * 4:   haut fermé, 5:   haut ouvert
+     * 6:    bas fermé, 7:    bas ouvert
+     */
+    private Image[] pacmanSprites;
+
+    /**
+     * Tableau des sprites de Pacman qui meurt (11 sprites)
+     */
+    private Image[] mortPacmanSprites;
+    
+    /**
+     * Tableau des sprites des Fantomes
+     *  0: rouge   haut arrondi,  1:   rouge haut droit
+     *  2: rouge    bas arrondi,  3:   rouge  bas droit
+     *  4: rouge gauche arrondi,  5: rouge gauche droit
+     *  6: rouge droite arrondi,  7: rouge droite droit
+     *  8:  rose   haut arrondi,  9:  rose   haut droit
+     * 10:  rose    bas arrondi, 11:  rose    bas droit
+     * 12:  rose gauche arrondi, 13:  rose gauche droit
+     * 14:  rose droite arrondi, 15:  rose droite droit
+     * 16:  bleu   haut arrondi, 17:  bleu   haut droit
+     * 18:  bleu    bas arrondi, 19:  bleu    bas droit
+     * 20:  bleu gauche arrondi, 21:  bleu gauche droit
+     * 22:  bleu droite arrondi, 23:  bleu droite droit
+     * 24: jaune   haut arrondi, 25: jaune   haut droit
+     * 26: jaune    bas arrondi, 27: jaune    bas droit
+     * 28: jaune gauche arrondi, 29: jaune gauche droit
+     * 30: jaune droite arrondi, 31: jaune droite droit
+     * 32: vulnérable   arrondi, 33: vulnérable   droit
+     * 34: mort         arrondi, 35: mort         droit
+     */
+    private Image[] fantomesSprites;
+
+    /**
+     * Tableau des sprites des Gommes
+     * 0: petite gomme, 1: grosse gomme
+     */
+    private Image[] gommesSprites;
+
+    /**
+     * Tableau des sprites des Fruits
+     * 0: cerise, 1:       fraise, 2: orange, 3: pomme
+     * 4:  melon, 5: galaxianboss, 6: cloche, 7:   clé
+     */
+    private Image[] fruitSprites;
+    
+    /**
+     * Tableau des sprites des points
+     * 0: 100, 1: 300,  2: 500,  3:  700, 4: 1000, 5: 2000, 6: 3000, 7: 5000
+     * 8: 200, 9: 400, 10: 800, 11: 1600
+     */
+    private Image[] pointsSprites;
+
+    /**
+     * Tableau des sprites des chiffres et des lettres
+     * de 0 à 9
+     */
+    private Image[] lettresChiffresSprites;
+
+    /**
+     * Tableau des sprites, dans l'ordre, READY, GAME OVER et 1UP
+     */
+    private Image[] rgoSprites;
+
+    /**
+     * Sprite de la grille
+     */
     private Image grilleSprite;
     
     public DataForView()
@@ -54,7 +130,27 @@ public class DataForView implements ISprites {
             pacmanSprites[8] = spriteComplet.getSubimage(21, 64, 16, 16);
         }
 
-        return pacmanSprites;
+        // on trouve où sont les sprites qui nous intéressent
+        int indice = 0;
+        switch(direction)
+        {
+            case EST:
+                // pour l'EST ça reste à 0
+                break;
+            case OUEST:
+                indice += 2;
+                break;
+            case NORD:
+                indice  += 4;
+                break;
+            case SUD:
+                indice += 6;
+                break;
+        }
+
+        // on retourne
+        Image[] retour = {pacmanSprites[indice], pacmanSprites[indice + 1]};
+        return retour;
     }
 
     @Override
@@ -75,50 +171,100 @@ public class DataForView implements ISprites {
         return mortPacmanSprites;
     }
 
+    private void chargerFantomesSprites()
+    {
+        fantomesSprites = new Image[34];
+
+        // les fantomes normaux sont sur 4 lignes 8 colonnes
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                fantomesSprites[i * 8 + j] = spriteComplet.getSubimage(
+                    84 + i * 20, 1 + j * 20, 16, 16
+                );
+            }
+        }
+
+        // TODO nettoyer
+        // il manque l'état vulnérable
+        fantomesSprites[32] = spriteComplet.getSubimage(1, 164, 16, 16);
+        fantomesSprites[33] = spriteComplet.getSubimage(21, 164, 16, 16);
+
+        // il manque l'état mort
+        fantomesSprites[34] = spriteComplet.getSubimage(41, 164, 16, 16);
+        fantomesSprites[35] = spriteComplet.getSubimage(61, 164, 16, 16);
+    }
+
     @Override
     public Image[] getFantomesSprites(ECouleur couleur, EDirection direction) {
         // si ces sprites n'ont pas encore été demandés
         if (fantomesSprites == null)
         {
-            fantomesSprites = new Image[34];
-
-            // les fantomes normaux sont sur 4 lignes 8 colonnes
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 8; j++)
-                {
-                    fantomesSprites[i * 8 + j] = spriteComplet.getSubimage(
-                        84 + i * 20, 1 + j * 20, 16, 16
-                    );
-                }
-            }
-
-            // il manque l'état vulnérable
-            fantomesSprites[32] = spriteComplet.getSubimage(1, 164, 16, 16);
-            fantomesSprites[32] = spriteComplet.getSubimage(21, 164, 16, 16);
+            chargerFantomesSprites();
         }
 
-        return fantomesSprites;
+        // on trouve où sont les sprites qui nous intéressent
+        int indice = 0;
+        switch(couleur)
+        {
+            case ROUGE:
+                // pour le ROUGE ça reste à 0
+                break;
+            case ROSE:
+                indice += 8;
+                break;
+            case CYAN:
+                indice += 16;
+                break;
+            case ORANGE:
+                indice += 24;
+                break;
+        }
+        switch(direction)
+        {
+            case NORD:
+                // pour le NORD ça reste à 0
+                break;
+            case SUD:
+                indice += 2;
+                break;
+            case OUEST:
+                indice += 4;
+                break;
+            case EST:
+                indice += 6;
+                break;
+        }
+
+        // on retourne
+        Image[] retour =
+            {fantomesSprites[indice], fantomesSprites[indice + 1]};
+        return retour;
     }
 
     @Override
     public Image[] getVulnerableFantomesSprites()
     {
-        return null;
+        if (fantomesSprites == null)
+        {
+            chargerFantomesSprites();
+        }
+
+        Image[] retour = {fantomesSprites[32], fantomesSprites[33]};
+        return retour;
     }
 
     @Override
     public Image[] getMortFantomeSprites() {
         // si ces sprites n'ont pas encore été demandés
-        if (mortFantomesSprites == null)
+        if (fantomesSprites == null)
         {
-            mortFantomesSprites = new Image[2];
-
-            mortFantomesSprites[0] = spriteComplet.getSubimage(41, 164, 16, 16);
-            mortFantomesSprites[1] = spriteComplet.getSubimage(61, 164, 16, 16);
+            chargerFantomesSprites();
         }
 
-        return mortFantomesSprites;
+        Image[] retour = {fantomesSprites[34], fantomesSprites[35]};
+        return retour;
     }
 
     @Override

@@ -13,12 +13,7 @@ import Pacman.Logic.EDirection;
 public interface ISprites {
     /**
      * Permet d'obtenir un tableau des sprites de Pacman, dans l'ordre :
-     * 0: plein
-     * 1: gauche fermé, 2: gauche ouvert
-     * 3: droite fermé, 4: droite ouvert
-     * 5:   haut fermé, 6:   haut ouvert
-     * 7:    bas fermé, 8:    bas ouvert
-     * 
+     * 0: fermé, 1: ouvert
      * @return Tableau d'Image
      */
     public Image[] getPacmanSprites(EDirection direction);
@@ -32,36 +27,29 @@ public interface ISprites {
     public Image[] getMortPacmanSprites();
 
     /**
-     * Permet d'obtenir un tableau des sprites d'un Fantome (les derniers sprites
-     * sont ceux l'état de vulnérable bleu), dans l'ordre :
-     *  0: rouge   haut arrondi,  1:   rouge haut droit
-     *  2: rouge    bas arrondi,  3:   rouge  bas droit
-     *  4: rouge gauche arrondi,  5: rouge gauche droit
-     *  6: rouge droite arrondi,  7: rouge droite droit
-     *  8:  rose   haut arrondi,  9:  rose   haut droit
-     * 10:  rose    bas arrondi, 11:  rose    bas droit
-     * 12:  rose gauche arrondi, 13:  rose gauche droit
-     * 14:  rose droite arrondi, 15:  rose droite droit
-     * 16:  bleu   haut arrondi, 17:  bleu   haut droit
-     * 18:  bleu    bas arrondi, 19:  bleu    bas droit
-     * 20:  bleu gauche arrondi, 21:  bleu gauche droit
-     * 22:  bleu droite arrondi, 23:  bleu droite droit
-     * 24: jaune   haut arrondi, 25: jaune   haut droit
-     * 26: jaune    bas arrondi, 27: jaune    bas droit
-     * 28: jaune gauche arrondi, 29: jaune gauche droit
-     * 30: jaune droite arrondi, 31: jaune droite droit
-     * 32: vulnérable   arrondi, 33: vulnérable   droit
+     * Permet d'obtenir un tableau des sprites d'un Fantome dans l'ordre :
+     * 0: arrondi
+     * 1: droit
      * 
      * @param couleur couleur du fantôme demandé
      * @return Tableau d'Image
      */
     public Image[] getFantomesSprites(ECouleur couleur, EDirection direction);
 
+    /**
+     * Permet d'obtenir un tableau des sprites d'un Fantome vulnérable
+     * 0: arrondi
+     * 1: droit
+     * 
+     * @return Tableau d'image
+     */
     public Image[] getVulnerableFantomesSprites();
 
     /**
      * Permet d'obtenir un tableau des sprites de l'animation de mort d'un Fantome
-     * 0: mort arrondi, 1: mort droit
+     * 0: arrondi
+     * 1:droit
+     * 
      * @return Tableau d'Image
      */
     public Image[] getMortFantomeSprites();
