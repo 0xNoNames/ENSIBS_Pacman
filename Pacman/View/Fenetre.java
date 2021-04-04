@@ -1,7 +1,6 @@
 package Pacman.View;
 
 import javax.swing.JFrame;
-import java.awt.Color;
 
 /**
  * 
@@ -13,10 +12,9 @@ public class Fenetre extends JFrame {
 
     public Fenetre() {
         setTitle("PACMAN");
-        setSize(500, 500);
+        setSize(244, 330);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        getContentPane().setBackground(Color.BLACK);
     }
 }

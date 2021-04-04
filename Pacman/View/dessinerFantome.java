@@ -1,10 +1,10 @@
 package Pacman.View;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
+import java.io.IOException;
 import javax.swing.ImageIcon;
-
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import Pacman.Data.DataForView;
 import Pacman.Logic.Fantome;
 
 /**
@@ -14,104 +14,131 @@ import Pacman.Logic.Fantome;
  * @author Arthur Pêtre
  */
 public class dessinerFantome {
-
     private int spriteActuel;
 
-    public void dessiner(Fantome fantome, Graphics2D frame) {
+    public void dessiner(Fantome fantome, JFrame fenetre, DataForView data) throws IOException {
         switch (fantome.getDirectionCourante()) {
         case NORD:
-            spritefantomeNord(frame, fantome);
+            spritefantomeNord(fantome, fenetre, data);
             break;
         case SUD:
-            spritefantomeSud(frame, fantome);
+            spritefantomeSud(fantome, fenetre, data);
             break;
         case EST:
-            spritefantomeEst(frame, fantome);
+            spritefantomeEst(fantome, fenetre, data);
             break;
         case OUEST:
-            spritefantomeOuest(frame, fantome);
+            spritefantomeOuest(fantome, fenetre, data);
             break;
         }
-
+        updateSprite();
     }
 
-    private void spritefantomeNord(Graphics2D frame, Fantome fantome) {
-        switch (spriteActuel) {
-        case 1:
-            frame.drawImage(new ImageIcon("fantomenord1.png").getImage()/* fantomeSpriteNord1 */, fantome.getposX(),
-                    fantome.getposY(), null);
-            break;
-        case 2:
-            frame.drawImage(new ImageIcon("fantomeord2.png").getImage()/* fantomeSpriteNord2 */, fantome.getposX(),
-                    fantome.getposY(), null);
-            break;
-        case 3:
-            frame.drawImage(new ImageIcon("fantomenord3.png").getImage()/* fantomeSpriteNord3 */, fantome.getposX(),
-                    fantome.getposY(), null);
-            break;
-        default:
-            frame.drawImage(new ImageIcon("fantomenord1.png").getImage(), fantome.getposX(), fantome.getposY(), null);
-            break;
+    private void updateSprite() {
+        if (this.spriteActuel == 3) {
+            spriteActuel = 1;
+        } else {
+            this.spriteActuel += 1;
         }
     }
 
-    private void spritefantomeSud(Graphics2D frame, Fantome fantome) {
+    private void spritefantomeNord(Fantome fantome, JFrame fenetre, DataForView data) {
+        JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            frame.drawImage(new ImageIcon("fantomesud1.png").getImage()/* fantomeSpriteSud1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
+            fenetre.add(imageLabel);
             break;
+
         case 2:
-            frame.drawImage(new ImageIcon("fantomesud2.png").getImage()/* fantomeSpriteSud1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[5]));
+            fenetre.add(imageLabel);
             break;
+
         case 3:
-            frame.drawImage(new ImageIcon("fantomesud3.png").getImage()/* fantomeSpriteSud1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[6]));
+            fenetre.add(imageLabel);
             break;
+
         default:
-            frame.drawImage(new ImageIcon("fantomesud1.png").getImage(), fantome.getposX(), fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
+            fenetre.add(imageLabel);
             break;
         }
     }
 
-    private void spritefantomeEst(Graphics2D frame, Fantome fantome) {
+    private void spritefantomeSud(Fantome fantome, JFrame fenetre, DataForView data) {
+        JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            frame.drawImage(new ImageIcon("fantomeEst1.png").getImage()/* fantomeSpriteEst1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
+            fenetre.add(imageLabel);
             break;
+
         case 2:
-            frame.drawImage(new ImageIcon("fantomeEst2.png").getImage()/* fantomeSpriteEst1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[7]));
+            fenetre.add(imageLabel);
             break;
+
         case 3:
-            frame.drawImage(new ImageIcon("fantomeEst3.png").getImage()/* fantomeSpriteEst1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[8]));
+            fenetre.add(imageLabel);
             break;
+
         default:
-            frame.drawImage(new ImageIcon("fantomeEst1.png").getImage(), fantome.getposX(), fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
+            fenetre.add(imageLabel);
             break;
         }
     }
 
-    private void spritefantomeOuest(Graphics2D frame, Fantome fantome) {
+    private void spritefantomeEst(Fantome fantome, JFrame fenetre, DataForView data) {
+        JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            frame.drawImage(new ImageIcon("fantomeouest1.png").getImage()/* fantomeSpriteOuest1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
+            fenetre.add(imageLabel);
             break;
+
         case 2:
-            frame.drawImage(new ImageIcon("fantomeouest2.png").getImage()/* fantomeSpriteOuest1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[3]));
+            fenetre.add(imageLabel);
             break;
+
         case 3:
-            frame.drawImage(new ImageIcon("fantomeouest3.png").getImage()/* fantomeSpriteOuest1 */, fantome.getposX(),
-                    fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[4]));
+            fenetre.add(imageLabel);
             break;
+
         default:
-            frame.drawImage(new ImageIcon("fantomeouest1.png").getImage(), fantome.getposX(), fantome.getposY(), null);
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
+            fenetre.add(imageLabel);
             break;
         }
-    
+    }
+
+    private void spritefantomeOuest(Fantome fantome, JFrame fenetre, DataForView data) {
+        JLabel imageLabel;
+        switch (spriteActuel) {
+        case 1:
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
+            fenetre.add(imageLabel);
+            break;
+
+        case 2:
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[1]));
+            fenetre.add(imageLabel);
+            break;
+
+        case 3:
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[2]));
+            fenetre.add(imageLabel);
+            break;
+
+        default:
+            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
+            fenetre.add(imageLabel);
+            break;
+        }
+    }
 }

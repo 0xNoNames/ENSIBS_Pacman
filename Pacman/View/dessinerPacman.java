@@ -1,10 +1,10 @@
 package Pacman.View;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
+import java.io.IOException;
 import javax.swing.ImageIcon;
-
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import Pacman.Data.DataForView;
 import Pacman.Logic.Pacman;
 
 /**
@@ -15,102 +15,136 @@ import Pacman.Logic.Pacman;
 public class dessinerPacman {
     private int spriteActuel;
 
-    public void dessiner(Pacman pacman, Graphics2D frame) {
+    public dessinerPacman() {
+        this.spriteActuel = 1;
+    }
+
+    public void dessiner(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
         switch (pacman.getDirectionCourante()) {
         case NORD:
-            spritePacmanNord(frame, pacman);
+            spritePacmanNord(pacman, fenetre, data);
             break;
+
         case SUD:
-            spritePacmanSud(frame, pacman);
+            spritePacmanSud(pacman, fenetre, data);
             break;
+
         case EST:
-            spritePacmanEst(frame, pacman);
+            spritePacmanEst(pacman, fenetre, data);
             break;
+
         case OUEST:
-            spritePacmanOuest(frame, pacman);
+            spritePacmanOuest(pacman, fenetre, data);
             break;
         }
-
+        updateSprite();
     }
 
-    private void spritePacmanNord(Graphics2D frame, Pacman pacman) {
+    private void updateSprite() {
+        if (this.spriteActuel == 3) {
+            spriteActuel = 1;
+        } else {
+            this.spriteActuel += 1;
+        }
+    }
+
+    private void spritePacmanNord(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
+        JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            frame.drawImage(new ImageIcon("pacmannord1.png").getImage()/* pacmanSpriteNord1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            fenetre.add(imageLabel);
             break;
+
         case 2:
-            frame.drawImage(new ImageIcon("pacmanord2.png").getImage()/* pacmanSpriteNord2 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[5]));
+            fenetre.add(imageLabel);
             break;
+
         case 3:
-            frame.drawImage(new ImageIcon("pacmanSpriteRond.png").getImage()/* pacmanSpriteRond */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[6]));
+            fenetre.add(imageLabel);
             break;
+
         default:
-            frame.drawImage(new ImageIcon("pacmannord1.png").getImage(), pacman.getposX(), pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            fenetre.add(imageLabel);
             break;
         }
     }
 
-    private void spritePacmanSud(Graphics2D frame, Pacman pacman) {
+    private void spritePacmanSud(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
+        JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            frame.drawImage(new ImageIcon("pacmansud1.png").getImage()/* pacmanSpriteSud1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            fenetre.add(imageLabel);
             break;
+
         case 2:
-            frame.drawImage(new ImageIcon("pacmansud2.png").getImage()/* pacmanSpriteSud1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[7]));
+            fenetre.add(imageLabel);
             break;
+
         case 3:
-            frame.drawImage(new ImageIcon("pacmansud3.png").getImage()/* pacmanSpriteSud1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[8]));
+            fenetre.add(imageLabel);
             break;
+
         default:
-            frame.drawImage(new ImageIcon("pacmansud1.png").getImage(), pacman.getposX(), pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            fenetre.add(imageLabel);
             break;
         }
     }
 
-    private void spritePacmanEst(Graphics2D frame, Pacman pacman) {
+    private void spritePacmanEst(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
+        JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            frame.drawImage(new ImageIcon("pacmanEst1.png").getImage()/* pacmanSpriteEst1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            fenetre.add(imageLabel);
             break;
+
         case 2:
-            frame.drawImage(new ImageIcon("pacmanEst2.png").getImage()/* pacmanSpriteEst1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[3]));
+            fenetre.add(imageLabel);
             break;
+
         case 3:
-            frame.drawImage(new ImageIcon("pacmanEst3.png").getImage()/* pacmanSpriteEst1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[4]));
+            fenetre.add(imageLabel);
             break;
+
         default:
-            frame.drawImage(new ImageIcon("pacmanEst1.png").getImage(), pacman.getposX(), pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            fenetre.add(imageLabel);
             break;
         }
     }
 
-    private void spritePacmanOuest(Graphics2D frame, Pacman pacman) {
+    private void spritePacmanOuest(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
+        JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            frame.drawImage(new ImageIcon("pacmanouest1.png").getImage()/* pacmanSpriteOuest1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            fenetre.add(imageLabel);
             break;
+
         case 2:
-            frame.drawImage(new ImageIcon("pacmanouest2.png").getImage()/* pacmanSpriteOuest1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[1]));
+            fenetre.add(imageLabel);
             break;
+
         case 3:
-            frame.drawImage(new ImageIcon("pacmanouest3.png").getImage()/* pacmanSpriteOuest1 */, pacman.getposX(),
-                    pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[2]));
+            fenetre.add(imageLabel);
             break;
+
         default:
-            frame.drawImage(new ImageIcon("pacmanouest1.png").getImage(), pacman.getposX(), pacman.getposY(), this);
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            fenetre.add(imageLabel);
             break;
         }
     }
-
 }
