@@ -82,4 +82,68 @@ public abstract class Entite implements IEntite{
     }
     public abstract void meurt();
 
+
+    // ------------------------------------------
+    // Méthodes utiles pour les déplacements
+    // ------------------------------------------
+
+    /**
+     * 
+     * @param direction
+     * @param posActuelle
+     * @return
+     */
+    protected int[] calculPosDirection(EDirection direction, int[] posActuelle)
+    {
+        int[] posVoulue = {0,0};
+        switch(dirVoulue) {
+            case EST:
+                posVoulue[0] = posActuelle[0] + 1;
+                posVoulue[1] = posActuelle[1];
+                break;
+            case OUEST:
+                posVoulue[0] = posActuelle[0] - 1;
+                posVoulue[1] = posActuelle[1];
+                break;
+            case NORD:
+                posVoulue[0] = posActuelle[0];
+                posVoulue[1] = posActuelle[1] - 1;
+                break;
+            case SUD:
+                posVoulue[0] = posActuelle[0];
+                posVoulue[1] = posActuelle[1] + 1;
+                break;
+        }
+
+        return posVoulue;
+    }
+
+    /**
+     * 
+     * @param position
+     * @return
+     */
+    protected boolean estPositionPossible(int[] position)
+    {
+        boolean positionPossible = false;
+        if(false) {
+            // TODO
+        } else if(position[0]<0 || position[0]>=grille.getCases().length || position[1]<0 || position[1]>=grille.getCases()[0].length) {
+            positionPossible = true;
+        } else if(grille.getCases()[position[0]][position[1]] instanceof Jouable){
+            positionPossible = true;        
+        }
+
+        return positionPossible;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    protected int[] getPositionActuelle()
+    {
+        int[] position = {(int)this.posX, (int)this.posY};
+        return position;
+    }
 }
