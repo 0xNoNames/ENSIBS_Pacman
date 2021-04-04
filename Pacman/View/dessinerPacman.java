@@ -44,7 +44,7 @@ public class dessinerPacman {
                     pacman.getposY(), this);
             break;
         case 3:
-            frame.drawImage(new ImageIcon("pacmannord3.png").getImage()/* pacmanSpriteNord3 */, pacman.getposX(),
+            frame.drawImage(new ImageIcon("pacmanSpriteRond.png").getImage()/* pacmanSpriteRond */, pacman.getposX(),
                     pacman.getposY(), this);
             break;
         default:

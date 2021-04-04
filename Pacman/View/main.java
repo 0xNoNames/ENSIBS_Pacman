@@ -1,4 +1,5 @@
 package Pacman.View;
+package Pacman.Data;
 
 public class main {
 
@@ -11,6 +12,7 @@ public class main {
         Fenetre fenetre = new Fenetre();
 
         fenetre.setVisible(true);
+        getGrilleInitiale()
 
         fenetre.addKeyListener(new entreeClavier());
         System.out.println("Done");
