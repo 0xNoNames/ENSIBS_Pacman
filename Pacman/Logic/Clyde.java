@@ -43,11 +43,35 @@ public class Clyde extends Fantome {
 
         /* Si une direction est possible on déplace */
         if(deplacementVouluPossible) {
-            this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
-            this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
+            switch(dirVoulue) {
+                case EST:
+                    this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
+                    break;
+                case OUEST:
+                    this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
+                    break;
+                case SUD:
+                    this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
+                    break;
+                case NORD:
+                    this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
+                    break;
+            }
         } else if(deplacementCourantPossible) {
-            this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
-            this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
+            switch(dirCourante) {
+                case EST:
+                    this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
+                    break;
+                case OUEST:
+                    this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
+                    break;
+                case SUD:
+                    this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
+                    break;
+                case NORD:
+                    this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
+                    break;
+            }  
         }
          
     }
