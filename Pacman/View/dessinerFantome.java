@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import Pacman.Data.DataForView;
+import Pacman.Logic.EStatutFantome;
 import Pacman.Logic.Fantome;
 
 /**
@@ -16,128 +17,87 @@ import Pacman.Logic.Fantome;
 public class dessinerFantome {
     private int spriteActuel;
 
+    // Met à jour le numéro de sprite actuel et dessine le Fantome voulu.
     public void dessiner(Fantome fantome, JFrame fenetre, DataForView data) throws IOException {
-        switch (fantome.getDirectionCourante()) {
-        case NORD:
-            spritefantomeNord(fantome, fenetre, data);
-            break;
-        case SUD:
-            spritefantomeSud(fantome, fenetre, data);
-            break;
-        case EST:
-            spritefantomeEst(fantome, fenetre, data);
-            break;
-        case OUEST:
-            spritefantomeOuest(fantome, fenetre, data);
-            break;
-        }
+        dessinerSpriteFantome(fantome, fenetre, data);
         updateSprite();
     }
 
+    // Met à jour le numéro de sprite actuel.
     private void updateSprite() {
-        if (this.spriteActuel == 3) {
+        if (this.spriteActuel == 2) {
             spriteActuel = 1;
         } else {
             this.spriteActuel += 1;
         }
     }
 
-    private void spritefantomeNord(Fantome fantome, JFrame fenetre, DataForView data) {
+    // Dessine le Fantome voulu selon son état.
+    private void dessinerSpriteFantome(Fantome fantome, JFrame fenetre, DataForView data) {
         JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
-            fenetre.add(imageLabel);
+            switch (fantome.getStatut()) {
+            case CHASSEUR:
+                imageLabel = new JLabel(new ImageIcon(
+                        data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[0]));
+                fenetre.add(imageLabel);
+                break;
+
+            case VULNERABLE:
+                imageLabel = new JLabel(
+                        new ImageIcon(data.getVulnerableFantomesSprites(fantome.getDirectionCourante())));
+                fenetre.add(imageLabel);
+                break;
+
+            case MORT:
+                imageLabel = new JLabel(new ImageIcon(data.getMortFantomeSprites()[0]));
+                fenetre.add(imageLabel);
+                break;
+            }
             break;
 
         case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[5]));
-            fenetre.add(imageLabel);
-            break;
+            switch (fantome.getStatut()) {
+            case CHASSEUR:
+                imageLabel = new JLabel(new ImageIcon(
+                        data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[1]));
+                fenetre.add(imageLabel);
+                break;
 
-        case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[6]));
-            fenetre.add(imageLabel);
-            break;
+            case VULNERABLE:
+                imageLabel = new JLabel(
+                        new ImageIcon(data.getVulnerableFantomesSprites(fantome.getDirectionCourante())));
+                fenetre.add(imageLabel);
+                break;
 
-        default:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
-            fenetre.add(imageLabel);
-            break;
-        }
-    }
+            case MORT:
+                imageLabel = new JLabel(new ImageIcon(data.getMortFantomeSprites()[1]));
+                fenetre.add(imageLabel);
+                break;
 
-    private void spritefantomeSud(Fantome fantome, JFrame fenetre, DataForView data) {
-        JLabel imageLabel;
-        switch (spriteActuel) {
-        case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[7]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[8]));
-            fenetre.add(imageLabel);
+            }
             break;
 
         default:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
-            fenetre.add(imageLabel);
-            break;
-        }
-    }
+            switch (fantome.getStatut()) {
+            case CHASSEUR:
+                imageLabel = new JLabel(new ImageIcon(
+                        data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[0]));
+                fenetre.add(imageLabel);
+                break;
 
-    private void spritefantomeEst(Fantome fantome, JFrame fenetre, DataForView data) {
-        JLabel imageLabel;
-        switch (spriteActuel) {
-        case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
-            fenetre.add(imageLabel);
-            break;
+            case VULNERABLE:
+                imageLabel = new JLabel(
+                        new ImageIcon(data.getVulnerableFantomesSprites(fantome.getDirectionCourante())));
+                fenetre.add(imageLabel);
+                break;
 
-        case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[3]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[4]));
-            fenetre.add(imageLabel);
-            break;
-
-        default:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
-            fenetre.add(imageLabel);
-            break;
-        }
-    }
-
-    private void spritefantomeOuest(Fantome fantome, JFrame fenetre, DataForView data) {
-        JLabel imageLabel;
-        switch (spriteActuel) {
-        case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[1]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[2]));
-            fenetre.add(imageLabel);
-            break;
-
-        default:
-            imageLabel = new JLabel(new ImageIcon(data.getFantomesSprites(fantome.getCouleur())[0]));
-            fenetre.add(imageLabel);
+            case MORT:
+                imageLabel = new JLabel(new ImageIcon(data.getMortFantomeSprites()[0]));
+                fenetre.add(imageLabel);
+                break;
+            }
             break;
         }
     }

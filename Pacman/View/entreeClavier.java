@@ -3,8 +3,6 @@ package Pacman.View;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JFrame;
-
 /**
  * La classe Input permet de gérer les entrées utilisateur.
  * 
@@ -13,10 +11,12 @@ import javax.swing.JFrame;
 public class entreeClavier extends KeyAdapter {
     boolean inGame;
 
+    // Constructeur de la classe.
     public entreeClavier() {
         this.inGame = true;
     }
 
+    // Méthode gérant la touche actuellement appuyée.
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -37,21 +37,9 @@ public class entreeClavier extends KeyAdapter {
                 // if en cours -> pause sinon start.
             }
         } else {
-            if (touche == KeyEvent.VK_ENTER) {
-                // start la game (init).
+            if (touche == KeyEvent.VK_SPACE) {
+                // start la game (init) avec espace.
             }
         }
     }
-
-        // JFrame frame = new JFrame("FrameDemo");
-
-        // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // frame.pack();
-
-        // frame.setVisible(true);
-
-        // System.out.println("Démarrage");
-        // frame.addKeyListener(new entreeClavier());
-        // // addKeyListener(new entreeClavier());
 }

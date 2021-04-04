@@ -15,31 +15,13 @@ import Pacman.Logic.Pacman;
 public class dessinerPacman {
     private int spriteActuel;
 
-    public dessinerPacman() {
-        this.spriteActuel = 1;
-    }
-
+    // Met à jour le numéro de sprite actuel et dessine Pacman.
     public void dessiner(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
-        switch (pacman.getDirectionCourante()) {
-        case NORD:
-            spritePacmanNord(pacman, fenetre, data);
-            break;
-
-        case SUD:
-            spritePacmanSud(pacman, fenetre, data);
-            break;
-
-        case EST:
-            spritePacmanEst(pacman, fenetre, data);
-            break;
-
-        case OUEST:
-            spritePacmanOuest(pacman, fenetre, data);
-            break;
-        }
+        dessinerSpritePacman(pacman, fenetre, data);
         updateSprite();
     }
 
+    // Met à jour le numéro de sprite actuel.
     private void updateSprite() {
         if (this.spriteActuel == 3) {
             spriteActuel = 1;
@@ -48,103 +30,34 @@ public class dessinerPacman {
         }
     }
 
-    private void spritePacmanNord(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
+    // Dessine Pacman.
+    private void dessinerSpritePacman(Pacman pacman, JFrame fenetre, DataForView data) {
         JLabel imageLabel;
         switch (spriteActuel) {
         case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[0]));
             fenetre.add(imageLabel);
             break;
 
         case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[5]));
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[1]));
             fenetre.add(imageLabel);
             break;
 
         case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[6]));
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[2]));
             fenetre.add(imageLabel);
             break;
 
         default:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
+            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[0]));
             fenetre.add(imageLabel);
             break;
         }
     }
 
-    private void spritePacmanSud(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
-        JLabel imageLabel;
-        switch (spriteActuel) {
-        case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[7]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[8]));
-            fenetre.add(imageLabel);
-            break;
-
-        default:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
-            fenetre.add(imageLabel);
-            break;
-        }
-    }
-
-    private void spritePacmanEst(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
-        JLabel imageLabel;
-        switch (spriteActuel) {
-        case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[3]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[4]));
-            fenetre.add(imageLabel);
-            break;
-
-        default:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
-            fenetre.add(imageLabel);
-            break;
-        }
-    }
-
-    private void spritePacmanOuest(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
-        JLabel imageLabel;
-        switch (spriteActuel) {
-        case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[1]));
-            fenetre.add(imageLabel);
-            break;
-
-        case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[2]));
-            fenetre.add(imageLabel);
-            break;
-
-        default:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites()[0]));
-            fenetre.add(imageLabel);
-            break;
-        }
+    // Dessine la mort de Pacman.
+    private void dessinerMortPacman(Pacman pacman, JFrame fenetre, DataForView data) {
+        //11 sprites + 1 bouche fermée.
     }
 }

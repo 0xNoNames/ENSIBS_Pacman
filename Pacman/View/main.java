@@ -11,22 +11,18 @@ public class main {
     private static DataForView data;
     entreeClavier keyboard;
 
-    public static void main(String[] args) {
+    // Test des fonctions
+    public static void main(String[] args) throws IOException {
         System.out.println("Démarrage...");
 
         Fenetre fenetre = new Fenetre();
         dessinerPacman dessinerpacman = new dessinerPacman();
         data = new DataForView();
 
-        try {
-            JLabel grilleImage = new JLabel(new ImageIcon(data.getGrille()));
-            fenetre.add(grilleImage);
-            Pacman pacman = new Pacman();
-            dessinerpacman.dessiner(pacman, fenetre, data);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JLabel grilleImage = new JLabel(new ImageIcon(data.getGrille()));
+        fenetre.add(grilleImage);
+        Pacman pacman = new Pacman();
+        dessinerpacman.dessiner(pacman, fenetre, data);
 
         fenetre.setVisible(true);
         fenetre.getContentPane().setBackground(Color.BLACK);

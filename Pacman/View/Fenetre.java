@@ -10,6 +10,7 @@ import javax.swing.JFrame;
  */
 public class Fenetre extends JFrame {
 
+    // Initialise la fenetre principale.
     public Fenetre() {
         setTitle("PACMAN");
         setSize(244, 330);
