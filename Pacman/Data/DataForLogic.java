@@ -2,11 +2,15 @@ package Pacman.Data;
 
 import java.util.HashMap;
 
+import Pacman.Logic.Blinky;
+import Pacman.Logic.Clyde;
 import Pacman.Logic.ECouleur;
 import Pacman.Logic.Fruit;
 import Pacman.Logic.Grille;
+import Pacman.Logic.Inky;
 import Pacman.Logic.Objet;
 import Pacman.Logic.Pacman;
+import Pacman.Logic.Pinky;
 
 /**
  * DataForLogic stocke les différentes données susceptibles d´être demandées
@@ -138,8 +142,29 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
          * références, on ne mettra pas en place de stratégie de cache ici */
         Grille grille = ParseConfig.getGrilleInitiale();
         
-        // on ajoute aussi les entités
-        // TODO
+        // on ajoute aussi les entités aux bonnes positions
+        double[] posInit;
+
+        posInit = getPositionInitialePacman();
+        pacman.setPosX(posInit[0]);
+        pacman.setPosY(posInit[1]);
+        grille.setPacman(pacman);
+
+        posInit = getPositionInitialeFantome(ECouleur.ROUGE);
+        Blinky blinky = new Blinky(posInit[0], posInit[1]);
+        grille.setBlinky(blinky);
+
+        posInit = getPositionInitialeFantome(ECouleur.ROSE);
+        Pinky pinky = new Pinky(posInit[0], posInit[1]);
+        grille.setPinky(pinky);
+
+        posInit = getPositionInitialeFantome(ECouleur.CYAN);
+        Inky inky = new Inky(posInit[0], posInit[1]);
+        grille.setInky(inky);
+
+        posInit = getPositionInitialeFantome(ECouleur.ORANGE);
+        Clyde clyde = new Clyde(posInit[0], posInit[1]);
+        grille.setClyde(clyde);
 
         return grille;
     }

@@ -25,7 +25,7 @@ public class Grille {
     /**
      * Variable représentant l'entité Clyde
      */
-    private Clyde clide;
+    private Clyde clyde;
 
     /**
      * Variable représentant l'entité Inky
@@ -83,7 +83,7 @@ public class Grille {
      * @return l'entité clyde
      */
     public Clyde getClyde() {
-        return this.clide;
+        return this.clyde;
     }
 
     /**
@@ -91,7 +91,7 @@ public class Grille {
      * @param p, une entite Clyde
      */
     public void setClyde(Clyde c) {
-        this.clide = c;
+        this.clyde = c;
     }
 
     /**
