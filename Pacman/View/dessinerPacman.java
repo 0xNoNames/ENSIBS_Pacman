@@ -48,16 +48,11 @@ public class dessinerPacman {
             imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[2]));
             fenetre.add(imageLabel);
             break;
-
-        default:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[0]));
-            fenetre.add(imageLabel);
-            break;
-        }
+        }  
     }
 
     // Dessine la mort de Pacman.
     private void dessinerMortPacman(Pacman pacman, JFrame fenetre, DataForView data) {
-        //11 sprites + 1 bouche fermée.
+        // 11 sprites + 1 bouche fermée.
     }
 }

@@ -65,9 +65,6 @@ public class desssinerGrille {
                         case "GrosseGomme":
                             imageLabel = new JLabel(new ImageIcon(data.getGommesSprites()[1]));
                             fenetre.add(imageLabel);
-
-                        default:
-                            break;
                         }
                     }
                 }

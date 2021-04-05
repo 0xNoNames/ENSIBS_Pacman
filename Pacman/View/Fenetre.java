@@ -12,9 +12,11 @@ public class Fenetre extends JFrame {
 
     // Initialise la fenetre principale.
     public Fenetre() {
+        add(new Plateau());
+
         setTitle("PACMAN");
-        setSize(244, 330);
-        setResizable(false);
+        setSize(465, 625);
+        // setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }

@@ -32,8 +32,8 @@ public class entreeClavier extends KeyAdapter {
                 System.out.println("Haut");
             } else if (touche == KeyEvent.VK_DOWN) {
                 System.out.println("Bas");
-            } else if (touche == KeyEvent.VK_ESCAPE) {
-                System.out.println("Echap");
+            } else if (touche == KeyEvent.VK_S) {
+                System.out.println("S");
                 // if en cours -> pause sinon start.
             }
         } else {

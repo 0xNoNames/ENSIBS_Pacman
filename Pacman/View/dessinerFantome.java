@@ -78,27 +78,6 @@ public class dessinerFantome {
 
             }
             break;
-
-        default:
-            switch (fantome.getStatut()) {
-            case CHASSEUR:
-                imageLabel = new JLabel(new ImageIcon(
-                        data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[0]));
-                fenetre.add(imageLabel);
-                break;
-
-            case VULNERABLE:
-                imageLabel = new JLabel(
-                        new ImageIcon(data.getVulnerableFantomesSprites(fantome.getDirectionCourante())));
-                fenetre.add(imageLabel);
-                break;
-
-            case MORT:
-                imageLabel = new JLabel(new ImageIcon(data.getMortFantomeSprites()[0]));
-                fenetre.add(imageLabel);
-                break;
-            }
-            break;
         }
     }
 }
