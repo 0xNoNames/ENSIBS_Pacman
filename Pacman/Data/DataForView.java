@@ -115,27 +115,27 @@ public class DataForView implements ISprites {
         // si ces sprites n'ont pas encore été demandés
         if (pacmanSprites == null)
         {
-            pacmanSprites = new Image[9];
+            pacmanSprites = new Image[8];
 
-            pacmanSprites[0] = spriteComplet.getSubimage(41, 4, 16, 16);
-            pacmanSprites[1] = spriteComplet.getSubimage(1, 4, 16, 16);
-            pacmanSprites[2] = spriteComplet.getSubimage(21, 4, 16, 16);
-            pacmanSprites[3] = spriteComplet.getSubimage(1, 24, 16, 16);
-            pacmanSprites[4] = spriteComplet.getSubimage(21, 24, 16, 16);
-            pacmanSprites[5] = spriteComplet.getSubimage(1, 44, 16, 16);
-            pacmanSprites[6] = spriteComplet.getSubimage(21, 44, 16, 16);
-            pacmanSprites[7] = spriteComplet.getSubimage(1, 64, 16, 16);
-            pacmanSprites[8] = spriteComplet.getSubimage(21, 64, 16, 16);
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    pacmanSprites[2 * i + j] = spriteComplet.getSubimage(
+                        1 + 20 * j, 4 + 20 * i, 16, 16
+                    );
+                }
+            }
         }
 
         // on trouve où sont les sprites qui nous intéressent
         int indice = 0;
         switch(direction)
         {
-            case EST:
+            case OUEST:
                 // pour l'EST ça reste à 0
                 break;
-            case OUEST:
+            case EST:
                 indice += 2;
                 break;
             case NORD:
@@ -162,7 +162,7 @@ public class DataForView implements ISprites {
             for (int i = 0; i < mortPacmanSprites.length; i++)
             {
                 mortPacmanSprites[i] =
-                    spriteComplet.getSubimage(245, 1 + 20 * i, 16, 16);
+                    spriteComplet.getSubimage(1 + 20 * i, 245, 16, 16);
             }
         }
 
@@ -182,7 +182,7 @@ public class DataForView implements ISprites {
             for (int j = 0; j < 8; j++)
             {
                 fantomesSprites[i * 8 + j] = spriteComplet.getSubimage(
-                    84 + i * 20, 1 + j * 20, 16, 16
+                    1 + 20 * j, 84 + 20 * i, 16, 16
                 );
             }
         }
@@ -273,7 +273,7 @@ public class DataForView implements ISprites {
             gommesSprites = new Image[2];
 
             gommesSprites[0] = spriteComplet.getSubimage(112, 184, 7, 7);
-            gommesSprites[1] = spriteComplet.getSubimage(1, 184, 7, 7);
+            gommesSprites[1] = spriteComplet.getSubimage(1, 184, 8, 8);
         }
 
         return gommesSprites;
@@ -291,8 +291,8 @@ public class DataForView implements ISprites {
             {
                 for (int j = 0; j < 2; j++)
                 {
-                    fruitSprites[i * 2 + j] = spriteComplet.getSubimage(
-                        169 + i * 20, 164 + j * 40, 16, 16
+                    fruitSprites[i + 4 * j] = spriteComplet.getSubimage(
+                        169 + 40 * j, 164 + 20 * i, 16, 16
                     );
                 }
             }
@@ -337,7 +337,7 @@ public class DataForView implements ISprites {
             for (int i = 8; i < 12; i++)
             {
                 pointsSprites[i] =
-                    spriteComplet.getSubimage(1 + i * 20, 227, 17, 9);
+                    spriteComplet.getSubimage(1 + (i - 8) * 20, 227, 17, 9);
             }
         }
 

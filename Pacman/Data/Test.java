@@ -4,6 +4,7 @@ import Pacman.Logic.*;
 
 public class Test {
     public static void main(String args[]) {
+        // appel de toutes les fonctions de DataForLogic
         DataForLogic dataL = new DataForLogic();
         dataL.getFruitNiveau(5);
         dataL.getGrilleInitiale(new Pacman());
@@ -14,6 +15,7 @@ public class Test {
         dataL.getVitesseFantome(56, ECouleur.CYAN);
         dataL.getVitessePacman(200);
 
+        // appel de toutes les fonctions de DataForView
         DataForView dataV = new DataForView();
         dataV.getFantomesSprites(ECouleur.ROSE, EDirection.NORD);
         dataV.getVulnerableFantomesSprites();
@@ -23,9 +25,13 @@ public class Test {
         dataV.getGrille();
         dataV.getLettresChiffres();
         dataV.getMortFantomeSprites();
-        dataV.getMortPacmanSprites();
         dataV.getPacmanSprites(EDirection.EST);
         dataV.getPoints();
         dataV.getRGOSprite();
+
+        // affichage des sprites pour vérifier leur découpage
+        FenetreTest fenetre = new FenetreTest(
+            dataV.getRGOSprite()[2]
+        );
     }
 }
