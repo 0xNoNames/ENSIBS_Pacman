@@ -39,6 +39,7 @@ public class Grille {
 
     /**
      * Constructeur de la classe Grille
+     * 
      * @param c, un tableau 2D de cases
      */
     public Grille(Case[][] c) {
@@ -48,6 +49,7 @@ public class Grille {
 
     /**
      * Permet de récupérer l'entité Pacman présente dans la grille
+     * 
      * @return l'entité pacman
      */
     public Pacman getPacman() {
@@ -56,6 +58,7 @@ public class Grille {
 
     /**
      * Permet définir l'entité pacman de la grille
+     * 
      * @param p, une entité Pacman
      */
     public void setPacman(Pacman p) {
@@ -64,6 +67,7 @@ public class Grille {
 
     /**
      * Permet de récupérer l'entité Pinky présente dans la grille
+     * 
      * @return l'entité pinky
      */
     public Pinky getPinky() {
@@ -72,6 +76,7 @@ public class Grille {
 
     /**
      * Permet définir l'entite Pinky de la grille
+     * 
      * @param p, une entite Pinky
      */
     public void setPinky(Pinky p) {
@@ -80,6 +85,7 @@ public class Grille {
 
     /**
      * Permet de récupérer l'entité Clyde présente dans la grille
+     * 
      * @return l'entité clyde
      */
     public Clyde getClyde() {
@@ -88,6 +94,7 @@ public class Grille {
 
     /**
      * Permet définir l'entite Clyde de la grille
+     * 
      * @param p, une entite Clyde
      */
     public void setClyde(Clyde c) {
@@ -96,6 +103,7 @@ public class Grille {
 
     /**
      * Permet de récupérer l'entité Inky présente dans la grille
+     * 
      * @return l'entité Inky
      */
     public Inky getInky() {
@@ -104,6 +112,7 @@ public class Grille {
 
     /**
      * Permet définir l'entite Inky de la grille
+     * 
      * @param p, une entite Inky
      */
     public void setInky(Inky i) {
@@ -112,6 +121,7 @@ public class Grille {
 
     /**
      * Permet de récupérer l'entité Blinky présente dans la grille
+     * 
      * @return l'entité Blinky
      */
     public Blinky getBlinky() {
@@ -120,14 +130,16 @@ public class Grille {
 
     /**
      * Permet définir l'entite BLinky de la grille
+     * 
      * @param p, une Blinky Pinky
      */
-    public void setBlinky(Blinky b){
+    public void setBlinky(Blinky b) {
         this.blinky = b;
     }
-    
+
     /**
      * Permet de récupérer le tableau 2D de cases
+     * 
      * @return tableau 2D de cases
      */
     public Case[][] getCases() {

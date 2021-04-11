@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
-import Pacman.Logic.Case;
+import Pacman.Logic.EDirection;
 import Pacman.Logic.Grille;
 import Pacman.Logic.Partie;
 
@@ -19,37 +19,52 @@ import Pacman.Logic.Partie;
 public class Plateau extends JPanel {
     private static DataForView data;
     private double scale;
+    private Partie partie;
+    private Grille grille;
 
-    public Plateau(double scale) {
-        addKeyListener(new entreeClavier());
+    public Plateau(Partie partie, double scale) {
+        this.scale = scale;
+        this.partie = partie;
+        this.grille = partie.getGrille();
+
+        addKeyListener(new entreeClavier(grille));
         setFocusable(true);
         setBackground(Color.black);
-        this.scale = scale;
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         doDrawing(g);
     }
 
     private void doDrawing(Graphics g) {
-
-        data = new DataForView();
-
         Graphics2D g2d = (Graphics2D) g;
+        data = new DataForView();
 
         g2d.scale(this.scale, this.scale);
 
-        Partie partie = new Partie();
-        Grille grille = partie.getGrille();
-
         g2d.drawImage(data.getGrille(), 0, 28, this);
 
-        desssinerGrille.dessiner(grille.getCases(), g2d, data);
-        dessinerPacman.dessiner(grille.getPacman(), g2d, data);
+        System.out.println(grille.getPacman().getposX());
+        System.out.println(grille.getPacman().getposY());
 
+        dessinerPacman.dessiner(grille.getPacman(), g2d, data);
+        desssinerGrille.dessiner(grille.getCases(), g2d, data);
+
+        // g2d.drawImage(data.getPacmanSprites(EDirection.OUEST)[0], 4, 32, null);
+
+        g2d.dispose();
+
+        // while (true) {
+        // partie.tick();
+
+        // repaint();
+
+        // }
+
+        // desssinerGrille.dessiner(grille.getCases(), g2d, data);
+        // dessinerScore.dessiner(partie.getScore(), g2d, data);
         // g2d.drawImage(data.getGommesSprites()[1], 8, 36, null);
 
         // g2d.drawImage(data.getGommesSprites()[0], 17, 45, null);
@@ -60,15 +75,6 @@ public class Plateau extends JPanel {
         // (case[0][0] : [4,32])
         // (case[1][1] : [12,40])
         // (case[2][2] : [20,48])
-
-        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0],
-        // 4, 32, this);
-        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0],
-        // 12, 40, this);
-        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0],
-        // 20, 48, this);
-
-        g2d.dispose();
 
         // Toolkit.getDefaultToolkit().sync();
     }

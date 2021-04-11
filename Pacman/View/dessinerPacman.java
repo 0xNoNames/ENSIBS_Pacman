@@ -10,7 +10,7 @@ import Pacman.Logic.Pacman;
  * @author Arthur Pêtre
  */
 public class dessinerPacman {
-    private static int spriteActuel;
+    private static int spriteActuel = 0;
 
     // Met à jour le numéro de sprite actuel et dessine Pacman.
     public static void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
@@ -20,29 +20,24 @@ public class dessinerPacman {
 
     // Met à jour le numéro de sprite actuel.
     private static void updateSprite() {
-        if (spriteActuel == 3) {
-            spriteActuel = 1;
+        if (spriteActuel == 1) {
+            spriteActuel = 0;
         } else {
-            spriteActuel += 1;
+            spriteActuel = 1;
         }
     }
 
     // Dessine Pacman.
     private static void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
+        case 0:
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0], ((int) pacman.getposX()) * 8 + 4,
+                    ((int) pacman.getposY()) * 8 + 24, null);
+            break;
+
         case 1:
-            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0], (int) pacman.getposX(),
-                    (int) pacman.getposY(), null);
-            break;
-
-        case 2:
-            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1], (int) pacman.getposX(),
-                    (int) pacman.getposY(), null);
-            break;
-
-        case 3:
-            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[2], (int) pacman.getposX(),
-                    (int) pacman.getposY(), null);
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1], (int) (pacman.getposX() + 4),
+                    (int) (pacman.getposY() + 32), null);
             break;
         }
     }

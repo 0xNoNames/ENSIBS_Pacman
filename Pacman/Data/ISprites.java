@@ -12,24 +12,24 @@ import Pacman.Logic.EDirection;
  */
 public interface ISprites {
     /**
-     * Permet d'obtenir un tableau des sprites de Pacman, dans l'ordre :
-     * 0: fermé, 1: ouvert
+     * Permet d'obtenir un tableau des sprites de Pacman, dans l'ordre : 0: fermé,
+     * 1: ouvert
+     * 
      * @return Tableau d'Image
      */
     public Image[] getPacmanSprites(EDirection direction);
 
     /**
-     * Permet d'obtenir un tableau des sprites de l'animation de mort de Pacman
-     * Du plus gros au plus "décrépi", total 11 sprites
+     * Permet d'obtenir un tableau des sprites de l'animation de mort de Pacman Du
+     * plus gros au plus "décrépi", total 11 sprites
      * 
      * @return Tableau d'Image
      */
     public Image[] getMortPacmanSprites();
 
     /**
-     * Permet d'obtenir un tableau des sprites d'un Fantome dans l'ordre :
-     * 0: arrondi
-     * 1: droit
+     * Permet d'obtenir un tableau des sprites d'un Fantome dans l'ordre : 0:
+     * arrondi 1: droit
      * 
      * @param couleur couleur du fantôme demandé
      * @return Tableau d'Image
@@ -37,9 +37,8 @@ public interface ISprites {
     public Image[] getFantomesSprites(ECouleur couleur, EDirection direction);
 
     /**
-     * Permet d'obtenir un tableau des sprites d'un Fantome vulnérable
-     * 0: arrondi
-     * 1: droit
+     * Permet d'obtenir un tableau des sprites d'un Fantome vulnérable 0: arrondi 1:
+     * droit
      * 
      * @return Tableau d'image
      */
@@ -47,16 +46,15 @@ public interface ISprites {
 
     /**
      * Permet d'obtenir un tableau des sprites de l'animation de mort d'un Fantome
-     * 0: arrondi
-     * 1:droit
+     * 0: arrondi 1:droit
      * 
      * @return Tableau d'Image
      */
     public Image[] getMortFantomeSprites();
 
     /**
-     * Permet d'obtenir un tableau des sprites des Gommes (grosse ou petite)
-     * 0: petite gomme, 1: grosse gomme
+     * Permet d'obtenir un tableau des sprites des Gommes (grosse ou petite) 0:
+     * petite gomme, 1: grosse gomme
      * 
      * @return Tableau d'Image
      */
@@ -64,9 +62,8 @@ public interface ISprites {
 
     /**
      * Permet d'obtenir un tableau des sprites des différents fruits (du plus commun
-     * au plus rare)
-     * 0: cerise, 1:       fraise, 2: orange, 3: pomme
-     * 4:  melon, 5: galaxianboss, 6: cloche, 7:   clé
+     * au plus rare) 0: cerise, 1: fraise, 2: orange, 3: pomme 4: melon, 5:
+     * galaxianboss, 6: cloche, 7: clé
      * 
      * @return Tableau d'Image
      */
@@ -82,8 +79,8 @@ public interface ISprites {
 
     /**
      * Permet d'obtenir un tableau des sprites des différents points, dans l'ordre :
-     * 0: 100, 1: 300,  2: 500,  3:  700, 4: 1000, 5: 2000, 6: 3000, 7: 5000
-     * 8: 200, 9: 400, 10: 800, 11: 1600
+     * 0: 100, 1: 300, 2: 500, 3: 700, 4: 1000, 5: 2000, 6: 3000, 7: 5000 8: 200, 9:
+     * 400, 10: 800, 11: 1600
      * 
      * @return Tableau d'Image
      */

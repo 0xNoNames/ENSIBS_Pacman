@@ -1,27 +1,17 @@
 package Pacman.View;
 
+import Pacman.Logic.Partie;
+
 public class main {
-    entreeClavier keyboard;
+    // entreeClavier keyboard;
 
     // Test des fonctions
     public static void main(String[] args) {
         System.out.println("Démarrage...");
-
-        // data = new DataForView();
-        Fenetre fenetre = new Fenetre();
-        // dessinerPacman dessinerpacman = new dessinerPacman();
-
-        // JLabel grilleLabel = new JLabel(new ImageIcon(data.getGrille()));
-        // JLabel pacmanLabel = new JLabel(new
-        // ImageIcon(data.getPacmanSprites(EDirection.NORD)[0]));
-
-        // fenetre.add(grilleLabel);
-
-        // Pacman pacman = new Pacman();
-        // dessinerpacman.dessiner(pacman, fenetre, data);
+        Partie partie = new Partie();
+        Fenetre fenetre = new Fenetre(partie);
 
         fenetre.setVisible(true);
 
-        System.out.println("Done");
     }
 }

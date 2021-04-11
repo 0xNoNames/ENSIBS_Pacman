@@ -3,6 +3,9 @@ package Pacman.View;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import Pacman.Logic.EDirection;
+import Pacman.Logic.Grille;
+
 /**
  * La classe Input permet de gérer les entrées utilisateur.
  * 
@@ -10,10 +13,12 @@ import java.awt.event.KeyEvent;
  */
 public class entreeClavier extends KeyAdapter {
     boolean inGame;
+    Grille grille;
 
     // Constructeur de la classe.
-    public entreeClavier() {
-        this.inGame = true;
+    public entreeClavier(Grille grille) {
+        this.inGame = false;
+        this.grille = grille;
     }
 
     // Méthode gérant la touche actuellement appuyée.
@@ -24,22 +29,33 @@ public class entreeClavier extends KeyAdapter {
 
         if (this.inGame) {
             if (touche == KeyEvent.VK_LEFT) {
-                // direction souhaité -> gauche.
+                // grille.getPacman().setDirectionVoulue(EDirection.OUEST);
+                grille.getPacman().setDirectionCourante(EDirection.OUEST);
+
                 System.out.println("Gauche");
             } else if (touche == KeyEvent.VK_RIGHT) {
+                // grille.getPacman().setDirectionVoulue(EDirection.EST);
+                grille.getPacman().setDirectionCourante(EDirection.EST);
                 System.out.println("Droite");
             } else if (touche == KeyEvent.VK_UP) {
+                // grille.getPacman().setDirectionVoulue(EDirection.NORD);
+                grille.getPacman().setDirectionCourante(EDirection.NORD);
                 System.out.println("Haut");
             } else if (touche == KeyEvent.VK_DOWN) {
+                // grille.getPacman().setDirectionVoulue(EDirection.SUD);
+                grille.getPacman().setDirectionCourante(EDirection.SUD);
                 System.out.println("Bas");
-            } else if (touche == KeyEvent.VK_S) {
-                System.out.println("S");
-                // if en cours -> pause sinon start.
             }
-        } else {
-            if (touche == KeyEvent.VK_SPACE) {
-                // start la game (init) avec espace.
+        }
+        if (touche == KeyEvent.VK_S) {
+            if (!inGame) {
+                System.out.println("Reprise");
+                this.inGame = true;
+            } else {
+                System.out.println("Pause");
+                this.inGame = false;
             }
+            // start la game (init) avec espace.
         }
     }
 }

@@ -17,8 +17,8 @@ import Pacman.Logic.Case;
 public class Fenetre extends JFrame {
 
     // Initialise la fenetre principale.
-    public Fenetre() {
-        Plateau plateau = new Plateau(3.0);
+    public Fenetre(Partie partie) {
+        Plateau plateau = new Plateau(partie, 3.0);
         add(plateau);
         int width = (int) (229 * plateau.getScale());
         int height = (int) (310 * plateau.getScale());
