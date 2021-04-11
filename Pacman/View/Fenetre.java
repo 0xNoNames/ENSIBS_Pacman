@@ -1,6 +1,9 @@
 package Pacman.View;
 
 import javax.swing.JFrame;
+import Pacman.View.Plateau;
+import java.awt.event.ComponentEvent;
+import java.awt.Rectangle;
 
 /**
  * 
@@ -12,12 +15,22 @@ public class Fenetre extends JFrame {
 
     // Initialise la fenetre principale.
     public Fenetre() {
-        add(new Plateau());
+        Plateau plateau = new Plateau(4.0);
+        add(plateau);
 
+        int width = (int) (229 * plateau.getScale());
+        int height = (int) (310 * plateau.getScale());
+
+        setSize(width, height);
+        setResizable(true);
         setTitle("PACMAN");
-        setSize(465, 625);
-        // setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }
+
+    // @Override
+    // public void formComponentResized(ComponentEvent arg0) {
+    //     Rectangle F = arg0.getComponent().getBounds();
+    //     arg0.getComponent().setBounds(F.x, F.y, F.width, F.width);
+    // }
 }

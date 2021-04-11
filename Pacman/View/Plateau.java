@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
+import Pacman.Logic.ECouleur;
 import Pacman.Logic.EDirection;
 
 /**
@@ -16,11 +17,13 @@ import Pacman.Logic.EDirection;
  */
 public class Plateau extends JPanel {
     private static DataForView data;
+    private double scale;
 
-    public Plateau() {
+    public Plateau(double scale) {
         addKeyListener(new entreeClavier());
         setFocusable(true);
         setBackground(Color.black);
+        this.scale = scale;
     }
 
     @Override
@@ -31,17 +34,31 @@ public class Plateau extends JPanel {
     }
 
     private void doDrawing(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
+
         data = new DataForView();
 
-        g2d.scale(2.0, 2.0);
+        Graphics2D g2d = (Graphics2D) g;
 
-        g2d.drawImage(data.getGrille(), 0, 20, this);
-        g2d.drawImage(data.getPacmanSprites(EDirection.NORD)[0], 100, 100, this);
-        g2d.drawImage(data.getFruitSprites()[0], 110, 100, this);
+        g2d.scale(this.scale, this.scale);
+
+        // Début de la grille en jouable -> (4,32)
+        // Déplacement d'une case à l'autre -> +8 
+        // (case[0][0] : [4,32])
+        // (case[1][1] : [12,40])
+        // (case[2][2] : [20,48])
+
+        // g2d.drawImage(data.getGrille(), 0, 28, this);
+        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0], 4, 32, this);
+        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0], 12, 40, this);
+        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0], 20, 48, this);
+
+        g2d.dispose();
 
         // Toolkit.getDefaultToolkit().sync();
-        g2d.dispose();
+    }
+
+    public double getScale() {
+        return this.scale;
     }
 
 }

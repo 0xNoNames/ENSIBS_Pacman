@@ -1,9 +1,6 @@
 package Pacman.View;
 
-import java.io.IOException;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.Graphics2D;
 import Pacman.Data.DataForView;
 import Pacman.Logic.Pacman;
 
@@ -16,8 +13,8 @@ public class dessinerPacman {
     private int spriteActuel;
 
     // Met à jour le numéro de sprite actuel et dessine Pacman.
-    public void dessiner(Pacman pacman, JFrame fenetre, DataForView data) throws IOException {
-        dessinerSpritePacman(pacman, fenetre, data);
+    public void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
+        dessinerSpritePacman(pacman, g2d, data);
         updateSprite();
     }
 
@@ -31,28 +28,28 @@ public class dessinerPacman {
     }
 
     // Dessine Pacman.
-    private void dessinerSpritePacman(Pacman pacman, JFrame fenetre, DataForView data) {
-        JLabel imageLabel;
+    private void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 1:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[0]));
-            fenetre.add(imageLabel);
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0], (int) pacman.getposX(),
+                    (int) pacman.getposY(), null);
             break;
 
         case 2:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[1]));
-            fenetre.add(imageLabel);
+
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1], (int) pacman.getposX(),
+                    (int) pacman.getposY(), null);
             break;
 
         case 3:
-            imageLabel = new JLabel(new ImageIcon(data.getPacmanSprites(pacman.getDirectionCourante())[2]));
-            fenetre.add(imageLabel);
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[2], (int) pacman.getposX(),
+                    (int) pacman.getposY(), null);
             break;
-        }  
+        }
     }
 
     // Dessine la mort de Pacman.
-    private void dessinerMortPacman(Pacman pacman, JFrame fenetre, DataForView data) {
+    private void dessinerMortPacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         // 11 sprites + 1 bouche fermée.
     }
 }
