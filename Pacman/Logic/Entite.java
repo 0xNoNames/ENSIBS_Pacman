@@ -53,6 +53,10 @@ public abstract class Entite implements IEntite{
         return this.dirVoulue;
     }
 
+    public void setDirectionVoulue(EDirection d) {
+        this.dirVoulue = d;
+    }
+
     /**
      * Permet de récupérer la coordonnée en X de l'entité
      * @return
