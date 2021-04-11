@@ -24,7 +24,7 @@ public class Pacman extends Entite {
 
     /**
      * Constructeur de la classe Pacman
-     */ 
+     */
     public Pacman() {
         this.vies = 3;
         this.tickDernierFantomeMange = 0;
@@ -32,6 +32,7 @@ public class Pacman extends Entite {
 
     /**
      * Permet de renvoyer le nombre de vie de Pacman
+     * 
      * @return un entier représentant le nombre de vie de Pacman
      */
     public int getVie() {
@@ -40,6 +41,7 @@ public class Pacman extends Entite {
 
     /**
      * Permet de récupérer le dernier tick durant lequel pacman a mangé un fantome
+     * 
      * @return
      */
     public int getTickDernierFantomeMange() {
@@ -48,6 +50,7 @@ public class Pacman extends Entite {
 
     /**
      * Permet de définir le dernier tick durant lequel pacman a mangé un fantome
+     * 
      * @param t, entier représentant un tick
      */
     public void setTickDernierFantomeMange(int t) {
@@ -56,6 +59,7 @@ public class Pacman extends Entite {
 
     /**
      * Permet de récupérer le combo actuel de pacman
+     * 
      * @return
      */
     public int getCompteurCombo() {
@@ -64,21 +68,23 @@ public class Pacman extends Entite {
 
     /**
      * Permet de déterminer le combo actuel de pacman
+     * 
      * @param c
      */
     public void setCompteurCombo(int c) {
         this.compteurCombo = c;
     }
-    
+
     /**
      * Permet de faire mourir Pacman, il perd donc une vie
      */
     public void meurt() {
-        vies --;
+        vies--;
     }
 
     /**
      * Permet de renvoyer les coordonnées de Pacman
+     * 
      * @return un tableau de double, avec en [0] son x et en[1] son y
      */
     public double[] getPosition() {
@@ -97,52 +103,51 @@ public class Pacman extends Entite {
         int[] posVoulue = calculPosDirection(dirVoulue, posActuelle);
 
         /* Test si la direction voulue est possible */
-        boolean deplacementVouluPossible = estPositionPossible(posVoulue);
+        boolean deplacementVouluePossible = estPositionPossible(posVoulue);
 
-        /* MAJ dirCourante si deplacement voulue possible*/
+        /* MAJ dirCourante si deplacement voulue possible */
         boolean deplacementCourantPossible = false;
-        if(deplacementVouluPossible) {
+        if (deplacementVouluePossible) {
             dirCourante = dirVoulue;
         } else {
             /* Sinon on vérifie si la direction courante est possible */
             posVoulue = calculPosDirection(dirCourante, posActuelle);
-            deplacementCourantPossible = estPositionPossible(posVoulue); 
+            deplacementCourantPossible = estPositionPossible(posVoulue);
         }
-        
+
         /* Si une direction est possible on déplace */
-        if(deplacementVouluPossible) {
-            switch(dirVoulue) {
-                case EST:
-                    this.posX += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0/Partie.tickParSeconde);
-                    break;
-                case OUEST:
-                    this.posX -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0/Partie.tickParSeconde);
-                    break;
-                case SUD:
-                    this.posY += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0/Partie.tickParSeconde);
-                    break;
-                case NORD:
-                    this.posY -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0/Partie.tickParSeconde);
-                    break;
+        if (deplacementVouluePossible) {
+            switch (dirVoulue) {
+            case EST:
+                this.posX += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
+                break;
+            case OUEST:
+                this.posX -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
+                break;
+            case SUD:
+                this.posY += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
+                break;
+            case NORD:
+                this.posY -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
+                break;
             }
-        } else if(deplacementCourantPossible) {
-            switch(dirCourante) {
-                case EST:
-                    this.posX += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0/Partie.tickParSeconde);
-                    break;
-                case OUEST:
-                    this.posX -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0/Partie.tickParSeconde);
-                    break;
-                case SUD:
-                    this.posY += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0/Partie.tickParSeconde);
-                    break;
-                case NORD:
-                    this.posY -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0/Partie.tickParSeconde);
-                    break;
-            }  
+        } else if (deplacementCourantPossible) {
+            switch (dirCourante) {
+            case EST:
+                this.posX += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
+                break;
+            case OUEST:
+                this.posX -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
+                break;
+            case SUD:
+                this.posY += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
+                break;
+            case NORD:
+                this.posY -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
+                break;
+            }
         }
     }
-
 
     /**
      * Fonction inutile pour Pacman car pas de Statut

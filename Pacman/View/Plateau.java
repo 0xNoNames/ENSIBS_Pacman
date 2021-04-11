@@ -5,8 +5,9 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
-import Pacman.Logic.ECouleur;
-import Pacman.Logic.EDirection;
+import Pacman.Logic.Case;
+import Pacman.Logic.Grille;
+import Pacman.Logic.Partie;
 
 /**
  * 
@@ -41,16 +42,31 @@ public class Plateau extends JPanel {
 
         g2d.scale(this.scale, this.scale);
 
-        // Début de la grille en jouable -> (4,32)
-        // Déplacement d'une case à l'autre -> +8 
+        Partie partie = new Partie();
+        Grille grille = partie.getGrille();
+
+        g2d.drawImage(data.getGrille(), 0, 28, this);
+
+        desssinerGrille.dessiner(grille.getCases(), g2d, data);
+        dessinerPacman.dessiner(grille.getPacman(), g2d, data);
+
+        // g2d.drawImage(data.getGommesSprites()[1], 8, 36, null);
+
+        // g2d.drawImage(data.getGommesSprites()[0], 17, 45, null);
+
+        // Début de la grille en jouable -> (4,32) (9,37) petites gommes & (8,36)
+        // grosses gommes
+        // Déplacement d'une case à l'autre -> +8
         // (case[0][0] : [4,32])
         // (case[1][1] : [12,40])
         // (case[2][2] : [20,48])
 
-        // g2d.drawImage(data.getGrille(), 0, 28, this);
-        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0], 4, 32, this);
-        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0], 12, 40, this);
-        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0], 20, 48, this);
+        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0],
+        // 4, 32, this);
+        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0],
+        // 12, 40, this);
+        // g2d.drawImage(data.getFantomesSprites(ECouleur.ROUGE, EDirection.OUEST)[0],
+        // 20, 48, this);
 
         g2d.dispose();
 

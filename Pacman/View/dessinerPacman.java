@@ -10,25 +10,25 @@ import Pacman.Logic.Pacman;
  * @author Arthur Pêtre
  */
 public class dessinerPacman {
-    private int spriteActuel;
+    private static int spriteActuel;
 
     // Met à jour le numéro de sprite actuel et dessine Pacman.
-    public void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
+    public static void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
         dessinerSpritePacman(pacman, g2d, data);
         updateSprite();
     }
 
     // Met à jour le numéro de sprite actuel.
-    private void updateSprite() {
-        if (this.spriteActuel == 3) {
+    private static void updateSprite() {
+        if (spriteActuel == 3) {
             spriteActuel = 1;
         } else {
-            this.spriteActuel += 1;
+            spriteActuel += 1;
         }
     }
 
     // Dessine Pacman.
-    private void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
+    private static void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 1:
             g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0], (int) pacman.getposX(),
@@ -36,7 +36,6 @@ public class dessinerPacman {
             break;
 
         case 2:
-
             g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1], (int) pacman.getposX(),
                     (int) pacman.getposY(), null);
             break;

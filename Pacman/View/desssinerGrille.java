@@ -1,11 +1,12 @@
 package Pacman.View;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import Pacman.Data.DataForView;
 import Pacman.Logic.Case;
+import Pacman.Logic.Cerise;
 import Pacman.Logic.Jouable;
+import Pacman.Logic.*;
+
+import java.awt.Graphics2D;
 
 /**
  * La classe dessinerGrille permet de déssiner les différents sprites liés à la
@@ -15,56 +16,54 @@ import Pacman.Logic.Jouable;
  */
 public class desssinerGrille {
 
-    // Dessine les éléments de la grille.
-    public void desssinerGrille(Case[][] grille, JFrame fenetre, DataForView data) {
-        JLabel imageLabel;
-        for (Case[] ligne : grille) {
-            for (Case cases : ligne) {
-                if (cases instanceof Jouable) {
-                    Jouable caseJ = (Jouable) cases;
+    // Dessine sur la JFrame les éléments de la grille.
+    public static void dessiner(Case[][] grille, Graphics2D g2d, DataForView data) {
+
+        for (int i = 0; i < (grille.length - 2); i++) {
+            for (int j = 0; j < (grille[i].length - 2); j++) {
+
+                if (grille[i][j] instanceof Jouable) {
+
+                    Jouable caseJ = (Jouable) grille[i][j];
+
                     if (caseJ.getObjet() != null) {
-                        switch (caseJ.getObjet().toString()) {
+
+                        switch (caseJ.getObjet().getClass().getSimpleName()) {
                         case "Cerise":
-                            imageLabel = new JLabel(new ImageIcon(data.getFruitSprites()[0]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getFruitSprites()[0], (i * 8) + 4, (8 * j) + 32, null);
                             break;
 
                         case "Fraise":
-                            imageLabel = new JLabel(new ImageIcon(data.getFruitSprites()[1]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getFruitSprites()[1], (i * 8) + 4, (8 * j) + 32, null);
                             break;
 
                         case "Orange":
-                            imageLabel = new JLabel(new ImageIcon(data.getFruitSprites()[2]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getFruitSprites()[2], (i * 8) + 4, (8 * j) + 32, null);
                             break;
 
                         case "Melon":
-                            imageLabel = new JLabel(new ImageIcon(data.getFruitSprites()[3]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getFruitSprites()[3], (i * 8) + 4, (8 * j) + 32, null);
                             break;
 
                         case "Galboss":
-                            imageLabel = new JLabel(new ImageIcon(data.getFruitSprites()[4]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getFruitSprites()[4], (i * 8) + 4, (8 * j) + 32, null);
                             break;
 
                         case "Cloche":
-                            imageLabel = new JLabel(new ImageIcon(data.getFruitSprites()[5]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getFruitSprites()[5], (i * 8) + 4, (8 * j) + 32, null);
                             break;
 
                         case "Clé":
-                            imageLabel = new JLabel(new ImageIcon(data.getFruitSprites()[6]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getFruitSprites()[6], (i * 8) + 4, (8 * j) + 32, null);
+                            break;
 
                         case "PetiteGomme":
-                            imageLabel = new JLabel(new ImageIcon(data.getGommesSprites()[0]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getGommesSprites()[0], (i * 8) + 1, (8 * j) + 29, null);
+                            break;
 
                         case "GrosseGomme":
-                            imageLabel = new JLabel(new ImageIcon(data.getGommesSprites()[1]));
-                            fenetre.add(imageLabel);
+                            g2d.drawImage(data.getGommesSprites()[1], (i * 8), (8 * j) + 28, null);
+                            break;
                         }
                     }
                 }

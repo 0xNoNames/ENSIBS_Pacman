@@ -50,5 +50,5 @@ public interface IPartie {
      *
      * @return retourne une matrice de Case.
      */
-    public Case[][] getGrille();
+    public Grille getGrille();
 }

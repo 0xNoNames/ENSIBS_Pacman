@@ -18,7 +18,7 @@ public class dessinerFantome {
     private int spriteActuel;
 
     // Met à jour le numéro de sprite actuel et dessine le Fantome voulu.
-    public void dessiner(Fantome fantome, JFrame fenetre, DataForView data) throws IOException {
+    public void dessiner(Fantome fantome, JFrame fenetre, DataForView data) {
         dessinerSpriteFantome(fantome, fenetre, data);
         updateSprite();
     }
@@ -45,8 +45,7 @@ public class dessinerFantome {
                 break;
 
             case VULNERABLE:
-                imageLabel = new JLabel(
-                        new ImageIcon(data.getVulnerableFantomesSprites(fantome.getDirectionCourante())));
+                imageLabel = new JLabel(new ImageIcon(data.getVulnerableFantomesSprites()[0]));
                 fenetre.add(imageLabel);
                 break;
 
