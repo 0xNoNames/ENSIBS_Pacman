@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
+import Pacman.Logic.ECouleur;
 import Pacman.Logic.EDirection;
 import Pacman.Logic.Grille;
 import Pacman.Logic.Partie;
@@ -46,18 +47,14 @@ public class Plateau extends JPanel {
 
         g2d.drawImage(data.getGrille(), 0, 28, this);
 
-        System.out.println(grille.getPacman().getposX());
-        System.out.println(grille.getPacman().getposY());
-
         dessinerPacman.dessiner(grille.getPacman(), g2d, data);
-        // dessinerFantome.dessiner(grille.getBlinky(), g2d, data);
-        // dessinerFantome.dessiner(grille.getClyde(), g2d, data);
-        // dessinerFantome.dessiner(grille.getInky(), g2d, data);
-        // dessinerFantome.dessiner(grille.getPinky(), g2d, data);
+
+        dessinerFantome.dessiner(grille.getBlinky(), g2d, data);
+        dessinerFantome.dessiner(grille.getClyde(), g2d, data);
+        dessinerFantome.dessiner(grille.getInky(), g2d, data);
+        dessinerFantome.dessiner(grille.getPinky(), g2d, data);
 
         desssinerGrille.dessiner(grille.getCases(), g2d, data);
-
-        // g2d.drawImage(data.getPacmanSprites(EDirection.OUEST)[0], 4, 32, null);
 
         g2d.dispose();
 
