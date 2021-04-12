@@ -2,9 +2,7 @@ package Pacman.View;
 
 import Pacman.Data.DataForView;
 import Pacman.Logic.Case;
-import Pacman.Logic.Cerise;
 import Pacman.Logic.Jouable;
-import Pacman.Logic.*;
 
 import java.awt.Graphics2D;
 

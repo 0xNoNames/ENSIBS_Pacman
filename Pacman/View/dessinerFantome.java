@@ -19,7 +19,6 @@ public class dessinerFantome {
 
     // Met à jour le numéro de sprite actuel et dessine le Fantome voulu.
     public static void dessiner(Fantome fantome, Graphics2D g2d, DataForView data) {
-        System.out.println("Il s'agit du fantome suivant : " + fantome.getClass());
         dessinerSpriteFantome(fantome, g2d, data);
         updateOffsets(fantome);
         updateSprite();
@@ -27,10 +26,10 @@ public class dessinerFantome {
 
     // Met à jour le numéro de sprite actuel.
     private static void updateSprite() {
-        if (spriteActuel == 2) {
-            spriteActuel = 0;
-        } else {
+        if (spriteActuel == 0) {
             spriteActuel = 1;
+        } else {
+            spriteActuel = 0;
         }
     }
 
@@ -84,7 +83,6 @@ public class dessinerFantome {
         case 1:
             switch (fantome.getStatut()) {
             case CHASSEUR:
-                System.out.println(fantome.getCouleur() + " est chasseur");
                 g2d.drawImage(
                         data.getFantomesSprites(fantome.getCouleur(),
                                 EDirection.NORD/* fantome.getDirectionCourante() */)[0],
@@ -92,20 +90,16 @@ public class dessinerFantome {
                 break;
 
             case VULNERABLE:
-                System.out.println(fantome.getCouleur() + " est vulnérable");
                 g2d.drawImage(data.getVulnerableFantomesSprites()[0], ((int) fantome.getposX()) * 8 + offsetX,
                         ((int) fantome.getposY()) * 8 + offsetY, null);
                 break;
 
             case MORT:
-                System.out.println(fantome.getCouleur() + " est mort");
-
                 g2d.drawImage(data.getMortFantomeSprites()[0], ((int) fantome.getposX()) * 8 + offsetX,
                         ((int) fantome.getposY()) * 8 + offsetY, null);
                 break;
 
             default:
-                System.out.println(fantome.getCouleur() + " est jsp");
                 break;
             }
             break;
@@ -113,7 +107,6 @@ public class dessinerFantome {
         case 2:
             switch (fantome.getStatut()) {
             case CHASSEUR:
-                System.out.println(fantome.getCouleur() + " est chasseur");
                 g2d.drawImage(
                         data.getFantomesSprites(fantome.getCouleur(),
                                 EDirection.NORD /* fantome.getDirectionCourante() */)[1],
@@ -121,13 +114,11 @@ public class dessinerFantome {
                 break;
 
             case VULNERABLE:
-                System.out.println(fantome.getCouleur() + " est vulnérable");
                 g2d.drawImage(data.getVulnerableFantomesSprites()[1], ((int) fantome.getposX()) * 8 + offsetX,
                         ((int) fantome.getposY()) * 8 + offsetY, null);
                 break;
 
             case MORT:
-                System.out.println(fantome.getCouleur() + " est mort");
                 g2d.drawImage(data.getMortFantomeSprites()[1], ((int) fantome.getposX()) * 8 + offsetX,
                         ((int) fantome.getposY()) * 8 + offsetY, null);
                 break;

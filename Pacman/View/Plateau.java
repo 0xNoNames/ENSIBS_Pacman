@@ -47,23 +47,26 @@ public class Plateau extends JPanel {
 
         g2d.drawImage(data.getGrille(), 0, 28, this);
 
-        dessinerPacman.dessiner(grille.getPacman(), g2d, data);
+        System.out.println(partie.getEtatPartie());
 
-        dessinerFantome.dessiner(grille.getBlinky(), g2d, data);
-        dessinerFantome.dessiner(grille.getClyde(), g2d, data);
-        dessinerFantome.dessiner(grille.getInky(), g2d, data);
-        dessinerFantome.dessiner(grille.getPinky(), g2d, data);
+        partie.initialisation();
 
-        desssinerGrille.dessiner(grille.getCases(), g2d, data);
+        System.out.println(partie.getEtatPartie());
+
+        // dessinerPacman.dessiner(grille.getPacman(), g2d, data);
+
+        // dessinerFantome.dessiner(grille.getBlinky(), g2d, data);
+        // dessinerFantome.dessiner(grille.getClyde(), g2d, data);
+        // dessinerFantome.dessiner(grille.getInky(), g2d, data);
+        // dessinerFantome.dessiner(grille.getPinky(), g2d, data);
+
+        // desssinerGrille.dessiner(grille.getCases(), g2d, data);
 
         g2d.dispose();
 
-        // while (true) {
         // partie.tick();
 
         // repaint();
-
-        // }
 
         // desssinerGrille.dessiner(grille.getCases(), g2d, data);
         // dessinerScore.dessiner(partie.getScore(), g2d, data);

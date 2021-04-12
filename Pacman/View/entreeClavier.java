@@ -29,21 +29,16 @@ public class entreeClavier extends KeyAdapter {
 
         if (this.inGame) {
             if (touche == KeyEvent.VK_LEFT) {
-                // grille.getPacman().setDirectionVoulue(EDirection.OUEST);
-                grille.getPacman().setDirectionCourante(EDirection.OUEST);
-
+                grille.getPacman().setDirectionVoulue(EDirection.OUEST);
                 System.out.println("Gauche");
             } else if (touche == KeyEvent.VK_RIGHT) {
-                // grille.getPacman().setDirectionVoulue(EDirection.EST);
-                grille.getPacman().setDirectionCourante(EDirection.EST);
+                grille.getPacman().setDirectionVoulue(EDirection.EST);
                 System.out.println("Droite");
             } else if (touche == KeyEvent.VK_UP) {
-                // grille.getPacman().setDirectionVoulue(EDirection.NORD);
-                grille.getPacman().setDirectionCourante(EDirection.NORD);
+                grille.getPacman().setDirectionVoulue(EDirection.NORD);
                 System.out.println("Haut");
             } else if (touche == KeyEvent.VK_DOWN) {
-                // grille.getPacman().setDirectionVoulue(EDirection.SUD);
-                grille.getPacman().setDirectionCourante(EDirection.SUD);
+                grille.getPacman().setDirectionVoulue(EDirection.SUD);
                 System.out.println("Bas");
             }
         }
