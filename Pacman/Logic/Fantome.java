@@ -11,7 +11,7 @@ public class Fantome extends Entite {
      * Variable représentant le statut du fantome
      */
     private EStatutFantome statut;
-    
+
     /**
      * Variable représentant la couleur du fantome
      */
@@ -19,10 +19,11 @@ public class Fantome extends Entite {
 
     /**
      * Constructeur de la classe Fantome
+     * 
      * @param x, la coordonnée en x
      * @param y, la coordonnée en y
      */
-    public Fantome(double x, double y){
+    public Fantome(double x, double y) {
         this.posX = x;
         this.posY = y;
         this.statut = EStatutFantome.CHASSEUR;
@@ -30,6 +31,7 @@ public class Fantome extends Entite {
 
     /**
      * Permet de récupérer les coordonnées du fantome
+     * 
      * @return tableau de double, en [0] x et en [1] y
      */
     public double[] getPosition() {
@@ -41,6 +43,7 @@ public class Fantome extends Entite {
 
     /**
      * Permet de récupérer le statut du fantome
+     * 
      * @return le statut du fantome sous forme d'énumération
      */
     public EStatutFantome getStatut() {
@@ -49,14 +52,24 @@ public class Fantome extends Entite {
 
     /**
      * Permet de définir le statut actuel du fantome
+     * 
      * @param s, un statut de type Enumeration
      */
     public void setStatut(EStatutFantome s) {
         this.statut = s;
     }
 
+    public void setDirectionCourante(EDirection dircour) {
+        this.dirCourante = dircour;
+    }
+
+    public EDirection getDirectionCourante() {
+        return this.dirCourante;
+    }
+
     /**
      * Permet de récupérer la couleur du fantom
+     * 
      * @return la couleur du fantome
      */
     public ECouleur getCouleur() {
@@ -69,7 +82,7 @@ public class Fantome extends Entite {
     public void meurt() {
         this.statut = EStatutFantome.MORT;
         int cmp = 0;
-        while(cmp<180) {
+        while (cmp < 180) {
             cmp++;
         }
         this.posX = Partie.d.getPositionInitialePacman()[0];
@@ -79,50 +92,52 @@ public class Fantome extends Entite {
 
     /**
      * Permet de définir la direction voulue afin de se déplacer vers Pacman
+     * 
      * @param p, l'entité pacman
      * @return la direction voulue
      */
-    protected EDirection directionVoulueVersPacman(Pacman p){
+    protected EDirection directionVoulueVersPacman(Pacman p) {
         double diffX = p.getposX() - this.getposX();
         double diffY = p.getposY() - this.getposY();
-        if(diffX != 0 && diffY == 0){
-            if(diffX > 0 ) {
+        if (diffX != 0 && diffY == 0) {
+            if (diffX > 0) {
                 return EDirection.EST;
             } else {
                 return EDirection.OUEST;
             }
-        } else if(diffY !=0 && diffX == 0){
-            if(diffY > 0){
+        } else if (diffY != 0 && diffX == 0) {
+            if (diffY > 0) {
                 return EDirection.SUD;
             } else {
                 return EDirection.NORD;
             }
-        } else if(diffX!=0 && diffY!=0) {
-            if(diffY > diffX) {
-                if(diffY > 0){
+        } else if (diffX != 0 && diffY != 0) {
+            if (diffY > diffX) {
+                if (diffY > 0) {
                     return EDirection.SUD;
                 } else {
                     return EDirection.NORD;
-                } 
+                }
             } else {
-                if(diffX > 0 ) {
+                if (diffX > 0) {
                     return EDirection.EST;
                 } else {
                     return EDirection.OUEST;
                 }
             }
         } else {
-            EDirection[] tab = {EDirection.EST,EDirection.NORD,EDirection.SUD,EDirection.OUEST};
+            EDirection[] tab = { EDirection.EST, EDirection.NORD, EDirection.SUD, EDirection.OUEST };
             int indice = (int) (Math.random() * tab.length);
             return tab[indice];
         }
-    }   
+    }
 
     /**
      * Permet de se déplacer vers Pacman
+     * 
      * @param p, l'entité Pacman
      */
-    protected void deplacerVersPacman(Pacman p){
+    protected void deplacerVersPacman(Pacman p) {
         /* Calcul de la direction Voulue */
         int[] posActuelle = getPositionActuelle();
         dirVoulue = directionVoulueVersPacman(p);
@@ -131,47 +146,55 @@ public class Fantome extends Entite {
         /* Test si la direction voulue est possible */
         boolean deplacementVouluPossible = estPositionPossible(posVoulue);
 
-        /* MAJ dirCourante si deplacement voulue possible*/
+        /* MAJ dirCourante si deplacement voulue possible */
         boolean deplacementCourantPossible = false;
-        if(deplacementVouluPossible) {
+        if (deplacementVouluPossible) {
             dirCourante = dirVoulue;
         } else {
             /* Sinon on vérifie si la direction courante est possible */
             posVoulue = calculPosDirection(dirCourante, posActuelle);
-            deplacementCourantPossible = estPositionPossible(posVoulue); 
+            deplacementCourantPossible = estPositionPossible(posVoulue);
         }
-        
+
         /* Si une direction est possible on déplace */
-        if(deplacementVouluPossible) {
-            switch(dirVoulue) {
-                case EST:
-                    this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case OUEST:
-                    this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case SUD:
-                    this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case NORD:
-                    this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
+        if (deplacementVouluPossible) {
+            switch (dirVoulue) {
+            case EST:
+                this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+                        * (1.0 / Partie.tickParSeconde);
+                break;
+            case OUEST:
+                this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+                        * (1.0 / Partie.tickParSeconde);
+                break;
+            case SUD:
+                this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+                        * (1.0 / Partie.tickParSeconde);
+                break;
+            case NORD:
+                this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+                        * (1.0 / Partie.tickParSeconde);
+                break;
             }
-        } else if(deplacementCourantPossible) {
-            switch(dirCourante) {
-                case EST:
-                    this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case OUEST:
-                    this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case SUD:
-                    this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case NORD:
-                    this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-            }  
+        } else if (deplacementCourantPossible) {
+            switch (dirCourante) {
+            case EST:
+                this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+                        * (1.0 / Partie.tickParSeconde);
+                break;
+            case OUEST:
+                this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+                        * (1.0 / Partie.tickParSeconde);
+                break;
+            case SUD:
+                this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+                        * (1.0 / Partie.tickParSeconde);
+                break;
+            case NORD:
+                this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+                        * (1.0 / Partie.tickParSeconde);
+                break;
+            }
         }
     }
 }

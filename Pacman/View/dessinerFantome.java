@@ -1,9 +1,6 @@
 package Pacman.View;
 
-import java.io.IOException;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.Graphics2D;
 import Pacman.Data.DataForView;
 import Pacman.Logic.EStatutFantome;
 import Pacman.Logic.Fantome;
@@ -15,43 +12,41 @@ import Pacman.Logic.Fantome;
  * @author Arthur Pêtre
  */
 public class dessinerFantome {
-    private int spriteActuel;
+    private static int spriteActuel = 0;
 
     // Met à jour le numéro de sprite actuel et dessine le Fantome voulu.
-    public void dessiner(Fantome fantome, JFrame fenetre, DataForView data) {
-        dessinerSpriteFantome(fantome, fenetre, data);
+    public static void dessiner(Fantome fantome, Graphics2D g2d, DataForView data) {
+        dessinerSpriteFantome(fantome, g2d, data);
         updateSprite();
     }
 
     // Met à jour le numéro de sprite actuel.
-    private void updateSprite() {
-        if (this.spriteActuel == 2) {
+    private static void updateSprite() {
+        if (spriteActuel == 2) {
             spriteActuel = 1;
         } else {
-            this.spriteActuel += 1;
+            spriteActuel += 1;
         }
     }
 
     // Dessine le Fantome voulu selon son état.
-    private void dessinerSpriteFantome(Fantome fantome, JFrame fenetre, DataForView data) {
-        JLabel imageLabel;
+    private static void dessinerSpriteFantome(Fantome fantome, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 1:
             switch (fantome.getStatut()) {
             case CHASSEUR:
-                imageLabel = new JLabel(new ImageIcon(
-                        data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[0]));
-                fenetre.add(imageLabel);
+                g2d.drawImage(data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[0],
+                        ((int) fantome.getposX()) * 8 + 4, ((int) fantome.getposY()) * 8 + 24, null);
                 break;
 
             case VULNERABLE:
-                imageLabel = new JLabel(new ImageIcon(data.getVulnerableFantomesSprites()[0]));
-                fenetre.add(imageLabel);
+                g2d.drawImage(data.getVulnerableFantomesSprites()[0], ((int) fantome.getposX()) * 8 + 4,
+                        ((int) fantome.getposY()) * 8 + 24, null);
                 break;
 
             case MORT:
-                imageLabel = new JLabel(new ImageIcon(data.getMortFantomeSprites()[0]));
-                fenetre.add(imageLabel);
+                g2d.drawImage(data.getMortFantomeSprites()[0], ((int) fantome.getposX()) * 8 + 4,
+                        ((int) fantome.getposY()) * 8 + 24, null);
                 break;
             }
             break;
@@ -59,22 +54,19 @@ public class dessinerFantome {
         case 2:
             switch (fantome.getStatut()) {
             case CHASSEUR:
-                imageLabel = new JLabel(new ImageIcon(
-                        data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[1]));
-                fenetre.add(imageLabel);
+                g2d.drawImage(data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[1],
+                        ((int) fantome.getposX()) * 8 + 4, ((int) fantome.getposY()) * 8 + 24, null);
                 break;
 
             case VULNERABLE:
-                imageLabel = new JLabel(
-                        new ImageIcon(data.getVulnerableFantomesSprites(fantome.getDirectionCourante())));
-                fenetre.add(imageLabel);
+                g2d.drawImage(data.getVulnerableFantomesSprites()[1], ((int) fantome.getposX()) * 8 + 4,
+                        ((int) fantome.getposY()) * 8 + 24, null);
                 break;
 
             case MORT:
-                imageLabel = new JLabel(new ImageIcon(data.getMortFantomeSprites()[1]));
-                fenetre.add(imageLabel);
+                g2d.drawImage(data.getMortFantomeSprites()[1], ((int) fantome.getposX()) * 8 + 4,
+                        ((int) fantome.getposY()) * 8 + 24, null);
                 break;
-
             }
             break;
         }
