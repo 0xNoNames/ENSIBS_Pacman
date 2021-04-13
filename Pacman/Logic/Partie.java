@@ -194,7 +194,7 @@ public class Partie implements IPartie {
 	private boolean noGomme() {
 		Case[][] tab = this.grille.getCases();
 		for (int i = 0; i < tab.length; i++) {
-			for (int j = 0; j < tab[i].length; i++) {
+			for (int j = 0; j < tab[0].length; j++) {
 				if (tab[i][j] instanceof Jouable) {
 					Jouable jouable = (Jouable) tab[i][j];
 					if (jouable.getObjet() != null) {
