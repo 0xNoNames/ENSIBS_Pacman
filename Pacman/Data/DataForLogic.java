@@ -5,6 +5,7 @@ import java.util.HashMap;
 import Pacman.Logic.Blinky;
 import Pacman.Logic.Clyde;
 import Pacman.Logic.ECouleur;
+import Pacman.Logic.EDirection;
 import Pacman.Logic.Fruit;
 import Pacman.Logic.Grille;
 import Pacman.Logic.Inky;
@@ -152,18 +153,22 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
 
         posInit = getPositionInitialeFantome(ECouleur.ROUGE);
         Blinky blinky = new Blinky(posInit[0], posInit[1]);
+        blinky.setDirectionCourante(EDirection.EST);
         grille.setBlinky(blinky);
 
         posInit = getPositionInitialeFantome(ECouleur.ROSE);
         Pinky pinky = new Pinky(posInit[0], posInit[1]);
+        pinky.setDirectionCourante(EDirection.SUD);
         grille.setPinky(pinky);
 
         posInit = getPositionInitialeFantome(ECouleur.CYAN);
         Inky inky = new Inky(posInit[0], posInit[1]);
+        inky.setDirectionCourante(EDirection.NORD);
         grille.setInky(inky);
 
         posInit = getPositionInitialeFantome(ECouleur.ORANGE);
         Clyde clyde = new Clyde(posInit[0], posInit[1]);
+        clyde.setDirectionCourante(EDirection.NORD);
         grille.setClyde(clyde);
 
         return grille;
