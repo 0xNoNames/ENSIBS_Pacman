@@ -70,12 +70,11 @@ public class Plateau extends JPanel {
         System.out.println(grille.getPacman().getDirectionCourante());
         System.out.println(grille.getPacman().getDirectionVoulue());
 
-
         System.out.println(partie.getEtatPartie());
 
         g2d.dispose();
 
-        // partie.tick();
+        partie.tick();
 
         // repaint();
 
@@ -92,7 +91,7 @@ public class Plateau extends JPanel {
         // (case[1][1] : [12,40])
         // (case[2][2] : [20,48])
 
-        // Toolkit.getDefaultToolkit().sync();
+        Toolkit.getDefaultToolkit().sync();
     }
 
     public double getScale() {
