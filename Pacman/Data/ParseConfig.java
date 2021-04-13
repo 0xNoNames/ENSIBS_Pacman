@@ -430,9 +430,10 @@ class ParseConfig {
     }
 
     /**
-     * Permet de savoir combien de points rapporte un combo
+     * Permet de savoir combien de points rapporte un combo.
      * 
-     * @return
+     * @return tableau d'entiers indiquant le nombre de points pour chaque
+     * niveau de combo.
      */
     public static int[] getPointsCombo()
     {
@@ -454,6 +455,14 @@ class ParseConfig {
     // Concernant la Grille initiale
     // --------------------------------------------
 
+    /**
+     * Prend un JSONArray de JSONArray de String, et le transforme en un
+     * tableau de tableaux de String.
+     * 
+     * @param jsonArray grille issue de la config.
+     * @return grille d'instructions (attention, format [y][x] puisque x est
+     * variable selon la ligne de la config)
+     */
     private static String[][] jsonArrayToInstr(JSONArray jsonArray)
     {
         Object[] instrGrilleJsonArr = jsonArray.toArray();
@@ -482,9 +491,14 @@ class ParseConfig {
         }
 
         return instructionsGrille;
-        // TODO: attention ça retourne du [y][x] pas du [x][y]
     }
 
+    /**
+     * Décode une instruction en un ArrayList de Case.
+     * 
+     * @param instr instruction à décoder (type "28m").
+     * @return liste de Case instanciées.
+     */
     private static ArrayList<Case> decoderInstr(String instr)
     {
         String nbrCasesS = instr.substring(0, instr.length() - 1);
@@ -529,6 +543,13 @@ class ParseConfig {
         return cases;
     }
 
+    /**
+     * Prend une ligne d'instructions de la config, et instancie les cases
+     * correspondantes.
+     * 
+     * @param ligneInstr tableau d'instructions (type ["1m", "12p", ...])
+     * @return tableau de Case instanciées
+     */
     private static Case[] decoderLigne(String[] ligneInstr)
     {
         // un ArrayList est plus simple qu'un [] pour fusionner
@@ -548,6 +569,12 @@ class ParseConfig {
         return cases;
     }
 
+    /**
+     * Retourne un tableau de Case [y][x] en un tableau [x][y].
+     * 
+     * @param grille grille dans le "mauvais sens"
+     * @return grille dans le "bon sens"
+     */
     private static Case[][] retournerGrille(Case[][] grille)
     {
         Case[][] nGrille = new Case[grille[0].length][grille.length];
@@ -563,6 +590,12 @@ class ParseConfig {
         return nGrille;
     }
 
+    /**
+     * Récupère la grille de la config, et la transforme étape par étape pour
+     * finir à une grille de début de niveau toute instanciée.
+     * 
+     * @return grille prête à jouer, sans entités
+     */
     public static Grille getGrilleInitiale()
     {
         // on récupère le tableau représentant la grille en json

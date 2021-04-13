@@ -19,6 +19,11 @@ import javax.swing.JLabel;
  */
 public class FenetreTest extends JFrame {
     /**
+     * Généré automatiquement, sans quoi Java donne un warning
+     */
+    private static final long serialVersionUID = -5436471147728079701L;
+
+    /**
      * Constructeur, prend une Image en paramètre, la scale, et l'affiche
      * 
      * @param image Image à afficher

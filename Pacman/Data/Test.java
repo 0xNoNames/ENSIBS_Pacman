@@ -62,7 +62,9 @@ public class Test {
         dataV.getRGOSprite();
 
         // affichage des sprites pour vérifier leur découpage
-        FenetreTest fenetre = new FenetreTest(
+        /* on ne stocke pas en variable, car vu qu'on ne l'utilise pas, on a
+        un warning */
+        new FenetreTest(
             dataV.getPacmanSprites(EDirection.EST)[0]
         );
 
