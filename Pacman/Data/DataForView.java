@@ -95,25 +95,21 @@ public class DataForView implements ISprites {
         }
     }
 
-    private void chargerPacmanSprites() {
-        pacmanSprites = new Image[9];
-
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 2; j++) {
-                pacmanSprites[2 * i + j] = spriteComplet.getSubimage(
-                    1 + 20 * j, 4 + 20 * i, 16, 16
-                );
-            }
-        }
-
-        pacmanSprites[8] = spriteComplet.getSubimage(41, 4, 16, 16);
-    }
-
     @Override
     public Image[] getPacmanSprites(EDirection direction) {
         // si ces sprites n'ont pas encore été demandés
         if (pacmanSprites == null) {
-            chargerPacmanSprites();
+            pacmanSprites = new Image[9];
+
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 2; j++) {
+                    pacmanSprites[2 * i + j] = spriteComplet.getSubimage(
+                        1 + 20 * j, 4 + 20 * i, 16, 16
+                    );
+                }
+            }
+
+            pacmanSprites[8] = spriteComplet.getSubimage(41, 4, 16, 16);
         }
 
         // on trouve où sont les sprites qui nous intéressent
@@ -134,18 +130,9 @@ public class DataForView implements ISprites {
         }
 
         // on retourne
-        Image[] retour = { pacmanSprites[indice], pacmanSprites[indice + 1] };
+        Image[] retour = { pacmanSprites[indice], pacmanSprites[indice + 1],
+            pacmanSprites[8] };
         return retour;
-    }
-
-    @Override
-    public Image getPacmanRondSprite() {
-        // si ces sprites n'ont pas encore été demandés
-        if (pacmanSprites == null) {
-            chargerPacmanSprites();
-        }
-
-        return pacmanSprites[8];
     }
 
     @Override

@@ -13,19 +13,11 @@ import Pacman.Logic.EDirection;
 public interface ISprites {
     /**
      * Permet d'obtenir un tableau des sprites de Pacman, dans l'ordre : 0: fermé,
-     * 1: ouvert
+     * 1: ouvert, 2: rond
      * 
      * @return Tableau d'Image
      */
     public Image[] getPacmanSprites(EDirection direction);
-
-    /**
-     * Permet d'obtenir le sprite lorsque Pacman apparait à l'initialisation d'un
-     * niveau.
-     * 
-     * @return Image
-     */
-    public Image getPacmanRondSprite();
 
     /**
      * Permet d'obtenir un tableau des sprites de l'animation de mort de Pacman Du
