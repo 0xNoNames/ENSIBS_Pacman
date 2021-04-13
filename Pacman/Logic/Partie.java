@@ -120,6 +120,7 @@ public class Partie implements IPartie {
 	 * Permet d'avancer dans le temps.
 	 */
 	public void tick() {
+		initialisation();
 		if (etatPartie == EStatutPartie.EN_COURS) {
 			/* Récupération des entités de la grille */
 			Blinky blinky = this.grille.getBlinky();
