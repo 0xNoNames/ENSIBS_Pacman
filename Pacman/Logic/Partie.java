@@ -137,13 +137,14 @@ public class Partie implements IPartie {
 			Case[][] tab = this.grille.getCases();
 			/* Définition d'un tableau représentant l'ensemble des fantomes */
 			Fantome[] fantomes = { inky, clyde, pinky, blinky };
-			while (this.niveau <= 256 && this.getVies() > 0) {
+			/* Début de la boucle de jeu */
+			if (this.niveau <= 256 && this.getVies() > 0) {
 				pac.deplacer();
 				pinky.deplacer(pac);
 				inky.deplacer(pac);
 				blinky.deplacer(pac);
 				clyde.deplacer();
-				/* Pacman mange */
+				/* Pacman mange  si possible*/
 				int pacX = (int) pac.posX;
 				int pacY = (int) pac.posY;
 				Jouable pacCase = (Jouable) tab[pacX][pacY];
@@ -175,7 +176,7 @@ public class Partie implements IPartie {
 						}
 					}
 				}
-				/* Grille contient encore des pacGommes */
+				/* Grille ne contient plus de Gommes */
 				if (noGomme()) {
 					this.etatPartie = EStatutPartie.EN_PAUSE;
 					this.initialisation();
