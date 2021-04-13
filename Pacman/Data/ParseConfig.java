@@ -482,6 +482,7 @@ class ParseConfig {
         }
 
         return instructionsGrille;
+        // TODO: attention ça retourne du [y][x] pas du [x][y]
     }
 
     private static ArrayList<Case> decoderInstr(String instr)
@@ -547,6 +548,21 @@ class ParseConfig {
         return cases;
     }
 
+    private static Case[][] retournerGrille(Case[][] grille)
+    {
+        Case[][] nGrille = new Case[grille[0].length][grille.length];
+
+        for (int i = 0; i < grille.length; i++)
+        {
+            for (int j = 0; j < grille[0].length; j++)
+            {
+                nGrille[j][i] = grille[i][j];
+            }
+        }
+
+        return nGrille;
+    }
+
     public static Grille getGrilleInitiale()
     {
         // on récupère le tableau représentant la grille en json
@@ -561,6 +577,9 @@ class ParseConfig {
         {
             cases[i] = decoderLigne(instructions[i]);
         }
+
+        // jsonArrayToInstr retourne du [y][x], on transforme en [x][y]
+        cases = retournerGrille(cases);
 
         return new Grille(cases);
     }

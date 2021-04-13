@@ -3,6 +3,38 @@ package Pacman.Data;
 import Pacman.Logic.*;
 
 public class Test {
+    private static void afficherGrille(Case[][] grille)
+    {
+        for (int y = 0; y < grille[0].length; y++)
+        {
+            String ligne = "";
+            for (int x = 0; x < grille.length; x++)
+            {
+                if (grille[x][y] instanceof Mur)
+                {
+                    ligne += "X ";
+                }
+                else
+                {
+                    Jouable casej = (Jouable) grille[x][y];
+                    if (casej.getObjet() == null)
+                    {
+                        ligne += "  ";
+                    }
+                    else if (casej.getObjet() instanceof PetiteGomme)
+                    {
+                        ligne += ". ";
+                    }
+                    else
+                    {
+                        ligne += "o ";
+                    }
+                }
+            }
+            System.out.println(ligne);
+        }
+    }
+
     public static void main(String args[]) {
         // appel de toutes les fonctions de DataForLogic
         DataForLogic dataL = new DataForLogic();
@@ -31,7 +63,9 @@ public class Test {
 
         // affichage des sprites pour vérifier leur découpage
         FenetreTest fenetre = new FenetreTest(
-            dataV.getRGOSprite()[2]
+            dataV.getPacmanSprites(EDirection.EST)[0]
         );
+
+        afficherGrille(dataL.getGrilleInitiale(new Pacman()).getCases());
     }
 }
