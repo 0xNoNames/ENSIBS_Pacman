@@ -22,11 +22,22 @@ public class Plateau extends JPanel {
     private double scale;
     private Partie partie;
     private Grille grille;
+    private dessinerFantome Blinky;
+    private dessinerFantome Clyde;
+    private dessinerFantome Inky;
+    private dessinerFantome Pinky;
 
     public Plateau(Partie partie, double scale) {
         this.scale = scale;
         this.partie = partie;
         this.grille = partie.getGrille();
+
+        data = new DataForView();
+
+        this.Blinky = new dessinerFantome(grille.getBlinky(), data);
+        this.Clyde = new dessinerFantome(grille.getClyde(), data);
+        this.Inky = new dessinerFantome(grille.getInky(), data);
+        this.Pinky = new dessinerFantome(grille.getPinky(), data);
 
         addKeyListener(new entreeClavier(grille));
         setFocusable(true);
@@ -40,8 +51,8 @@ public class Plateau extends JPanel {
     }
 
     private void doDrawing(Graphics g) {
+
         Graphics2D g2d = (Graphics2D) g;
-        data = new DataForView();
 
         g2d.scale(this.scale, this.scale);
 
@@ -58,12 +69,10 @@ public class Plateau extends JPanel {
         dessinerPacman.dessiner(grille.getPacman(), g2d, data);
 
         // Affichage des Fantômes
-        dessinerFantome.dessiner(grille.getBlinky(), g2d, data);
-        dessinerFantome.dessiner(grille.getClyde(), g2d, data);
-        dessinerFantome.dessiner(grille.getInky(), g2d, data);
-        dessinerFantome.dessiner(grille.getPinky(), g2d, data);
-
-        System.out.println(partie.getEtatPartie());
+        Blinky.dessiner(g2d);
+        Clyde.dessiner(g2d);
+        Inky.dessiner(g2d);
+        Pinky.dessiner(g2d);
 
         partie.initialisation();
 
@@ -72,11 +81,18 @@ public class Plateau extends JPanel {
 
         System.out.println(partie.getEtatPartie());
 
-        g2d.dispose();
+        // g2d.dispose();
+
+        Toolkit.getDefaultToolkit().sync();
 
         partie.tick();
 
-        // repaint();
+        repaint();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
 
         // desssinerGrille.dessiner(grille.getCases(), g2d, data);
         // dessinerScore.dessiner(partie.getScore(), g2d, data);
@@ -91,7 +107,6 @@ public class Plateau extends JPanel {
         // (case[1][1] : [12,40])
         // (case[2][2] : [20,48])
 
-        Toolkit.getDefaultToolkit().sync();
     }
 
     public double getScale() {
