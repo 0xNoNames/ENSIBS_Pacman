@@ -151,26 +151,31 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
         pacman.setPosY(posInit[1]);
         pacman.setDirectionCourante(EDirection.OUEST);
         pacman.setDirectionVoulue(EDirection.OUEST);
+        pacman.setGrille(grille);
         grille.setPacman(pacman);
 
         posInit = getPositionInitialeFantome(ECouleur.ROUGE);
         Blinky blinky = new Blinky(posInit[0], posInit[1]);
         blinky.setDirectionCourante(EDirection.OUEST);
+        blinky.setGrille(grille);
         grille.setBlinky(blinky);
 
         posInit = getPositionInitialeFantome(ECouleur.ROSE);
         Pinky pinky = new Pinky(posInit[0], posInit[1]);
         pinky.setDirectionCourante(EDirection.SUD);
+        pinky.setGrille(grille);
         grille.setPinky(pinky);
 
         posInit = getPositionInitialeFantome(ECouleur.CYAN);
         Inky inky = new Inky(posInit[0], posInit[1]);
         inky.setDirectionCourante(EDirection.NORD);
+        inky.setGrille(grille);
         grille.setInky(inky);
 
         posInit = getPositionInitialeFantome(ECouleur.ORANGE);
         Clyde clyde = new Clyde(posInit[0], posInit[1]);
         clyde.setDirectionCourante(EDirection.NORD);
+        clyde.setGrille(grille);
         grille.setClyde(clyde);
 
         return grille;
