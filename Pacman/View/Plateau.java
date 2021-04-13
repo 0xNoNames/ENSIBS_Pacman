@@ -51,10 +51,11 @@ public class Plateau extends JPanel {
         // Affichage de toutes les gommes
         desssinerGrille.dessiner(grille.getCases(), g2d, data);
 
-        // Affichage de Pacman
-        g2d.drawImage(data.getPacmanSprites(null)[8], 13, 28, this);
+        // Affichage de Pacman en rond au début
+        // g2d.drawImage(data.getPacmanSprites(EDirection.EST)[2], 13, 28, this);
 
-        // dessinerPacman.dessiner(grille.getPacman(), g2d, data);
+        // Affichage de Pacman
+        dessinerPacman.dessiner(grille.getPacman(), g2d, data);
 
         // Affichage des Fantômes
         dessinerFantome.dessiner(grille.getBlinky(), g2d, data);
@@ -64,7 +65,11 @@ public class Plateau extends JPanel {
 
         System.out.println(partie.getEtatPartie());
 
-        // partie.initialisation();
+        partie.initialisation();
+
+        System.out.println(grille.getPacman().getDirectionCourante());
+        System.out.println(grille.getPacman().getDirectionVoulue());
+
 
         System.out.println(partie.getEtatPartie());
 

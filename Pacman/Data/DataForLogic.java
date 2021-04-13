@@ -153,7 +153,7 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
 
         posInit = getPositionInitialeFantome(ECouleur.ROUGE);
         Blinky blinky = new Blinky(posInit[0], posInit[1]);
-        blinky.setDirectionCourante(EDirection.EST);
+        blinky.setDirectionCourante(EDirection.OUEST);
         grille.setBlinky(blinky);
 
         posInit = getPositionInitialeFantome(ECouleur.ROSE);
