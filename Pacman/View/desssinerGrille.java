@@ -17,8 +17,8 @@ public class desssinerGrille {
     // Dessine sur la JFrame les éléments de la grille.
     public static void dessiner(Case[][] grille, Graphics2D g2d, DataForView data) {
 
-        for (int i = 0; i < (grille.length - 2); i++) {
-            for (int j = 0; j < (grille[i].length - 2); j++) {
+        for (int i = 0; i < (grille.length ); i++) {
+            for (int j = 0; j < (grille[i].length ); j++) {
 
                 if (grille[i][j] instanceof Jouable) {
 

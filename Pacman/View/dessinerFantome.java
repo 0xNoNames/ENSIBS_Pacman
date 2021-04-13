@@ -80,12 +80,10 @@ public class dessinerFantome {
     // Dessine le Fantome voulu selon son état.
     private static void dessinerSpriteFantome(Fantome fantome, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
-        case 1:
+        case 0:
             switch (fantome.getStatut()) {
             case CHASSEUR:
-                g2d.drawImage(
-                        data.getFantomesSprites(fantome.getCouleur(),
-                                EDirection.NORD/* fantome.getDirectionCourante() */)[0],
+                g2d.drawImage(data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[0],
                         ((int) fantome.getposX()) * 8 + offsetX, ((int) fantome.getposY()) * 8 + offsetY, null);
                 break;
 
@@ -104,12 +102,10 @@ public class dessinerFantome {
             }
             break;
 
-        case 2:
+        case 1:
             switch (fantome.getStatut()) {
             case CHASSEUR:
-                g2d.drawImage(
-                        data.getFantomesSprites(fantome.getCouleur(),
-                                EDirection.NORD /* fantome.getDirectionCourante() */)[1],
+                g2d.drawImage(data.getFantomesSprites(fantome.getCouleur(), fantome.getDirectionCourante())[1],
                         ((int) fantome.getposX()) * 8 + offsetX, ((int) fantome.getposY()) * 8 + offsetY, null);
                 break;
 
