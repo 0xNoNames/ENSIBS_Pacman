@@ -53,7 +53,7 @@ public class Partie implements IPartie {
 	 * Constructeur de la classe Partie
 	 */
 	public Partie() {
-		DataForLogic d = new DataForLogic();
+		Partie.d = new DataForLogic();
 		this.pac = new Pacman();
 		this.pac.setDirectionCourante(EDirection.OUEST);
 		this.grille = d.getGrilleInitiale(pac);
