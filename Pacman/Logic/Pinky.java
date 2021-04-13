@@ -13,7 +13,6 @@ public class Pinky extends Fantome {
     public Pinky(double x, double y) {
         super(x,y);
         this.couleur = ECouleur.ROSE;
-        this.dirCourante = EDirection.SUD;
     }
 
     /**

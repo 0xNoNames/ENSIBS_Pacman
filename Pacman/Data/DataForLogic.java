@@ -149,6 +149,7 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
         posInit = getPositionInitialePacman();
         pacman.setPosX(posInit[0]);
         pacman.setPosY(posInit[1]);
+        pacman.setDirectionCourante(EDirection.EST.OUEST);
         grille.setPacman(pacman);
 
         posInit = getPositionInitialeFantome(ECouleur.ROUGE);

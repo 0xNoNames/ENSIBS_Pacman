@@ -55,7 +55,6 @@ public class Partie implements IPartie {
 	public Partie() {
 		Partie.d = new DataForLogic();
 		this.pac = new Pacman();
-		this.pac.setDirectionCourante(EDirection.OUEST);
 		this.grille = d.getGrilleInitiale(pac);
 		this.score = 0;
 		this.niveau = 0;
