@@ -13,6 +13,7 @@ public class Inky extends Fantome {
     public Inky(double x, double y) {
         super(x,y);
         this.couleur = ECouleur.CYAN;
+        this.dirCourante = EDirection.NORD;
     }
 
     /**

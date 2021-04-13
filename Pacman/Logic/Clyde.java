@@ -13,6 +13,7 @@ public class Clyde extends Fantome {
     public Clyde(double x, double y) {
         super(x,y);
         this.couleur = ECouleur.ORANGE;
+        this.dirCourante = EDirection.NORD;
     }
 
     /**
