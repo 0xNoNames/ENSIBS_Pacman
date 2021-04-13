@@ -65,7 +65,7 @@ public class Test {
         /* on ne stocke pas en variable, car vu qu'on ne l'utilise pas, on a
         un warning */
         new FenetreTest(
-            dataV.getFantomesSprites(ECouleur.ORANGE, EDirection.NORD)[0]
+            dataV.getPacmanRondSprite()
         );
 
         afficherGrille(dataL.getGrilleInitiale(new Pacman()).getCases());

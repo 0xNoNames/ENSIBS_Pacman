@@ -29,7 +29,7 @@ public class DataForView implements ISprites {
     /**
      * Tableau des sprites de Pacman 0: gauche fermé, 1: gauche ouvert 2: droite
      * fermé, 3: droite ouvert 4: haut fermé, 5: haut ouvert 6: bas fermé, 7: bas
-     * ouvert
+     * ouvert, 8: rond
      */
     private Image[] pacmanSprites;
 
@@ -87,23 +87,33 @@ public class DataForView implements ISprites {
 
     public DataForView() {
         try {
-            spriteComplet = (BufferedImage) ImageIO.read(DataForView.class.getResourceAsStream(cheminSpriteComplet));
+            spriteComplet = (BufferedImage) ImageIO.read(
+                DataForView.class.getResourceAsStream(cheminSpriteComplet)
+            );
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void chargerPacmanSprites() {
+        pacmanSprites = new Image[9];
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 2; j++) {
+                pacmanSprites[2 * i + j] = spriteComplet.getSubimage(
+                    1 + 20 * j, 4 + 20 * i, 16, 16
+                );
+            }
+        }
+
+        pacmanSprites[8] = spriteComplet.getSubimage(41, 4, 16, 16);
     }
 
     @Override
     public Image[] getPacmanSprites(EDirection direction) {
         // si ces sprites n'ont pas encore été demandés
         if (pacmanSprites == null) {
-            pacmanSprites = new Image[8];
-
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 2; j++) {
-                    pacmanSprites[2 * i + j] = spriteComplet.getSubimage(1 + 20 * j, 4 + 20 * i, 16, 16);
-                }
-            }
+            chargerPacmanSprites();
         }
 
         // on trouve où sont les sprites qui nous intéressent
@@ -129,6 +139,16 @@ public class DataForView implements ISprites {
     }
 
     @Override
+    public Image getPacmanRondSprite() {
+        // si ces sprites n'ont pas encore été demandés
+        if (pacmanSprites == null) {
+            chargerPacmanSprites();
+        }
+
+        return pacmanSprites[8];
+    }
+
+    @Override
     public Image[] getMortPacmanSprites() {
         // si ces sprites n'ont pas encore été demandés
         if (mortPacmanSprites == null) {
@@ -136,7 +156,9 @@ public class DataForView implements ISprites {
 
             // tous ces sprites sont sur la même ligne
             for (int i = 0; i < mortPacmanSprites.length; i++) {
-                mortPacmanSprites[i] = spriteComplet.getSubimage(1 + 20 * i, 245, 16, 16);
+                mortPacmanSprites[i] = spriteComplet.getSubimage(
+                    1 + 20 * i, 245, 16, 16
+                );
             }
         }
 
@@ -152,13 +174,17 @@ public class DataForView implements ISprites {
         // les fantomes normaux sont sur 4 lignes 8 colonnes
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 8; j++) {
-                fantomesSprites[i * 8 + j] = spriteComplet.getSubimage(1 + 20 * j, 84 + 20 * i, 16, 16);
+                fantomesSprites[i * 8 + j] = spriteComplet.getSubimage(
+                    1 + 20 * j, 84 + 20 * i, 16, 16
+                );
             }
         }
 
         // les fantomes vulnérables et morts sont sur une ligne
         for (int i = 32; i < 36; i++) {
-            fantomesSprites[i] = spriteComplet.getSubimage(1 + 20 * (i - 32), 164, 16, 16);
+            fantomesSprites[i] = spriteComplet.getSubimage(
+                1 + 20 * (i - 32), 164, 16, 16
+            );
         }
     }
 
@@ -201,7 +227,8 @@ public class DataForView implements ISprites {
         }
 
         // on retourne
-        Image[] retour = { fantomesSprites[indice], fantomesSprites[indice + 1] };
+        Image[] retour =
+            { fantomesSprites[indice], fantomesSprites[indice + 1] };
         return retour;
     }
 
@@ -248,7 +275,9 @@ public class DataForView implements ISprites {
             // ces sprites sont répartis en 4 lignes 2 colonnes
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 2; j++) {
-                    fruitSprites[i + 4 * j] = spriteComplet.getSubimage(169 + 40 * j, 164 + 20 * i, 16, 16);
+                    fruitSprites[i + 4 * j] = spriteComplet.getSubimage(
+                        169 + 40 * j, 164 + 20 * i, 16, 16
+                    );
                 }
             }
         }
@@ -264,7 +293,9 @@ public class DataForView implements ISprites {
 
             // ces sprites sont tous en ligne
             for (int i = 0; i < 10; i++) {
-                lettresChiffresSprites[i] = spriteComplet.getSubimage(12 + 10 * i, 184, 7, 7);
+                lettresChiffresSprites[i] = spriteComplet.getSubimage(
+                    12 + 10 * i, 184, 7, 7
+                );
             }
         }
 
@@ -279,12 +310,16 @@ public class DataForView implements ISprites {
 
             // ces sprites sont en partie en colonne...
             for (int i = 0; i < 8; i++) {
-                pointsSprites[i] = spriteComplet.getSubimage(166, 7 + i * 20, 22, 9);
+                pointsSprites[i] = spriteComplet.getSubimage(
+                    166, 7 + i * 20, 22, 9
+                );
             }
 
             // ...et en partie en ligne
             for (int i = 8; i < 12; i++) {
-                pointsSprites[i] = spriteComplet.getSubimage(1 + (i - 8) * 20, 227, 17, 9);
+                pointsSprites[i] = spriteComplet.getSubimage(
+                    1 + (i - 8) * 20, 227, 17, 9
+                );
             }
         }
 
