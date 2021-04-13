@@ -13,7 +13,6 @@ public class Blinky extends Fantome {
     public Blinky(double x, double y) {
         super(x,y);
         this.couleur = ECouleur.ROUGE;
-        this.dirCourante = EDirection.OUEST;
     }
 
     /**
