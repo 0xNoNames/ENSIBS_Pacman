@@ -14,7 +14,13 @@ import java.awt.Graphics2D;
  */
 public class desssinerGrille {
 
-    // Dessine les différents éléments.
+    /**
+     * Dessine les différents éléments de la grille.
+     * 
+     * @param grille matrice représentant la grille avec ses éléments.
+     * @param g2d    Graphics2D permettant de mettre à jour les sprites
+     * @param data   permet de récuperer les sprites depuis Data.
+     */
     public static void dessiner(Case[][] grille, Graphics2D g2d, DataForView data) {
 
         // Parcours de la grille case par case.
@@ -28,7 +34,7 @@ public class desssinerGrille {
 
                     // Si la case contient un objet on le dessine.
                     if (caseJ.getObjet() != null) {
-                        
+
                         // Selon l'objet dans la case on l'affiche.
                         switch (caseJ.getObjet().getClass().getSimpleName()) {
                         case "Cerise":

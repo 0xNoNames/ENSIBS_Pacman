@@ -25,7 +25,14 @@ public class Plateau extends JPanel {
     private dessinerFantome Clyde;
     private dessinerFantome Inky;
     private dessinerFantome Pinky;
+    private final int tick = 16;
 
+    /**
+     * Constructeur de la classe.
+     * 
+     * @param partie la partie en cours.
+     * @param scale  l'échelle voulue d'affichage.
+     */
     public Plateau(Partie partie, double scale) {
         // Permet de récupérer les sprites depuis la Data.
         data = new DataForView();
@@ -52,6 +59,11 @@ public class Plateau extends JPanel {
         partie.initialisation();
     }
 
+    /**
+     * Redéfinition nécéssaire de la méthode paintComponent de Graphics.
+     * 
+     * @param Graphics objet Graphics permettant de mettre à jour les sprites.
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -59,6 +71,13 @@ public class Plateau extends JPanel {
         dessiner(g);
     }
 
+    /**
+     * Dessine les différents composants du jeu selon si la partie est en pause ou
+     * non et est rappelle la méthode mère paintComponent() grâce à repaint() toutes
+     * les "tick" ms.
+     * 
+     * @param g objet Graphics permettant de mettre à jour les sprites.
+     */
     private void dessiner(Graphics g) {
         // Toolkit.getDefaultToolkit().sync();
 
@@ -81,13 +100,17 @@ public class Plateau extends JPanel {
         // Redessine (rappelle la fonction paintComponent()) toutes les 16 ms.
         repaint();
         try {
-            Thread.sleep(16);
+            Thread.sleep(this.tick);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
 
-    // Affiche un message spécifiant que la partie est en pause.
+    /**
+     * Affiche un message spécifiant que la partie est en pause.
+     * 
+     * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
+     */
     private void enPause(Graphics2D g2d) {
         String s1 = "Appuyez sur 'ESPACE'";
         String s2 = "pour demarrer/pause";
@@ -97,7 +120,11 @@ public class Plateau extends JPanel {
         g2d.drawString(s2, 55, 105);
     }
 
-    // Affiche les éléments de la grille lorsque la partie est en cours.
+    /**
+     * Affiche les éléments de la grille lorsque la partie est en cours.
+     * 
+     * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
+     */
     private void enJeu(Graphics2D g2d) {
 
         // if (pacmant.getstatus() = mort) {
@@ -125,12 +152,20 @@ public class Plateau extends JPanel {
         partie.tick();
     }
 
-    // Retourne la valeur de l'échelle actuelle.
+    /**
+     * Retourne la valeur de l'échelle actuelle.
+     * 
+     * @return double la valeur de l'échelle.
+     */
     public double getScale() {
         return this.scale;
     }
 
-    // Permet de spécifier l'échelle utilisée.
+    /**
+     * Permet de spécifier l'échelle utilisée.
+     * 
+     * @param scale la valeur de l'échelle.
+     */
     public void setScale(double scale) {
         this.scale = scale;
     }

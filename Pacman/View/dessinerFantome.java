@@ -19,12 +19,23 @@ public class dessinerFantome {
     private Fantome fantome;
     private DataForView data;
 
+    /**
+     * Constructeur de la classe, assigne Fantome et DataForView aux attributs
+     * correspondants.
+     * 
+     * @param fantome Fantome que l'on va dessiner.
+     * @param data    permet de récuperer les sprites depuis Data.
+     */
     public dessinerFantome(Fantome fantome, DataForView data) {
         this.fantome = fantome;
         this.data = data;
     }
 
-    // Met à jour le numéro de sprite actuel et dessine le Fantome voulu.
+    /**
+     * Met à jour le numéro de sprite actuel et dessine le Fantome voulu.
+     * 
+     * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
+     */
     public void dessiner(Graphics2D g2d) {
         dessinerSpriteFantome(g2d);
         // updateOffsets();
@@ -36,7 +47,9 @@ public class dessinerFantome {
         }
     }
 
-    // Met à jour le numéro de sprite actuel.
+    /**
+     * Met à jour le numéro de sprite actuel.
+     */
     private void updateSprite() {
         if (this.spriteActuel == 0) {
             this.spriteActuel = 1;
@@ -45,7 +58,9 @@ public class dessinerFantome {
         }
     }
 
-    // Met à jour le décalage X et Y des images.
+    /**
+     * Met à jour le décalage X et Y des images.
+     */
     private void updateOffsets() {
         double[] position = this.fantome.getPosition();
         if (position[0] >= 0 && position[0] < 0.11) {
@@ -89,7 +104,11 @@ public class dessinerFantome {
         }
     }
 
-    // Dessine le Fantome voulu selon son état.
+    /**
+     * Dessine le Fantome voulu selon son état.
+     * 
+     * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
+     */
     private void dessinerSpriteFantome(Graphics2D g2d) {
         switch (this.spriteActuel) {
         case 0:

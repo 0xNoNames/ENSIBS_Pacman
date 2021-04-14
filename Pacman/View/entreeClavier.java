@@ -15,18 +15,32 @@ public class entreeClavier extends KeyAdapter {
     boolean inGame;
     Grille grille;
 
-    // Constructeur de la classe.
+    /**
+     * Constructeur de la classe.
+     * 
+     * @param grille qui va permettre de modifier les déplacements de pacman selon
+     *               l'entrée utilisateur.
+     */
     public entreeClavier(Grille grille) {
         this.inGame = false;
         this.grille = grille;
     }
 
-    // Getter de l'état de la partie (si l'utilisateur a mis pause ou non).
+    /**
+     * Getter de l'état de la partie (si l'utilisateur a mis pause ou non).
+     * 
+     * @return vrai si la partie est en cours, faux sinon.
+     */
     public boolean getinGame() {
         return this.inGame;
     }
 
     // Méthode gérant la touche actuellement appuyée.
+    /**
+     * Redéfinition nécéssaire de la méthode keyPressed de KeyAdapter.
+     * 
+     * @param e évènement touche actuellement pressé.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 

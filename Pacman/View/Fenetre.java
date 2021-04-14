@@ -14,7 +14,11 @@ import Pacman.Logic.Partie;
  */
 public class Fenetre extends JFrame {
 
-    // Initialise la fenêtre principale.
+    /**
+     * Contructeur de la classe.
+     * 
+     * @param Partie partie actuelle que l'on va représenter.
+     */
     public Fenetre(Partie partie) {
         // Echelle par défaut de la fenêtre.
         double scale = 2.0;

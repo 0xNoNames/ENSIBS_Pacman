@@ -14,29 +14,57 @@ public class dessinerPacman {
     private static int offsetX = -4;
     private static int offsetY = 24;
     private static int waitSprite = 0;
+    private static double[] anciennePos = { 0.0, 0.0 };
 
-    // Met à jour le numéro de sprite actuel et dessine Pacman.
+    /**
+     * Met à jour le numéro de sprite actuel et dessine Pacman.
+     * 
+     * @param pacman objet Pacman que l'on va dessiner.
+     * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
+     * @param data   permet de récuperer les sprites depuis Data.
+     */
     public static void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
         dessinerSpritePacman(pacman, g2d, data);
 
-        // Permet de ne pas avoir trop de mise à jour des sprites.
-        if (waitSprite == 4) {
-            // Mise à jour du sprite actuel à selectionner.
-            updateSprite();
-            waitSprite = 0;
-        } else {
-            waitSprite++;
+        // Si pacman est en mouvement alors on change de sprite.
+        if (estMouvement(pacman)) {
+            // Permet de ne pas avoir trop de mise à jour des sprites.
+            if (waitSprite == 4) {
+                // Mise à jour du sprite actuel à selectionner.
+                updateSprite();
+                waitSprite = 0;
+            } else {
+                waitSprite++;
+            }
         }
+
         // updateOffsets(pacman);
+
+        // Fixe la position actuelle comme l'ancienne postion de pacman;
+        anciennePos[0] = pacman.getPosition()[0];
+        anciennePos[1] = pacman.getPosition()[1];
     }
 
-    // Met à jour le numéro de sprite actuel.
+    /**
+     * Met à jour le numéro de sprite actuel.
+     */
     private static void updateSprite() {
         if (spriteActuel == 1) {
             spriteActuel = 0;
         } else {
             spriteActuel = 1;
         }
+    }
+
+    /**
+     * Retourne vrai ou faux selon si Pacman est en déplacement.
+     * 
+     * @param pacman objet Pacman que l'on va dessiner.
+     * @return vrai si pacman est en mouvement, faux sinon.
+     */
+    private static boolean estMouvement(Pacman pacman) {
+        return !(Double.compare(pacman.getPosition()[0], anciennePos[0]) == 0
+                && Double.compare(pacman.getPosition()[1], anciennePos[1]) == 0);
     }
 
     // pacman[0;0];
@@ -71,7 +99,11 @@ public class dessinerPacman {
     // 0.9 -> 1;
     // 9 - 13
 
-    // Met à jour le décalage X et Y des images.
+    /**
+     * Met à jour le décalage X et Y des images.
+     * 
+     * @param pacman Pacman que l'on va dessiner.
+     */
     private static void updateOffsets(Pacman pacman) {
         double[] position = pacman.getPosition();
         double positionX = position[0] - (int) position[0];
@@ -122,7 +154,13 @@ public class dessinerPacman {
         }
     }
 
-    // Dessine Pacman selon sa direction et son sprite actuel.
+    /**
+     * Dessine Pacman selon sa direction et son sprite actuel.
+     * 
+     * @param pacman Pacman que l'on va dessiner.
+     * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
+     * @param data   permet de récuperer les sprites depuis Data.
+     */
     private static void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 0:
@@ -137,7 +175,13 @@ public class dessinerPacman {
         }
     }
 
-    // Dessine la mort de Pacman.
+    /**
+     * Dessine l'animation de mort de Pacman.
+     * 
+     * @param pacman Pacman que l'on va dessiner.
+     * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
+     * @param data   permet de récuperer les sprites depuis Data.
+     */
     private void dessinerMortPacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         // 11 sprites + 1 bouche fermée.
     }
