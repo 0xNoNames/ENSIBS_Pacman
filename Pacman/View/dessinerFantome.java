@@ -13,7 +13,7 @@ import Pacman.Logic.Fantome;
 public class dessinerFantome {
     private int spriteActuel = 0;
     private int waitSprite = 0;
-    private int offsetX = 0;
+    private int offsetX = 4;
     private int offsetY = 24;
 
     private Fantome fantome;
@@ -27,7 +27,7 @@ public class dessinerFantome {
     // Met à jour le numéro de sprite actuel et dessine le Fantome voulu.
     public void dessiner(Graphics2D g2d) {
         dessinerSpriteFantome(g2d);
-        updateOffsets();
+        // updateOffsets();
         if (waitSprite == 4) {
             updateSprite();
             waitSprite = 0;

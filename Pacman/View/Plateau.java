@@ -116,4 +116,8 @@ public class Plateau extends JPanel {
         return this.scale;
     }
 
+    public void setScale(double scale) {
+        this.scale = scale;
+    }
+
 }

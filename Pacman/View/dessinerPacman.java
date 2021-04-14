@@ -94,9 +94,9 @@ public class dessinerPacman {
             offsetX = 0;
         }
 
-        System.out.println("positionY :" + position[1]);
-        System.out.println("offsetY :" + offsetX);
-        System.out.println("");
+        // System.out.println("positionY :" + position[1]);
+        // System.out.println("offsetY :" + offsetX);
+        // System.out.println("");
 
         if (positionY >= 0.0 && positionY < 0.11) {
             offsetY = 24;
