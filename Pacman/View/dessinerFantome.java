@@ -36,7 +36,8 @@ public class dessinerFantome {
      * 
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
-    public void dessiner(Graphics2D g2d) {
+    public void dessiner(Fantome fantome, Graphics2D g2d) {
+        this.fantome = fantome;
         dessinerSpriteFantome(g2d);
         // updateOffsets();
         if (waitSprite == 4) {

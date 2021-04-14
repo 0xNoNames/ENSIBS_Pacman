@@ -140,10 +140,10 @@ public class Plateau extends JPanel {
         dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);
 
         // Affiche les Fantômes.
-        Blinky.dessiner(g2d);
-        Clyde.dessiner(g2d);
-        Inky.dessiner(g2d);
-        Pinky.dessiner(g2d);
+        Blinky.dessiner(partie.getGrille().getBlinky(), g2d);
+        Clyde.dessiner(partie.getGrille().getClyde(), g2d);
+        Inky.dessiner(partie.getGrille().getInky(), g2d);
+        Pinky.dessiner(partie.getGrille().getPinky(), g2d);
 
         // Avance de 1 tick la partie.
         partie.tick();
