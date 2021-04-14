@@ -42,11 +42,12 @@ public class Plateau extends JPanel {
         this.partie = partie;
         this.grille = partie.getGrille();
         this.clavier = new entreeClavier(grille);
-
         this.Blinky = new dessinerFantome(grille.getBlinky(), Plateau.data);
         this.Clyde = new dessinerFantome(grille.getClyde(), Plateau.data);
         this.Inky = new dessinerFantome(grille.getInky(), Plateau.data);
         this.Pinky = new dessinerFantome(grille.getPinky(), Plateau.data);
+
+        System.out.println(partie.getVies());
 
         // Ajout du listener pour récupérer les entrées utilisateur.
         addKeyListener(this.clavier);

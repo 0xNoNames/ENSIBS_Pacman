@@ -13,6 +13,8 @@ import java.awt.Graphics2D;
  * @author Arthur Pêtre
  */
 public class desssinerGrille {
+    private static boolean afficherGG = true;
+    private static int waitSprite = 0;
 
     /**
      * Dessine les différents éléments de la grille.
@@ -22,6 +24,15 @@ public class desssinerGrille {
      * @param data   permet de récuperer les sprites depuis Data.
      */
     public static void dessiner(Case[][] grille, Graphics2D g2d, DataForView data) {
+
+        // Permet de ne pas avoir trop de mise à jour des sprites.
+        if (waitSprite == 10) {
+            // Mise à jour du sprite actuel à selectionner.
+            updateGrosseGomme();
+            waitSprite = 0;
+        } else {
+            waitSprite++;
+        }
 
         // Parcours de la grille case par case.
         for (int i = 0; i < (grille.length); i++) {
@@ -62,12 +73,20 @@ public class desssinerGrille {
                             g2d.drawImage(data.getGommesSprites()[0], (i * 8) + 1, (8 * j) + 29, null);
                             break;
                         case "GrosseGomme":
-                            g2d.drawImage(data.getGommesSprites()[1], (i * 8), (8 * j) + 28, null);
+                            if (afficherGG)
+                                g2d.drawImage(data.getGommesSprites()[1], (i * 8), (8 * j) + 28, null);
                             break;
                         }
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Affiche ou non les grosses gommes pour les faire clignoter.
+     */
+    private static void updateGrosseGomme() {
+        afficherGG = !afficherGG;
     }
 }
