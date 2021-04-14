@@ -21,6 +21,7 @@ public class entreeClavier extends KeyAdapter {
         this.grille = grille;
     }
 
+    // Getter de l'état de la partie (si l'utilisateur a mis pause ou non).
     public boolean getinGame() {
         return this.inGame;
     }
@@ -31,28 +32,43 @@ public class entreeClavier extends KeyAdapter {
 
         int touche = e.getKeyCode();
 
-        if (this.inGame) {
-            if (touche == KeyEvent.VK_LEFT) {
-                grille.getPacman().setDirectionVoulue(EDirection.OUEST);
-                System.out.println("Gauche");
-            } else if (touche == KeyEvent.VK_RIGHT) {
-                grille.getPacman().setDirectionVoulue(EDirection.EST);
-                System.out.println("Droite");
-            } else if (touche == KeyEvent.VK_UP) {
-                grille.getPacman().setDirectionVoulue(EDirection.NORD);
-                System.out.println("Haut");
-            } else if (touche == KeyEvent.VK_DOWN) {
-                grille.getPacman().setDirectionVoulue(EDirection.SUD);
-                System.out.println("Bas");
-            }
-        }
+        // Si l'utilisateur appuis sur 'espace', la partie démarre/se met en pause.
         if (touche == KeyEvent.VK_SPACE) {
             if (!inGame) {
-                System.out.println("Reprise");
                 this.inGame = true;
             } else {
-                System.out.println("Pause");
                 this.inGame = false;
+            }
+        }
+
+        // Si la partie est en cours, on récupère les entrées flèches directionnelles
+        // et/ou zqsd
+        if (this.inGame) {
+            switch (touche) {
+            case KeyEvent.VK_UP:
+                grille.getPacman().setDirectionVoulue(EDirection.NORD);
+                break;
+            case KeyEvent.VK_Z:
+                grille.getPacman().setDirectionVoulue(EDirection.NORD);
+                break;
+            case KeyEvent.VK_LEFT:
+                grille.getPacman().setDirectionVoulue(EDirection.OUEST);
+                break;
+            case KeyEvent.VK_Q:
+                grille.getPacman().setDirectionVoulue(EDirection.OUEST);
+                break;
+            case KeyEvent.VK_DOWN:
+                grille.getPacman().setDirectionVoulue(EDirection.SUD);
+                break;
+            case KeyEvent.VK_S:
+                grille.getPacman().setDirectionVoulue(EDirection.SUD);
+                break;
+            case KeyEvent.VK_RIGHT:
+                grille.getPacman().setDirectionVoulue(EDirection.EST);
+                break;
+            case KeyEvent.VK_D:
+                grille.getPacman().setDirectionVoulue(EDirection.EST);
+                break;
             }
         }
     }

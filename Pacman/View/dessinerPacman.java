@@ -18,7 +18,10 @@ public class dessinerPacman {
     // Met à jour le numéro de sprite actuel et dessine Pacman.
     public static void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
         dessinerSpritePacman(pacman, g2d, data);
+
+        // Permet de ne pas avoir trop de mise à jour des sprites.
         if (waitSprite == 4) {
+            // Mise à jour du sprite actuel à selectionner.
             updateSprite();
             waitSprite = 0;
         } else {
@@ -119,7 +122,7 @@ public class dessinerPacman {
         }
     }
 
-    // Dessine Pacman.
+    // Dessine Pacman selon sa direction et son sprite actuel.
     private static void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 0:

@@ -3,14 +3,16 @@ package Pacman.View;
 import Pacman.Logic.Partie;
 
 public class main {
-    // entreeClavier keyboard;
 
-    // Test des fonctions
     public static void main(String[] args) {
-        System.out.println("Démarrage...");
+
+        // Ajoute l'objet Partie venant de Logic.
         Partie partie = new Partie();
+
+        // Ajout l'objet fenêtre lié à la Partie en cours.
         Fenetre fenetre = new Fenetre(partie);
 
+        // Affiche la fenêtre principale.
         fenetre.setVisible(true);
 
     }

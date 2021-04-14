@@ -5,14 +5,13 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
-import Pacman.Logic.EDirection;
 import Pacman.Logic.Grille;
 import Pacman.Logic.Partie;
 
 /**
  * 
- * La classe Plateau permet de créer la surface de jeu (les sprites) et
- * d'ajouter le controleur d'entrée.
+ * La classe Plateau permet de gérer l'affichage des sprites selon l'état de la
+ * partie.
  * 
  * @author Arthur Pêtre
  */
@@ -28,22 +27,29 @@ public class Plateau extends JPanel {
     private dessinerFantome Pinky;
 
     public Plateau(Partie partie, double scale) {
+        // Permet de récupérer les sprites depuis la Data.
+        data = new DataForView();
+
+        // Initialisation des attributs de la classe.
         this.scale = scale;
         this.partie = partie;
         this.grille = partie.getGrille();
         this.clavier = new entreeClavier(grille);
-        data = new DataForView();
 
-        this.Blinky = new dessinerFantome(grille.getBlinky(), data);
-        this.Clyde = new dessinerFantome(grille.getClyde(), data);
-        this.Inky = new dessinerFantome(grille.getInky(), data);
-        this.Pinky = new dessinerFantome(grille.getPinky(), data);
+        this.Blinky = new dessinerFantome(grille.getBlinky(), Plateau.data);
+        this.Clyde = new dessinerFantome(grille.getClyde(), Plateau.data);
+        this.Inky = new dessinerFantome(grille.getInky(), Plateau.data);
+        this.Pinky = new dessinerFantome(grille.getPinky(), Plateau.data);
 
-        partie.initialisation();
-
+        // Ajout du listener pour récupérer les entrées utilisateur.
         addKeyListener(this.clavier);
+        // Permet le focus de la fenêtre (pour récupérer les entrées utilisateur).
         setFocusable(true);
+        // Rend le fond noir pour nos petits yeux.
         setBackground(Color.black);
+
+        // Initialisation de la partie depuis Logic.
+        partie.initialisation();
     }
 
     @Override
@@ -54,24 +60,25 @@ public class Plateau extends JPanel {
     }
 
     private void dessiner(Graphics g) {
-        // g2d.dispose();
         // Toolkit.getDefaultToolkit().sync();
 
         Graphics2D g2d = (Graphics2D) g;
 
-        // Donne l'échelle définie à la fenêtre
+        // Donne l'échelle définie par la fenêtre.
         g2d.scale(this.scale, this.scale);
 
-        // Affichage du labyrinthe en fond
-        g2d.drawImage(data.getGrille(), 0, 28, this);
+        // Affichage des murs.
+        g2d.drawImage(Plateau.data.getGrille(), 0, 28, this);
 
+        // Lorsque le joueur appuie sur la touche de pause, la partie se met en pause et
+        // vice-versa
         if (this.clavier.getinGame()) {
-            jouer(g2d);
+            enJeu(g2d);
         } else {
-            pause(g2d);
+            enPause(g2d);
         }
 
-        // Redessine toutes les 16 ms
+        // Redessine (rappelle la fonction paintComponent()) toutes les 16 ms.
         repaint();
         try {
             Thread.sleep(16);
@@ -80,46 +87,50 @@ public class Plateau extends JPanel {
         }
     }
 
-    private void pause(Graphics2D g2d) {
+    // Affiche un message spécifiant que la partie est en pause.
+    private void enPause(Graphics2D g2d) {
         String s1 = "Appuyez sur 'ESPACE'";
         String s2 = "pour demarrer/pause";
 
         g2d.setColor(Color.white);
         g2d.drawString(s1, 50, 90);
         g2d.drawString(s2, 55, 105);
-
     }
 
-    private void jouer(Graphics2D g2d) {
+    // Affiche les éléments de la grille lorsque la partie est en cours.
+    private void enJeu(Graphics2D g2d) {
 
         // if (pacmant.getstatus() = mort) {
         // animemort();
         // } else {
 
-        // Affichage du score et des vies
+        // Affiche le score et les vies.
         // dessinerATH.dessiner(partie.getScore(), g2d, data);
 
-        // Affichage de toutes les gommes
+        // Affiche toutes les gommes.
         desssinerGrille.dessiner(grille.getCases(), g2d, data);
 
-        // Affichage de Pacman en rond au début
+        // Affiche Pacman en rond au début.
 
-        // Affichage de Pacman
+        // Affiche Pacman.
         dessinerPacman.dessiner(grille.getPacman(), g2d, data);
 
-        // Affichage des Fantômes
+        // Affiche les Fantômes.
         Blinky.dessiner(g2d);
         Clyde.dessiner(g2d);
         Inky.dessiner(g2d);
         Pinky.dessiner(g2d);
 
+        // Avance de 1 tick la partie.
         partie.tick();
     }
 
+    // Retourne la valeur de l'échelle actuelle.
     public double getScale() {
         return this.scale;
     }
 
+    // Permet de spécifier l'échelle utilisée.
     public void setScale(double scale) {
         this.scale = scale;
     }
