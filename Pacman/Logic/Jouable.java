@@ -33,4 +33,11 @@ public class Jouable extends Case implements ICase{
     public void setObjet(Objet o) {
         this.objet = o;
     }
+
+    /**
+     * Permet de supprimer l'objet présent dans la case Jouable
+     */
+    public void deleteObjet() {
+        this.objet = null;
+    }
 }
