@@ -5,6 +5,7 @@ import Pacman.Logic.Case;
 import Pacman.Logic.Jouable;
 
 import java.awt.Graphics2D;
+import java.io.Console;
 
 /**
  * La classe dessinerGrille permet de déssiner les différents sprites liés à la

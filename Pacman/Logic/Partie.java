@@ -140,13 +140,11 @@ public class Partie implements IPartie {
 			/* Début de la boucle de jeu */
 			if (this.niveau <= 256 && this.getVies() > 0) {
 				pac.deplacer();
-				// System.out.println("Position X pacman : " + pac.posX);
-				// System.out.println("Position Y pacman : " +pac.posY);
 				pinky.deplacer(pac);
 				inky.deplacer(pac);
 				blinky.deplacer(pac);
 				clyde.deplacer();
-				/* Pacman mange  si possible*/
+				/* Pacman mange si possible */
 				int pacX = (int) pac.posX;
 				int pacY = (int) pac.posY;
 				Jouable pacCase = (Jouable) tab[pacX][pacY];

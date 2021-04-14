@@ -33,7 +33,7 @@ public class Fenetre extends JFrame {
         add(plateau);
         setSize(width, height);
         setResizable(true);
-        setTitle("Pacman by JULLION - PETRE - SOBOLEWSKI");
+        setTitle("Pac-man by JULLION - PETRE - SOBOLEWSKI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

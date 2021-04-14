@@ -5,7 +5,6 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
-import Pacman.Logic.Grille;
 import Pacman.Logic.Partie;
 
 /**
@@ -19,7 +18,6 @@ public class Plateau extends JPanel {
     private static DataForView data;
     private double scale;
     private Partie partie;
-    private Grille grille;
     private entreeClavier clavier;
     private dessinerFantome Blinky;
     private dessinerFantome Clyde;
@@ -40,12 +38,11 @@ public class Plateau extends JPanel {
         // Initialisation des attributs de la classe.
         this.scale = scale;
         this.partie = partie;
-        this.grille = partie.getGrille();
-        this.clavier = new entreeClavier(grille);
-        this.Blinky = new dessinerFantome(grille.getBlinky(), Plateau.data);
-        this.Clyde = new dessinerFantome(grille.getClyde(), Plateau.data);
-        this.Inky = new dessinerFantome(grille.getInky(), Plateau.data);
-        this.Pinky = new dessinerFantome(grille.getPinky(), Plateau.data);
+        this.clavier = new entreeClavier(partie.getGrille());
+        this.Blinky = new dessinerFantome(partie.getGrille().getBlinky(), Plateau.data);
+        this.Clyde = new dessinerFantome(partie.getGrille().getClyde(), Plateau.data);
+        this.Inky = new dessinerFantome(partie.getGrille().getInky(), Plateau.data);
+        this.Pinky = new dessinerFantome(partie.getGrille().getPinky(), Plateau.data);
 
         // Ajout du listener pour récupérer les entrées utilisateur.
         addKeyListener(this.clavier);
@@ -136,12 +133,11 @@ public class Plateau extends JPanel {
         // } else {
 
         // Affiche toutes les gommes.
-        desssinerGrille.dessiner(grille.getCases(), g2d, data);
-
+        desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data);
         // Affiche Pacman en rond au début.
 
         // Affiche Pacman.
-        dessinerPacman.dessiner(grille.getPacman(), g2d, data);
+        dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);
 
         // Affiche les Fantômes.
         Blinky.dessiner(g2d);
