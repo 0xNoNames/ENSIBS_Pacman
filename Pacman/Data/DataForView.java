@@ -76,7 +76,7 @@ public class DataForView implements ISprites {
     private Image[] lettresChiffresSprites;
 
     /**
-     * Tableau des sprites, dans l'ordre, READY, GAME OVER et 1UP
+     * Tableau des sprites, dans l'ordre, READY, GAME OVER, 1UP et SCORE
      */
     private Image[] rgoSprites;
 
@@ -327,11 +327,12 @@ public class DataForView implements ISprites {
     public Image[] getRGOSprite() {
         // si ces sprites n'ont pas encore été demandés
         if (rgoSprites == null) {
-            rgoSprites = new Image[3];
+            rgoSprites = new Image[4];
 
             rgoSprites[0] = spriteComplet.getSubimage(201, 3, 48, 9);
             rgoSprites[1] = spriteComplet.getSubimage(11, 193, 81, 9);
             rgoSprites[2] = spriteComplet.getSubimage(214, 73, 24, 9);
+            rgoSprites[3] = spriteComplet.getSubimage(426, 49, 41, 9);
         }
 
         return rgoSprites;

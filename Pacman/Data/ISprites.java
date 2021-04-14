@@ -94,7 +94,7 @@ public interface ISprites {
     public Image getGrille();
 
     /**
-     * Permet d'obtenir le sprite du READY, du GAME OVER et du 1UP
+     * Permet d'obtenir le sprite du READY, du GAME OVER, du 1UP et du SCORE
      * 
      * @return Tableau d'Image
      */
