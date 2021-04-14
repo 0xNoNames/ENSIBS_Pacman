@@ -142,7 +142,6 @@ public class Partie implements IPartie {
 				pac.deplacer();
 				// System.out.println("Position X pacman : " + pac.posX);
 				// System.out.println("Position Y pacman : " +pac.posY);
-
 				pinky.deplacer(pac);
 				inky.deplacer(pac);
 				blinky.deplacer(pac);
@@ -159,6 +158,7 @@ public class Partie implements IPartie {
 							f.setStatut(EStatutFantome.VULNERABLE);
 						}
 					}
+					pacCase.deleteObjet();
 				}
 				/* Fantom meme case pacman */
 				for (Fantome f : fantomes) {
