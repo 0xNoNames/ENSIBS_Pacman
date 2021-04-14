@@ -332,7 +332,7 @@ public class DataForView implements ISprites {
             rgoSprites[0] = spriteComplet.getSubimage(201, 3, 48, 9);
             rgoSprites[1] = spriteComplet.getSubimage(11, 193, 81, 9);
             rgoSprites[2] = spriteComplet.getSubimage(214, 73, 24, 9);
-            rgoSprites[3] = spriteComplet.getSubimage(426, 49, 41, 9);
+            rgoSprites[3] = spriteComplet.getSubimage(433, 3, 41, 9);
         }
 
         return rgoSprites;
