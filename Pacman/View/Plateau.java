@@ -5,7 +5,6 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
-import Pacman.Logic.ECouleur;
 import Pacman.Logic.EDirection;
 import Pacman.Logic.Grille;
 import Pacman.Logic.Partie;
@@ -22,6 +21,7 @@ public class Plateau extends JPanel {
     private double scale;
     private Partie partie;
     private Grille grille;
+    private entreeClavier clavier;
     private dessinerFantome Blinky;
     private dessinerFantome Clyde;
     private dessinerFantome Inky;
@@ -31,7 +31,7 @@ public class Plateau extends JPanel {
         this.scale = scale;
         this.partie = partie;
         this.grille = partie.getGrille();
-
+        this.clavier = new entreeClavier(grille);
         data = new DataForView();
 
         this.Blinky = new dessinerFantome(grille.getBlinky(), data);
@@ -39,7 +39,9 @@ public class Plateau extends JPanel {
         this.Inky = new dessinerFantome(grille.getInky(), data);
         this.Pinky = new dessinerFantome(grille.getPinky(), data);
 
-        addKeyListener(new entreeClavier(grille));
+        partie.initialisation();
+
+        addKeyListener(this.clavier);
         setFocusable(true);
         setBackground(Color.black);
     }
@@ -47,23 +49,56 @@ public class Plateau extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        doDrawing(g);
+
+        dessiner(g);
     }
 
-    private void doDrawing(Graphics g) {
+    private void dessiner(Graphics g) {
+        // g2d.dispose();
+        // Toolkit.getDefaultToolkit().sync();
 
         Graphics2D g2d = (Graphics2D) g;
 
+        // Donne l'échelle définie à la fenêtre
         g2d.scale(this.scale, this.scale);
 
-        // Affichage de le labyrinthe en fond
+        // Affichage du labyrinthe en fond
         g2d.drawImage(data.getGrille(), 0, 28, this);
+
+        if (this.clavier.getinGame()) {
+            jouer(g2d);
+        } else {
+            pause(g2d);
+        }
+
+        // Redessine toutes les 25 ms
+        repaint();
+        try {
+            Thread.sleep(25);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    private void pause(Graphics2D g2d) {
+        String start = "Appuyez sur 'S' pour demarrer/pause.";
+        g2d.setColor(Color.white);
+        g2d.drawString(start, 10, 110);
+    }
+
+    private void jouer(Graphics2D g2d) {
+
+        // if (pacmant.getstatus() = mort) {
+        // animemort();
+        // } else {
+
+        // Affichage du score et des vies
+        // dessinerATH.dessiner(partie.getScore(), g2d, data);
 
         // Affichage de toutes les gommes
         desssinerGrille.dessiner(grille.getCases(), g2d, data);
 
         // Affichage de Pacman en rond au début
-        // g2d.drawImage(data.getPacmanSprites(EDirection.EST)[2], 13, 28, this);
 
         // Affichage de Pacman
         dessinerPacman.dessiner(grille.getPacman(), g2d, data);
@@ -74,39 +109,7 @@ public class Plateau extends JPanel {
         Inky.dessiner(g2d);
         Pinky.dessiner(g2d);
 
-        partie.initialisation();
-
-        System.out.println(grille.getPacman().getDirectionCourante());
-        System.out.println(grille.getPacman().getDirectionVoulue());
-
-        System.out.println(partie.getEtatPartie());
-
-        // g2d.dispose();
-
-        Toolkit.getDefaultToolkit().sync();
-
         partie.tick();
-
-        repaint();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-
-        // desssinerGrille.dessiner(grille.getCases(), g2d, data);
-        // dessinerScore.dessiner(partie.getScore(), g2d, data);
-        // g2d.drawImage(data.getGommesSprites()[1], 8, 36, null);
-
-        // g2d.drawImage(data.getGommesSprites()[0], 17, 45, null);
-
-        // Début de la grille en jouable -> (4,32) (9,37) petites gommes & (8,36)
-        // grosses gommes
-        // Déplacement d'une case à l'autre -> +8
-        // (case[0][0] : [4,32])
-        // (case[1][1] : [12,40])
-        // (case[2][2] : [20,48])
-
     }
 
     public double getScale() {

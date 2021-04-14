@@ -18,7 +18,7 @@ public class Fenetre extends JFrame {
 
     // Initialise la fenetre principale.
     public Fenetre(Partie partie) {
-        Plateau plateau = new Plateau(partie, 3.0);
+        Plateau plateau = new Plateau(partie, 2.0);
         add(plateau);
         int width = (int) (229 * plateau.getScale());
         int height = (int) (310 * plateau.getScale());

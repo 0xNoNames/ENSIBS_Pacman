@@ -21,6 +21,10 @@ public class entreeClavier extends KeyAdapter {
         this.grille = grille;
     }
 
+    public boolean getinGame() {
+        return this.inGame;
+    }
+
     // Méthode gérant la touche actuellement appuyée.
     @Override
     public void keyPressed(KeyEvent e) {

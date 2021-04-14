@@ -120,7 +120,7 @@ public class Partie implements IPartie {
 	 * Permet d'avancer dans le temps.
 	 */
 	public void tick() {
-		initialisation();
+		// initialisation();
 		if (etatPartie == EStatutPartie.EN_COURS) {
 			/* Récupération des entités de la grille */
 			Blinky blinky = this.grille.getBlinky();
@@ -140,6 +140,9 @@ public class Partie implements IPartie {
 			/* Début de la boucle de jeu */
 			if (this.niveau <= 256 && this.getVies() > 0) {
 				pac.deplacer();
+				// System.out.println("Position X pacman : " + pac.posX);
+				// System.out.println("Position Y pacman : " +pac.posY);
+
 				pinky.deplacer(pac);
 				inky.deplacer(pac);
 				blinky.deplacer(pac);
