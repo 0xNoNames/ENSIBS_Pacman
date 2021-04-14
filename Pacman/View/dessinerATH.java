@@ -36,7 +36,27 @@ public class dessinerATH {
         // En haut de l'écran.
     }
 
-    private static void dessinerNiveau(Partie partie, Graphics2D g2d, DataForView data) {
+    private static void dessinerNiveau(Partie partie, Graphics2D g2d, DataForView data) 
+    switch (partie.getNiveau()) {
+        // case 0:
+            
+        //     break;
+        // case 0:
+            
+        //     break;
+        // case 0:
+           
+        //     break;
+        // case 0:
+           
+        //     break;
+        // case 0:
+            
+        //     break;
+    
+        // default:
+        //     break;
+    }
         // Affiche vers la gauche et max 6 fruits
         // cerise -> fraise -> orange -> orange -> pomme -> pomme -> ananas -> ananas
         // (vert) -> Galaxian -> Galaxian -> Cloche -> Cloche -> full clé
