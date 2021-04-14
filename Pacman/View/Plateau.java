@@ -71,19 +71,23 @@ public class Plateau extends JPanel {
             pause(g2d);
         }
 
-        // Redessine toutes les 25 ms
+        // Redessine toutes les 16 ms
         repaint();
         try {
-            Thread.sleep(25);
+            Thread.sleep(16);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
 
     private void pause(Graphics2D g2d) {
-        String start = "Appuyez sur 'S' pour demarrer/pause.";
+        String s1 = "Appuyez sur 'ESPACE'";
+        String s2 = "pour demarrer/pause";
+
         g2d.setColor(Color.white);
-        g2d.drawString(start, 10, 110);
+        g2d.drawString(s1, 50, 90);
+        g2d.drawString(s2, 55, 105);
+
     }
 
     private void jouer(Graphics2D g2d) {

@@ -46,7 +46,7 @@ public class entreeClavier extends KeyAdapter {
                 System.out.println("Bas");
             }
         }
-        if (touche == KeyEvent.VK_S) {
+        if (touche == KeyEvent.VK_SPACE) {
             if (!inGame) {
                 System.out.println("Reprise");
                 this.inGame = true;
@@ -54,7 +54,6 @@ public class entreeClavier extends KeyAdapter {
                 System.out.println("Pause");
                 this.inGame = false;
             }
-            // start la game (init) avec espace.
         }
     }
 }
