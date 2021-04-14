@@ -2,6 +2,7 @@ package Pacman.View;
 
 import java.awt.Graphics2D;
 import Pacman.Data.DataForView;
+import Pacman.Logic.EDirection;
 import Pacman.Logic.Partie;
 
 public class dessinerATH {
@@ -12,7 +13,9 @@ public class dessinerATH {
     }
 
     private static void dessinerVies(Partie partie, Graphics2D g2d, DataForView data) {
-        // Max 5 vies.
+        for (int i = 1; i <= partie.getVies(); i++) {
+            g2d.drawImage(data.getPacmanSprites(EDirection.OUEST)[0], 18 * i, 278, null);
+        }
     }
 
     private static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data) {

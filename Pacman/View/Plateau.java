@@ -47,8 +47,6 @@ public class Plateau extends JPanel {
         this.Inky = new dessinerFantome(grille.getInky(), Plateau.data);
         this.Pinky = new dessinerFantome(grille.getPinky(), Plateau.data);
 
-        System.out.println(partie.getVies());
-
         // Ajout du listener pour récupérer les entrées utilisateur.
         addKeyListener(this.clavier);
         // Permet le focus de la fenêtre (pour récupérer les entrées utilisateur).
@@ -133,7 +131,7 @@ public class Plateau extends JPanel {
         // } else {
 
         // Affiche le score et les vies.
-        // dessinerATH.dessiner(partie.getScore(), g2d, data);
+        dessinerATH.dessiner(partie, g2d, data);
 
         // Affiche toutes les gommes.
         desssinerGrille.dessiner(grille.getCases(), g2d, data);
