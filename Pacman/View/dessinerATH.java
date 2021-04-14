@@ -8,8 +8,9 @@ import Pacman.Logic.Partie;
 public class dessinerATH {
 
     // Le score, les vies ainsi que le GAME OVER ou READY
-    public static void dessiner(Partie partie, Graphics2D g2d, DataForView data) {
+    public static void dessiner(Partie partie, Graphics2D g2d, DataForView data, Boolean inGame) {
         dessinerVies(partie, g2d, data);
+        dessinerEtatPartie(partie, g2d, data, inGame);
     }
 
     private static void dessinerVies(Partie partie, Graphics2D g2d, DataForView data) {
@@ -18,8 +19,17 @@ public class dessinerATH {
         }
     }
 
-    private static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data) {
-
+    /**
+     * Affiche les éléments "READY" et "GAME OVER".
+     * 
+     * @param partie
+     * @param g2d
+     * @param data
+     */
+    private static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data, Boolean inGame) {
+        if (!inGame) {
+            g2d.drawImage(data.getRGOSprite()[0], 89, 164, null);
+        }
     }
 
     private static void dessinerScore(Partie partie, Graphics2D g2d, DataForView data) {

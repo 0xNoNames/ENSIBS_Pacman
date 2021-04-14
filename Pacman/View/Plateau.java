@@ -88,6 +88,11 @@ public class Plateau extends JPanel {
         // Affichage des murs.
         g2d.drawImage(Plateau.data.getGrille(), 0, 28, this);
 
+        // Affiche le score et les vies.
+        dessinerATH.dessiner(partie, g2d, data, this.clavier.getinGame());
+
+        System.out.println(partie.getScore());
+
         // Lorsque le joueur appuie sur la touche de pause, la partie se met en pause et
         // vice-versa
         if (this.clavier.getinGame()) {
@@ -129,9 +134,6 @@ public class Plateau extends JPanel {
         // if (pacmant.getstatus() = mort) {
         // animemort();
         // } else {
-
-        // Affiche le score et les vies.
-        dessinerATH.dessiner(partie, g2d, data);
 
         // Affiche toutes les gommes.
         desssinerGrille.dessiner(grille.getCases(), g2d, data);
