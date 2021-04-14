@@ -1,6 +1,8 @@
 package Pacman.View;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
+
 import Pacman.Data.DataForView;
 import Pacman.Logic.EDirection;
 import Pacman.Logic.Partie;
@@ -12,6 +14,7 @@ public class dessinerATH {
         dessinerVies(partie, g2d, data);
         dessinerEtatPartie(partie, g2d, data, inGame);
         dessinerNiveau(partie, g2d, data);
+        dessinerScore(partie, g2d, data);
     }
 
     private static void dessinerVies(Partie partie, Graphics2D g2d, DataForView data) {
@@ -33,14 +36,31 @@ public class dessinerATH {
         }
     }
 
+    /**
+     * Affiche le score actuel.
+     * 
+     * @param partie objet Partie permettant de récuprer le niveau actuel.
+     * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
+     * @param data   permet de récuperer les sprites depuis Data.
+     */
     private static void dessinerScore(Partie partie, Graphics2D g2d, DataForView data) {
-        // En haut de l'écran.
+        g2d.drawImage(data.getRGOSprite()[3], 91, 4, null);
+
+        String score = Integer.toString(partie.getScore());
+        int[] tableauScore = new int[score.length()];
+        for (int i = 0; i < score.length(); i++) {
+            tableauScore[i] = score.charAt(i) - '0';
+        }
+
+        for (int i = 0; i < tableauScore.length; i++) {
+            g2d.drawImage(data.getLettresChiffres()[tableauScore[i]], 104 + 10 * i, 18, null);
+        }
     }
 
     /**
      * Affiche le niveau actuel sous forme de fruits.
      * 
-     * @param partie objet Partie permettant de récupérer le niveau actuel.
+     * @param partie objet Partie permettant de récuprer le niveau actuel.
      * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
      * @param data   permet de récuperer les sprites depuis Data.
      */

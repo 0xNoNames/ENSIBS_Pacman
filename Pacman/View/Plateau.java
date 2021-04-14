@@ -85,10 +85,8 @@ public class Plateau extends JPanel {
         // Affichage des murs.
         g2d.drawImage(Plateau.data.getGrille(), 0, 28, this);
 
-        // Affiche le score et les vies.
+        // Affiche le score, le niveau actuel et les vies.
         dessinerATH.dessiner(partie, g2d, data, this.clavier.getinGame());
-
-        System.out.println(partie.getScore());
 
         // Lorsque le joueur appuie sur la touche de pause, la partie se met en pause et
         // vice-versa
@@ -113,12 +111,16 @@ public class Plateau extends JPanel {
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
     private void enPause(Graphics2D g2d) {
+        g2d.setColor(Color.decode("#000000"));
+        g2d.fillRect(30, 70, 164, 50);
         String s1 = "Appuyez sur 'ESPACE'";
         String s2 = "pour demarrer/pause";
+        Font police = new Font("Zen Dots", Font.PLAIN, 10);
 
-        g2d.setColor(Color.white);
-        g2d.drawString(s1, 50, 90);
-        g2d.drawString(s2, 55, 105);
+        g2d.setColor(Color.decode("#f4ea27"));
+        g2d.setFont(police);
+        g2d.drawString(s1, 40, 90);
+        g2d.drawString(s2, 42, 105);
     }
 
     /**
@@ -134,6 +136,7 @@ public class Plateau extends JPanel {
 
         // Affiche toutes les gommes.
         desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data);
+
         // Affiche Pacman en rond au début.
 
         // Affiche Pacman.
