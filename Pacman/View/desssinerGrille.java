@@ -57,17 +57,20 @@ public class desssinerGrille {
                         case "Orange":
                             g2d.drawImage(data.getFruitSprites()[2], (i * 8) + 4, (8 * j) + 32, null);
                             break;
-                        case "Melon":
+                        case "Pomme":
                             g2d.drawImage(data.getFruitSprites()[3], (i * 8) + 4, (8 * j) + 32, null);
                             break;
-                        case "Galboss":
+                        case "Melon":
                             g2d.drawImage(data.getFruitSprites()[4], (i * 8) + 4, (8 * j) + 32, null);
                             break;
-                        case "Cloche":
+                        case "Galboss":
                             g2d.drawImage(data.getFruitSprites()[5], (i * 8) + 4, (8 * j) + 32, null);
                             break;
-                        case "Clé":
+                        case "Cloche":
                             g2d.drawImage(data.getFruitSprites()[6], (i * 8) + 4, (8 * j) + 32, null);
+                            break;
+                        case "Clé":
+                            g2d.drawImage(data.getFruitSprites()[7], (i * 8) + 4, (8 * j) + 32, null);
                             break;
                         case "PetiteGomme":
                             g2d.drawImage(data.getGommesSprites()[0], (i * 8) + 1, (8 * j) + 29, null);
