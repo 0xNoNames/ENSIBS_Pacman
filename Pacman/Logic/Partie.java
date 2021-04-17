@@ -137,14 +137,21 @@ public class Partie implements IPartie {
 			Case[][] tab = this.grille.getCases();
 			/* Définition d'un tableau représentant l'ensemble des fantomes */
 			Fantome[] fantomes = { inky, clyde, pinky, blinky };
-			/* Début de la boucle de jeu */
+			/* Définition de variable pour le changement d'état des fantomes*/
+			boolean vulnerable = false;
+			int cmpt_vul = 0;
+			/* */
+			int temps_niveau = 0;
+			/* Début d'un tick de jeu */
 			if (this.niveau <= 256 && this.getVies() > 0) {
 				pac.deplacer();
+				// System.out.println("Position X pacman : " + pac.posX);
+				// System.out.println("Position Y pacman : " +pac.posY);
 				pinky.deplacer(pac);
 				inky.deplacer(pac);
 				blinky.deplacer(pac);
 				clyde.deplacer();
-				/* Pacman mange si possible */
+				/* Pacman mange  si possible*/
 				int pacX = (int) pac.posX;
 				int pacY = (int) pac.posY;
 				Jouable pacCase = (Jouable) tab[pacX][pacY];
@@ -154,9 +161,17 @@ public class Partie implements IPartie {
 					if (o instanceof GrosseGomme) {
 						for (Fantome f : fantomes) {
 							f.setStatut(EStatutFantome.VULNERABLE);
+							vulnerable = true;
 						}
 					}
 					pacCase.deleteObjet();
+				}
+				/* Fantome sortent de l'état VULNERABLE */
+				if (cmpt_vul == 300) {
+					for (Fantome f : fantomes) {
+						f.setStatut(EStatutFantome.CHASSEUR);
+						vulnerable = false;
+					}
 				}
 				/* Fantom meme case pacman */
 				for (Fantome f : fantomes) {
@@ -177,12 +192,24 @@ public class Partie implements IPartie {
 						}
 					}
 				}
+				/* Spawn de fruit */
+				Fruit f = d.getFruitNiveau(this.niveau);
+				//TODO faire condition avec temps et % de chance de spawn
+				if(true) {
+					int x = (int) d.getPositionInitialePacman()[0];
+					int y = (int) d.getPositionInitialePacman()[1];
+					Jouable j = (Jouable) tab[x][y];
+					j.setObjet(f);
+				}
 				/* Grille ne contient plus de Gommes */
 				if (noGomme()) {
 					this.etatPartie = EStatutPartie.EN_PAUSE;
 					this.initialisation();
 				}
 				compteurPartie++;
+				if(vulnerable) {
+					cmpt_vul++;
+				}
 			}
 		}
 	}

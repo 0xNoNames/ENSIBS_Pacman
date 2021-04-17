@@ -7,6 +7,7 @@ public class Test {
     public static void main(String[] args) {
         DataForLogic d = new DataForLogic();
 
+        System.out.println(d.getFruitNiveau(21));
         /* Test Grille + Entite + Déplacement */
         Case[][] t1 = new Case[3][3];
         t1[0][0] = new Mur();
