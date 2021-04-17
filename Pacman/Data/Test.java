@@ -46,6 +46,7 @@ public class Test {
         dataL.getPositionInitialePacman();
         dataL.getVitesseFantome(56, ECouleur.CYAN);
         dataL.getVitessePacman(200);
+        dataL.getPositionFruit();
 
         // appel de toutes les fonctions de DataForView
         DataForView dataV = new DataForView();

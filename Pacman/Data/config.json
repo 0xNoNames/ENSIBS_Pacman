@@ -42,6 +42,7 @@
         "Pinky": [13.5, 14.0],
         "Clyde": [15.5, 14.0]
     },
+    "positionFruit": [13.5, 17.0],
 
     "_comment2": "Dans quels niveaux apparaissent quels fruits",
     "niveauFruit":

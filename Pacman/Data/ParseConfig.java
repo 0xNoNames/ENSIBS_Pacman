@@ -452,6 +452,20 @@ class ParseConfig {
     }
 
     // --------------------------------------------
+    // Concernant la position des fruits
+    // --------------------------------------------
+
+    public static double[] getPositionFruit()
+    {
+        // on récupère le tableau dans le json
+        JSONArray posInitJson =
+            (JSONArray) getJson().get("positionFruit");
+
+        // on retourne le JSONArray transformé en double[]
+        return jsonArrayEnDouble(posInitJson);
+    }
+
+    // --------------------------------------------
     // Concernant la Grille initiale
     // --------------------------------------------
 

@@ -28,6 +28,7 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
     private Fruit[] fruitNiveau;
     private HashMap<String, Integer> pointsObjet;
     private int[] pointsCombo;
+    private double[] positionFruit;
 
     @Override
     public double getVitessePacman(int niveau) {
@@ -191,5 +192,17 @@ public class DataForLogic implements IEntite, IFruit, IGrille, IObjet
         }
 
         return pointsCombo[nbrFantomesManges - 1];
+    }
+
+    @Override
+    public double[] getPositionFruit()
+    {
+        // si la position n'a pas encore été demandée
+        if (positionFruit == null)
+        {
+            positionFruit = ParseConfig.getPositionFruit();
+        }
+        
+        return positionFruit;
     }
 }

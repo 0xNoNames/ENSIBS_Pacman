@@ -17,4 +17,11 @@ public interface IFruit {
      * @return Fruit correspondant au niveau passé
      */
     public Fruit getFruitNiveau(int niveau);
+
+    /**
+     * Permet d'obtenir la position à laquelle les fruits apparaissent
+     * 
+     * @return tableau de doubles [x,y]
+     */
+    public double[] getPositionFruit();
 }
