@@ -44,7 +44,6 @@ public class Plateau extends JPanel {
         // Initialisation des attributs de la classe.
         this.scale = scale;
         this.partie = partie;
-        this.mortTick = 1;
         this.clavier = new entreeClavier(partie);
         this.Blinky = new dessinerFantome(partie.getGrille().getBlinky(), partie, Plateau.data);
         this.Clyde = new dessinerFantome(partie.getGrille().getClyde(), partie, Plateau.data);
@@ -95,7 +94,6 @@ public class Plateau extends JPanel {
         // Gère l'affichage selon l'état de la partie.
         switch (this.partie.getEtatPartie()) {
         case EN_ANIMATION_PACMORT:
-            // this.partie.setEtatPartie(EStatutPartie.EN_COURS);
             enAnimationPacMort(g2d);
             break;
         case EN_ANIMATION_FANMORT:
@@ -111,6 +109,7 @@ public class Plateau extends JPanel {
             break;
         case GAME_OVER:
             this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            // enAnimationGameOver(g2d);
             break;
         case EN_COURS:
             enJeu(g2d);
