@@ -155,7 +155,7 @@ public class Plateau extends JPanel {
     private void enAnimationPacMort(Graphics2D g2d) {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickAPacMort == 0) {
-            if (this.partie.getEtatPartie() != EStatutPartie.EN_ANIMATION_GAME_OVER) {
+            if (this.partie.getGrille().getPacman().getVie() > 0) {
                 this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
             } else {
                 this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_GAME_OVER);
@@ -209,7 +209,7 @@ public class Plateau extends JPanel {
     private void enAnimationGameOver(Graphics2D g2d) {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickAGameOver == 0) {
-            this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
+            // this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
             this.tickAGameOver = 300;
         }
 
