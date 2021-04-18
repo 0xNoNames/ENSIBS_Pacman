@@ -14,7 +14,7 @@ import Pacman.Logic.Partie;
 public class dessinerFantome {
     private int spriteActuel = 0;
     private int waitSprite = 0;
-    private int offsetX = 4;
+    private int offsetX = -4;
     private int offsetY = 24;
 
     private Fantome fantome;
@@ -125,7 +125,12 @@ public class dessinerFantome {
                         ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
                 break;
             case VULNERABLE:
-                System.out.println(this.partie.getCompteurVulnerable() / 60);
+                System.out.println(this.partie.getCompteurVulnerable() >= 375);
+                if (this.partie.getCompteurVulnerable() >= 375) {
+                    g2d.drawImage(this.data.getVulnerableFantomesSprites()[0],
+                            ((int) this.fantome.getposX()) * 8 + this.offsetX,
+                            ((int) fantome.getposY()) * 8 + this.offsetY, null);
+                }
                 g2d.drawImage(this.data.getVulnerableFantomesSprites()[0],
                         ((int) this.fantome.getposX()) * 8 + this.offsetX, ((int) fantome.getposY()) * 8 + this.offsetY,
                         null);
