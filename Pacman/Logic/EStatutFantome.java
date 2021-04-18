@@ -19,5 +19,10 @@ public enum EStatutFantome {
     /**
      * Le Fantome a été mangé par Pacman et retourne à son camp
      */
-    MORT
+    MORT,
+
+    /**
+     * La Fantome est dans le bloc au milieu de la grille en début de Partie
+     */
+    DEBUTPARTIE
 }
