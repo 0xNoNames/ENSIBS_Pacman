@@ -41,8 +41,8 @@ public class dessinerATH {
     public static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data, EStatutPartie etat) {
         if (etat == EStatutPartie.EN_ANIMATION_DEBUT) {
             g2d.drawImage(data.getRGOSprite()[0], 89, 164, null);
-        } else if (etat == EStatutPartie.EN_ANIMATION_FIN) {
-            g2d.drawImage(data.getRGOSprite()[1], 89, 164, null);
+        } else if (etat == EStatutPartie.EN_ANIMATION_GAME_OVER) {
+            g2d.drawImage(data.getRGOSprite()[1], 71, 164, null);
         }
     }
 

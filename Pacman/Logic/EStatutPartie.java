@@ -41,6 +41,6 @@ public enum EStatutPartie {
 	/**
 	 * Fin de la partie lorsque pacman n'a plus de vies.
 	 */
-	GAME_OVER;
+	EN_ANIMATION_GAME_OVER;
 
 }
