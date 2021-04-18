@@ -14,6 +14,7 @@ public class dessinerPacman {
     private static int offsetX = -4;
     private static int offsetY = 24;
     private static int waitSprite = 0;
+    private static int spriteMort = 0;
     private static double[] anciennePos = { 0.0, 0.0 };
 
     /**
@@ -200,7 +201,9 @@ public class dessinerPacman {
      * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
      * @param data   permet de récuperer les sprites depuis Data.
      */
-    public void dessinerMortPacman(Pacman pacman, Graphics2D g2d, DataForView data) {
-        // 11 sprites + 1 bouche fermée.
+    public static void dessinerMortPacman(Pacman pacman, Graphics2D g2d, DataForView data) {
+        g2d.drawImage(data.getMortPacmanSprites()[spriteMort], (((int) pacman.getposX()) * 8) + offsetX,
+                ((int) pacman.getposY() * 8) + offsetY, null);
+        spriteMort++;
     }
 }

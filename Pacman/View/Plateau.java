@@ -30,6 +30,7 @@ public class Plateau extends JPanel {
     private int tickADebut = 80;
     private int tickAFin = 300;
     private int tickAFanMort = 15;
+    private int tickAPacMort = 120;
 
     /**
      * Constructeur de la classe.
@@ -154,6 +155,21 @@ public class Plateau extends JPanel {
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
     private void enAnimationPacMort(Graphics2D g2d) {
+        // Démarre la partie au bout d'un petite moment.
+        if (this.tickAPacMort == 0) {
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+        } else if (this.tickAPacMort <= 60) {
+            if (this.tickAPacMort % 4 == 0)
+                dessinerPacman.dessinerMortPacman(partie.getGrille().getPacman(), g2d, data);
+        } else {
+            // Affiche les Fantômes.
+            Blinky.dessiner(partie.getGrille().getBlinky(), partie, g2d);
+            Clyde.dessiner(partie.getGrille().getClyde(), partie, g2d);
+            Inky.dessiner(partie.getGrille().getInky(), partie, g2d);
+            Pinky.dessiner(partie.getGrille().getPinky(), partie, g2d);
+        }
+
+        this.tickAPacMort--;
     }
 
     /**
