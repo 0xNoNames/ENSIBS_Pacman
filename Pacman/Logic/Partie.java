@@ -142,13 +142,13 @@ public class Partie implements IPartie {
 	}
 
 	/**
-     * Permet de fixer l'état de la partie.
+	 * Permet de fixer l'état de la partie.
 	 * 
-     * @param etat l'état de la partie voulue
-     */
-    public void setEtatPartie(EStatutPartie etat) {
-        this.etatPartie = etat;
-    }
+	 * @param etat l'état de la partie voulue
+	 */
+	public void setEtatPartie(EStatutPartie etat) {
+		this.etatPartie = etat;
+	}
 
 	/**
 	 * Permet de récupérer la grille actuelle.
@@ -185,7 +185,7 @@ public class Partie implements IPartie {
 		clyde.setPartie(this);
 		pinky.setPartie(this);
 		/* Récupération du tableau de case de la grille */
-		Case[][] tab = this.grille.getCases();			
+		Case[][] tab = this.grille.getCases();
 		/* Définition d'un tableau représentant l'ensemble des fantomes */
 		Fantome[] fantomes = { inky, clyde, pinky, blinky };
 		/* Début d'un tick de jeu */
@@ -253,7 +253,7 @@ public class Partie implements IPartie {
 			}
 			/* Grille ne contient plus de Gommes */
 			if (noGomme()) {
-				this.etatPartie = EStatutPartie.EN_PAUSE;
+				this.etatPartie = EStatutPartie.EN_ANIMATION_FIN;
 				this.initialisation();
 			}
 			/*
@@ -307,7 +307,6 @@ public class Partie implements IPartie {
 	 * 
 	 */
 	public void pacMeurt() {
-		this.etatPartie = EStatutPartie.EN_PAUSE;
 		pac.meurt();
 		this.etatPartie = EStatutPartie.EN_ANIMATION_PACMORT;
 		int x = (int) d.getPositionInitialePacman()[0];

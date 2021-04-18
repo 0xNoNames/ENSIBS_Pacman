@@ -18,20 +18,24 @@ public enum EStatutPartie {
 	EN_COURS,
 
 	/**
-	 * Pacman a perdu toutes ses vies, la partie est terminée, on affiche les
-	 * scores
+	 * Pacman perd une vie, tous les personnages sont repositionnés à leurs places
+	 * initiales mais les gommes mangées restent mangées.
 	 */
 	EN_ANIMATION_PACMORT,
 
 	/**
-	 * 
+	 * Lorsque un fantome meurt, une animation est réalisée.
 	 */
 	EN_ANIMATION_FANMORT,
 
 	/**
-	 * 
+	 * Animation au début du niveau.
 	 */
-	EN_ANIMATION_DEBUT;
+	EN_ANIMATION_DEBUT,
 
+	/**
+	 * Animation à la fin d'un niveau.
+	 */
+	EN_ANIMATION_FIN;
 
 }

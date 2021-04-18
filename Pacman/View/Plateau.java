@@ -89,12 +89,30 @@ public class Plateau extends JPanel {
         // Affiche le labyrinthe, le score, le niveau actuel et les vies.
         dessinerATH.dessiner(partie, g2d, data, this.partie.getEtatPartie());
 
-        // Lorsque le joueur appuie sur la touche de pause, la partie se met en pause et
-        // vice-versa
-        if (this.partie.getEtatPartie() == EStatutPartie.EN_COURS) {
+        // Gère l'affichage selon l'état de la partie.
+        switch (this.partie.getEtatPartie()) {
+        case EN_ANIMATION_PACMORT:
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            // enAnimationPacMort(g2d);
+            break;
+        case EN_ANIMATION_FANMORT:
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            // enAnimationFanMort(g2d);
+            break;
+        case EN_ANIMATION_DEBUT:
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            // enAnimationDebut(g2d);
+            break;
+        case EN_ANIMATION_FIN:
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            // enAnimationFin(g2d);
+            break;
+        case EN_COURS:
             enJeu(g2d);
-        } else {
+            break;
+        case EN_PAUSE:
             enPause(g2d);
+            break;
         }
 
         // Redessine (rappelle la fonction paintComponent()) toutes les 16 ms.
@@ -125,15 +143,43 @@ public class Plateau extends JPanel {
     }
 
     /**
+     * Affiche l'animation de mort de pacman.
+     * 
+     * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
+     */
+    private void enAnimationPacMort(Graphics2D g2d) {
+    }
+
+    /**
+     * Affiche l'animation de mort d'un fantôme.
+     * 
+     * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
+     */
+    private void enAnimationFanMort(Graphics2D g2d) {
+    }
+
+    /**
+     * Affiche l'animation de début du niveau.
+     * 
+     * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
+     */
+    private void enAnimationDebut(Graphics2D g2d) {
+    }
+
+    /**
+     * Affiche l'animation de fin du niveau.
+     * 
+     * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
+     */
+    private void enAnimationFin(Graphics2D g2d) {
+    }
+
+    /**
      * Affiche les éléments de la grille lorsque la partie est en cours.
      * 
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
     private void enJeu(Graphics2D g2d) {
-
-        // if (pacman.getstatus() = mort) {
-        // animemort();
-        // } else {
 
         // Affiche toutes les gommes.
         desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data);
