@@ -196,7 +196,7 @@ public class Partie implements IPartie {
 				pinky.deplacer(pac);
 				inky.deplacer(pac);
 				blinky.deplacer(pac);
-				clyde.deplacer();
+				clyde.deplacer(pac);
 				/* Pacman mange si possible */
 				int pacX = (int) pac.posX;
 				int pacY = (int) pac.posY;
