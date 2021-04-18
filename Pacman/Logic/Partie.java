@@ -60,6 +60,21 @@ public class Partie implements IPartie {
 	private int compteurVulnerable;
 
 	/**
+	 * Variable indiquant le nombre de tick pendant lequel le fruit apparait
+	 */
+	private int tickSpawnFruit;
+
+	/**
+	 * Variable indiquant le nombre de gommes mangé par PacMan
+	 */
+	private int compteurGomme ;
+
+	/**
+	 * Variable indiquant si le fruit est apparu
+	 */
+	private boolean fruitSpawn; 
+
+	/**
 	 * Constructeur de la classe Partie
 	 */
 	public Partie() {
@@ -72,6 +87,7 @@ public class Partie implements IPartie {
 		this.etatPartie = EStatutPartie.EN_PAUSE;
 		this.fantomeVulnerable = false;
 		this.compteurVulnerable = 0;
+		this.tickSpawnFruit = 600;
 	}
 
 	/**
@@ -81,6 +97,10 @@ public class Partie implements IPartie {
 		this.grille = d.getGrilleInitiale(pac);
 		this.niveau++;
 		this.etatPartie = EStatutPartie.EN_COURS;
+		this.compteurGomme = 0;
+		this.compteurVulnerable = 0;
+		this.fruitSpawn = false;
+		this.fantomeVulnerable = false;
 	}
 
 	/**
@@ -149,11 +169,11 @@ public class Partie implements IPartie {
 			Case[][] tab = this.grille.getCases();
 			/* Définition d'un tableau représentant l'ensemble des fantomes */
 			Fantome[] fantomes = { inky, clyde, pinky, blinky };
+			// Compteur de gomme mangé 
+			// compteur de tick pour le spawn d'un fruit
 			/* Début d'un tick de jeu */
 			if (this.niveau <= 256 && this.getVies() > 0) {
 				pac.deplacer();
-				// System.out.println("Position X pacman : " + pac.posX);
-				// System.out.println("Position Y pacman : " +pac.posY);
 				pinky.deplacer(pac);
 				inky.deplacer(pac);
 				blinky.deplacer(pac);
@@ -171,6 +191,7 @@ public class Partie implements IPartie {
 						}
 						fantomeVulnerable = true;
 					}
+					compteurGomme ++;
 					pacCase.deleteObjet();
 				}
 				/* Fantome sortent de l'état VULNERABLE */
@@ -200,23 +221,37 @@ public class Partie implements IPartie {
 					}
 				}
 				/* Spawn de fruit */
-				Fruit f = d.getFruitNiveau(this.niveau);
-				//TODO faire condition avec temps et % de chance de spawn
-				if(true) {
+				if(compteurGomme==80 || compteurGomme==160) {
 					int x = (int) d.getPositionInitialePacman()[0];
 					int y = (int) d.getPositionInitialePacman()[1];
 					Jouable j = (Jouable) tab[x][y];
+					Fruit f = d.getFruitNiveau(this.niveau);
 					j.setObjet(f);
+					tickSpawnFruit = 600;
+					fruitSpawn = true;
 				}
 				/* Grille ne contient plus de Gommes */
 				if (noGomme()) {
 					this.etatPartie = EStatutPartie.EN_PAUSE;
 					this.initialisation();
 				}
-				compteurPartie++;
+				/* Incrémentation du compteur de tick durant lequel les fantomes sont vulnerables */
 				if(this.fantomeVulnerable) {
 					this.compteurVulnerable++;
 				}
+				/* Incrémentation du compteur de tick durant lequel le fruit est présent sur la grille*/
+				if(fruitSpawn) {
+					tickSpawnFruit--;
+				}
+				/* Suppresion du fruit si le compteur de tick est à 0 */
+				if(tickSpawnFruit == 0) {
+					int x = (int) d.getPositionInitialePacman()[0];
+					int y = (int) d.getPositionInitialePacman()[1];
+					Jouable j = (Jouable) tab[x][y];
+					j.deleteObjet();
+					fruitSpawn = false;
+				}
+				compteurPartie++;
 			}
 		}
 	}
