@@ -109,7 +109,6 @@ public class Plateau extends JPanel {
             enAnimationFin(g2d);
             break;
         case EN_ANIMATION_GAME_OVER:
-            // this.partie.setEtatPartie(EStatutPartie.EN_COURS);
             enAnimationGameOver(g2d);
             break;
         case EN_COURS:

@@ -25,6 +25,13 @@ public class dessinerATH {
         dessinerScore(partie, g2d, data);
     }
 
+    /**
+     * Affiche les vies actuelle de pacman.
+     * 
+     * @param partie objet Partie permettant de récuprer le niveau actuel.
+     * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
+     * @param data   permet de récuperer les sprites depuis Data.
+     */
     private static void dessinerVies(Partie partie, Graphics2D g2d, DataForView data) {
         for (int i = 1; i <= partie.getVies(); i++) {
             g2d.drawImage(data.getPacmanSprites(EDirection.OUEST)[0], 18 * i, 278, null);
@@ -32,11 +39,11 @@ public class dessinerATH {
     }
 
     /**
-     * Affiche les éléments "READY" et "GAME OVER".
+     * Affiche les éléments "READY" et "GAME OVER" selon l'état de la partie.
      * 
-     * @param partie
-     * @param g2d
-     * @param data
+     * @param partie objet Partie permettant de récuprer le niveau actuel.
+     * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
+     * @param data   permet de récuperer les sprites depuis Data.
      */
     public static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data, EStatutPartie etat) {
         if (etat == EStatutPartie.EN_ANIMATION_DEBUT) {

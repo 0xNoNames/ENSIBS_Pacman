@@ -299,8 +299,6 @@ public class Partie implements IPartie {
 				fruitSpawn = false;
 			}
 			compteurPartie++;
-		} else {
-			this.etatPartie = EStatutPartie.EN_ANIMATION_GAME_OVER;
 		}
 	}
 
