@@ -1,5 +1,6 @@
 package Pacman.Logic;
 
+import java.security.spec.EdDSAParameterSpec;
 import java.util.Arrays;
 
 /**
@@ -261,11 +262,36 @@ public class Fantome extends Entite {
         return Arrays.asList(distances).indexOf(minimum(distances));
     }
 
+    private void effectuerDeplacement()
+    {
+        double distDeplacement =
+            Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
+            / Partie.tickParSeconde;
+        switch (dirCourante)
+        {
+            case NORD:
+                this.posX = ((int) this.posX) + 0.0;
+                this.posY -= distDeplacement;
+                break;
+            case SUD:
+                this.posX = ((int) this.posX) + 0.0;
+                this.posY += distDeplacement;
+                break;
+            case OUEST:
+                this.posX -= distDeplacement;
+                this.posY = ((int) this.posY) + 0.0;
+                break;
+            case EST:
+                this.posX += distDeplacement;
+                this.posY = ((int) this.posY) + 0.0;
+                break;
+        }
+    }
+
     /**
      * Déplace le fantôme en fonction d'une case cible
      * 
-     * @param p
-     * @param cible
+     * @param cible coordonnées de la cible
      */
     protected void deplacerSelonCible(double[] cible)
     {
@@ -291,28 +317,38 @@ public class Fantome extends Entite {
         }
 
         // on déplace
-        double distDeplacement =
-            Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-            / Partie.tickParSeconde;
-        switch (dirCourante)
+        this.effectuerDeplacement();
+    }
+
+    /**
+     * Déplace le fantôme en fonction de l'aléatoire
+     */
+    protected void deplacerAleatoire()
+    {
+        // on vérifie si c'est le moment de changer de direction
+        if (estMomentChangementDir(getVitesse()))
         {
-            case NORD:
-                this.posX = ((int) this.posX) + 0.0;
-                this.posY -= distDeplacement;
-                break;
-            case SUD:
-                this.posX = ((int) this.posX) + 0.0;
-                this.posY += distDeplacement;
-                break;
-            case OUEST:
-                this.posX -= distDeplacement;
-                this.posY = ((int) this.posY) + 0.0;
-                break;
-            case EST:
-                this.posX += distDeplacement;
-                this.posY = ((int) this.posY) + 0.0;
-                break;
+            int[][] casesPossibles = getCasesPossibles(
+                this.getPosition(), this.getDirectionCourante()
+            );
+
+            // on choisit aléatoirement la case qui nous intéresse
+            int indexRnd =
+                ((int) (Math.random() * 100)) % casesPossibles.length;
+
+            // on détermine la direction voulue
+            int[] caseVoulue = casesPossibles[indexRnd];
+            this.dirVoulue = calculDirectionPos(getPositionI(), caseVoulue);
+
+            // si la nouvelle direction est différente, on switch
+            if (dirCourante != dirVoulue)
+            {
+                dirCourante = dirVoulue;
+            }
         }
+
+        // on déplace
+        this.effectuerDeplacement();
     }
 
     /**
@@ -339,14 +375,13 @@ public class Fantome extends Entite {
      * Vérifie si le fantôme est actuellement dans la cabine à Fantome
      * @return
      */
-    protected boolean estDansLaCabine()
+    protected boolean estDansLaCabine(int[] position)
     {
         // [0, 1] = coin sup gauche, [2, 3] = coin inf droit
         int[] posCab = {10, 12, 17, 17};
-        int[] posF = this.getPositionI();
 
-        if (posF[0] > posCab[0] && posF[1] > posCab[1]
-            && posF[0] < posCab[2] && posF[1] < posCab[3])
+        if (position[0] >= posCab[0] && position[1] >= posCab[1]
+            && position[0] <= posCab[2] && position[1] <= posCab[3])
         {
             return true;
         }
@@ -354,5 +389,5 @@ public class Fantome extends Entite {
         {
             return false;
         }
-    }
+    }   
 }

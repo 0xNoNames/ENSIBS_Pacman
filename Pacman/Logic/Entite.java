@@ -206,8 +206,8 @@ public abstract class Entite implements IEntite {
         double arrondi = vitesse / Partie.tickParSeconde;
         if (dirVoulue == EDirection.EST || dirVoulue == EDirection.OUEST)
         {
-            // il faut qu'on soit à y = ~.5 ± arrondi pour changer de dir
-            double calcul = this.posY - ((int) this.posY);
+            // il faut qu'on soit à x = ~.5 ± arrondi pour changer de dir
+            double calcul = this.posX - ((int) this.posX);
             if (calcul <= arrondi || calcul >= 1 - arrondi)
             {
                 return true;
@@ -215,8 +215,8 @@ public abstract class Entite implements IEntite {
         }
         else // NORD ou SUD
         {
-            // il faut qu'on soit à x = ~.5 ± arrondi pour changer de dir
-            double calcul = this.posX - ((int) this.posX);
+            // il faut qu'on soit à y = ~.5 ± arrondi pour changer de dir
+            double calcul = this.posY - ((int) this.posY);
             if (calcul <= arrondi || calcul >= 1 - arrondi)
             {
                 return true;
