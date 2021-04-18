@@ -57,7 +57,7 @@ public class Test {
         dataV.getGommesSprites();
         dataV.getGrille();
         dataV.getLettresChiffres();
-        dataV.getMortFantomeSprites();
+        dataV.getMortFantomeSprites(EDirection.OUEST);
         dataV.getPacmanSprites(EDirection.EST);
         dataV.getPoints();
         dataV.getRGOSprite();
@@ -66,7 +66,7 @@ public class Test {
         /* on ne stocke pas en variable, car vu qu'on ne l'utilise pas, on a
         un warning */
         new FenetreTest(
-            dataV.getRGOSprite()[3]
+            dataV.getVulnerableFantomesSprites()[2]
         );
 
         afficherGrille(dataL.getGrilleInitiale(new Pacman()).getCases());

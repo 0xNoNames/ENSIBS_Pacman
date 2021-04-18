@@ -49,7 +49,9 @@ public class DataForView implements ISprites {
      * droite arrondi, 23: bleu droite droit 24: jaune haut arrondi, 25: jaune haut
      * droit 26: jaune bas arrondi, 27: jaune bas droit 28: jaune gauche arrondi,
      * 29: jaune gauche droit 30: jaune droite arrondi, 31: jaune droite droit 32:
-     * vulnérable arrondi, 33: vulnérable droit 34: mort arrondi, 35: mort droit
+     * vulnérable arrondi, 33: vulnérable droit 34: vulnerable blanc arrondi,
+     * 35: vulnerable blanc droit, 36: mort haut, 37: mort bas, 38: mort gauche,
+     * 39: mort droit
      */
     private Image[] fantomesSprites;
 
@@ -156,7 +158,7 @@ public class DataForView implements ISprites {
      * Découpe tous les sprites des fantômes et les place dans fantomesSprites
      */
     private void chargerFantomesSprites() {
-        fantomesSprites = new Image[36];
+        fantomesSprites = new Image[40];
 
         // les fantomes normaux sont sur 4 lignes 8 colonnes
         for (int i = 0; i < 4; i++) {
@@ -167,11 +169,19 @@ public class DataForView implements ISprites {
             }
         }
 
-        // les fantomes vulnérables et morts sont sur une ligne
+        // les fantomes vulnérables
         for (int i = 32; i < 36; i++) {
             fantomesSprites[i] = spriteComplet.getSubimage(
                 1 + 20 * (i - 32), 164, 16, 16
             );
+        }
+
+        // les fantomes morts sont sur une ligne
+        for (int i = 36; i < 40; i++) {
+            fantomesSprites[i] = spriteComplet.getSubimage(
+                1 + 20 * (i - 36), 205, 16, 16
+            );
+            System.out.println(i);
         }
     }
 
@@ -225,19 +235,34 @@ public class DataForView implements ISprites {
             chargerFantomesSprites();
         }
 
-        Image[] retour = { fantomesSprites[32], fantomesSprites[33] };
+        Image[] retour =
+            { fantomesSprites[32], fantomesSprites[33],
+            fantomesSprites[34], fantomesSprites[35]};
         return retour;
     }
 
     @Override
-    public Image[] getMortFantomeSprites() {
+    public Image getMortFantomeSprites(EDirection direction) {
         // si ces sprites n'ont pas encore été demandés
         if (fantomesSprites == null) {
             chargerFantomesSprites();
         }
 
-        Image[] retour = { fantomesSprites[34], fantomesSprites[35] };
-        return retour;
+        switch (direction)
+        {
+            case NORD:
+                return fantomesSprites[36];
+            case SUD:
+                return fantomesSprites[37];
+            case OUEST:
+                return fantomesSprites[38];
+            case EST:
+                return fantomesSprites[39];
+            /* toutes les valeurs de l'enum sont au dessus, on ne passera
+            jamais ici */
+            default:
+                return null;
+        }
     }
 
     @Override

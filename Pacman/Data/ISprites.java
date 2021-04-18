@@ -38,19 +38,19 @@ public interface ISprites {
 
     /**
      * Permet d'obtenir un tableau des sprites d'un Fantome vulnérable 0: arrondi 1:
-     * droit
+     * droit 2: blanc arrondi 3: blanc droit
      * 
      * @return Tableau d'image
      */
     public Image[] getVulnerableFantomesSprites();
 
     /**
-     * Permet d'obtenir un tableau des sprites de l'animation de mort d'un Fantome
-     * 0: arrondi 1:droit
+     * Permet d'obtenir le sprite du Fantome mort dans la direction demandée
      * 
-     * @return Tableau d'Image
+     * @param direction direction des yeux du Fantome mort
+     * @return image
      */
-    public Image[] getMortFantomeSprites();
+    public Image getMortFantomeSprites(EDirection direction);
 
     /**
      * Permet d'obtenir un tableau des sprites des Gommes (grosse ou petite) 0:
