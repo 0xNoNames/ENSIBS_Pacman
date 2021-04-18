@@ -125,19 +125,22 @@ public class dessinerFantome {
                         ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
                 break;
             case VULNERABLE:
-                System.out.println(this.partie.getCompteurVulnerable() >= 375);
+                System.out.println("compteur : " + this.partie.getCompteurVulnerable());
+                // System.out.println(this.partie.getCompteurVulnerable() >= 375);
                 if (this.partie.getCompteurVulnerable() >= 375) {
+                    g2d.drawImage(this.data.getVulnerableFantomesSprites()[2],
+                            ((int) this.fantome.getposX()) * 8 + this.offsetX,
+                            ((int) fantome.getposY()) * 8 + this.offsetY, null);
+                } else {
                     g2d.drawImage(this.data.getVulnerableFantomesSprites()[0],
                             ((int) this.fantome.getposX()) * 8 + this.offsetX,
                             ((int) fantome.getposY()) * 8 + this.offsetY, null);
                 }
-                g2d.drawImage(this.data.getVulnerableFantomesSprites()[0],
-                        ((int) this.fantome.getposX()) * 8 + this.offsetX, ((int) fantome.getposY()) * 8 + this.offsetY,
-                        null);
                 break;
 
             case MORT:
-                g2d.drawImage(this.data.getMortFantomeSprites()[0], ((int) this.fantome.getposX()) * 8 + this.offsetX,
+                g2d.drawImage(this.data.getMortFantomeSprites(this.fantome.getDirectionCourante()),
+                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
                         ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
                 break;
 
@@ -162,7 +165,8 @@ public class dessinerFantome {
                 break;
 
             case MORT:
-                g2d.drawImage(this.data.getMortFantomeSprites()[1], ((int) this.fantome.getposX()) * 8 + this.offsetX,
+                g2d.drawImage(this.data.getMortFantomeSprites(this.fantome.getDirectionCourante()),
+                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
                         ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
                 break;
             }
