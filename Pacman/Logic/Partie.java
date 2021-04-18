@@ -98,7 +98,7 @@ public class Partie implements IPartie {
 	public void initialisation() {
 		this.grille = d.getGrilleInitiale(pac);
 		this.niveau++;
-		this.etatPartie = EStatutPartie.EN_COURS;
+		this.etatPartie = EStatutPartie.EN_ANIMATION_DEBUT;
 		this.compteurGomme = 0;
 		this.compteurVulnerable = 0;
 		this.fruitSpawn = false;
@@ -173,115 +173,112 @@ public class Partie implements IPartie {
 	 * Permet d'avancer dans le temps.
 	 */
 	public void tick() {
-		// initialisation();
-		if (etatPartie == EStatutPartie.EN_COURS) {
-			/* Récupération des entités de la grille */
-			Blinky blinky = this.grille.getBlinky();
-			Inky inky = this.grille.getInky();
-			Clyde clyde = this.grille.getClyde();
-			Pinky pinky = this.grille.getPinky();
-			/* Définition de la partie pour chaque entité */
-			pac.setPartie(this);
-			blinky.setPartie(this);
-			inky.setPartie(this);
-			clyde.setPartie(this);
-			pinky.setPartie(this);
-			/* Récupération du tableau de case de la grille */
-			Case[][] tab = this.grille.getCases();
-			/* Définition d'un tableau représentant l'ensemble des fantomes */
-			Fantome[] fantomes = { inky, clyde, pinky, blinky };
-			/* Début d'un tick de jeu */
-			if (this.niveau <= 256 && this.getVies() > 0) {
-				pac.deplacer();
-				pinky.deplacer(pac);
-				inky.deplacer(pac);
-				blinky.deplacer(pac);
-				clyde.deplacer(pac);
-				/* Pacman mange si possible */
-				int pacX = (int) pac.posX;
-				int pacY = (int) pac.posY;
-				Jouable pacCase = (Jouable) tab[pacX][pacY];
-				if (pacCase.getObjet() != null) {
-					Objet o = pacCase.getObjet();
-					this.score += d.getPoints(o);
-					if (o instanceof GrosseGomme) {
-						for (Fantome f : fantomes) {
-							f.setStatut(EStatutFantome.VULNERABLE);
-						}
-						fantomeVulnerable = true;
-						compteurVulnerable = 0;
-					}
-					compteurGomme++;
-					pacCase.deleteObjet();
-				}
-				/* Fantome sortent de l'état VULNERABLE */
-				if (compteurVulnerable == 500) {
+		/* Récupération des entités de la grille */
+		Blinky blinky = this.grille.getBlinky();
+		Inky inky = this.grille.getInky();
+		Clyde clyde = this.grille.getClyde();
+		Pinky pinky = this.grille.getPinky();
+		/* Définition de la partie pour chaque entité */
+		pac.setPartie(this);
+		blinky.setPartie(this);
+		inky.setPartie(this);
+		clyde.setPartie(this);
+		pinky.setPartie(this);
+		/* Récupération du tableau de case de la grille */
+		Case[][] tab = this.grille.getCases();			
+		/* Définition d'un tableau représentant l'ensemble des fantomes */
+		Fantome[] fantomes = { inky, clyde, pinky, blinky };
+		/* Début d'un tick de jeu */
+		if (this.niveau <= 256 && this.getVies() > 0) {
+			pac.deplacer();
+			pinky.deplacer(pac);
+			inky.deplacer(pac);
+			blinky.deplacer(pac);
+			clyde.deplacer(pac);
+			/* Pacman mange si possible */
+			int pacX = (int) pac.posX;
+			int pacY = (int) pac.posY;
+			Jouable pacCase = (Jouable) tab[pacX][pacY];
+			if (pacCase.getObjet() != null) {
+				Objet o = pacCase.getObjet();
+				this.score += d.getPoints(o);
+				if (o instanceof GrosseGomme) {
 					for (Fantome f : fantomes) {
-						f.setStatut(EStatutFantome.CHASSEUR);
-						fantomeVulnerable = false;
-						compteurVulnerable = 0;
+						f.setStatut(EStatutFantome.VULNERABLE);
 					}
+					fantomeVulnerable = true;
+					compteurVulnerable = 0;
 				}
-				/* Fantom meme case pacman */
-				for (Fantome f : fantomes) {
-					int fantomeX = (int) f.getposX();
-					int fantomeY = (int) f.getposY();
-					if (fantomeX == pacX && fantomeY == pacY) {
-						if (f.getStatut() == EStatutFantome.CHASSEUR) {
-							pacMeurt();
-							break;
-						} else if (f.getStatut() == EStatutFantome.VULNERABLE) {
-							f.meurt();
-							if (this.compteurPartie - pac.getTickDernierFantomeMange() < tickParSeconde * 1.5) {
-								pac.setCompteurCombo(pac.getCompteurCombo() + 1);
-							} else {
-								pac.setCompteurCombo(1);
-							}
-							this.score += d.getPointsCombo(pac.getCompteurCombo());
-							pac.setTickDernierFantomeMange(compteurPartie);
-							wait(200);
-						}
-					}
-				}
-				/* Spawn de fruit */
-				if (compteurGomme == 80 || compteurGomme == 160) {
-					int x = (int) d.getPositionFruit()[0];
-					int y = (int) d.getPositionFruit()[1];
-					Jouable j = (Jouable) tab[x][y];
-					Fruit f = d.getFruitNiveau(this.niveau);
-					j.setObjet(f);
-					tickSpawnFruit = 600;
-					fruitSpawn = true;
-				}
-				/* Grille ne contient plus de Gommes */
-				if (noGomme()) {
-					this.etatPartie = EStatutPartie.EN_PAUSE;
-					this.initialisation();
-				}
-				/*
-				 * Incrémentation du compteur de tick durant lequel les fantomes sont
-				 * vulnerables
-				 */
-				if (this.fantomeVulnerable) {
-					this.compteurVulnerable++;
-				}
-				/*
-				 * Incrémentation du compteur de tick durant lequel le fruit est présent sur la
-				 * grille
-				 */
-				if (fruitSpawn) {
-					tickSpawnFruit--;
-				}
-				/* Suppresion du fruit si le compteur de tick est à 0 */
-				if (tickSpawnFruit == 0) {
-					int x = (int) d.getPositionInitialePacman()[0];
-					int y = (int) d.getPositionInitialePacman()[1];
-					Jouable j = (Jouable) tab[x][y];
-					j.deleteObjet();
-					fruitSpawn = false;
-				}
-				compteurPartie++;
+				compteurGomme++;
+				pacCase.deleteObjet();
 			}
+			/* Fantome sortent de l'état VULNERABLE */
+			if (compteurVulnerable == 500) {
+				for (Fantome f : fantomes) {
+					f.setStatut(EStatutFantome.CHASSEUR);
+					fantomeVulnerable = false;
+					compteurVulnerable = 0;
+				}
+			}
+			/* Fantom meme case pacman */
+			for (Fantome f : fantomes) {
+				int fantomeX = (int) f.getposX();
+				int fantomeY = (int) f.getposY();
+				if (fantomeX == pacX && fantomeY == pacY) {
+					if (f.getStatut() == EStatutFantome.CHASSEUR) {
+						pacMeurt();
+						break;
+					} else if (f.getStatut() == EStatutFantome.VULNERABLE) {
+						f.meurt();
+						if (this.compteurPartie - pac.getTickDernierFantomeMange() < tickParSeconde * 1.5) {
+							pac.setCompteurCombo(pac.getCompteurCombo() + 1);
+						} else {
+							pac.setCompteurCombo(1);
+						}
+						this.score += d.getPointsCombo(pac.getCompteurCombo());
+						pac.setTickDernierFantomeMange(compteurPartie);
+						this.etatPartie = EStatutPartie.EN_ANIMATION_FANMORT;
+					}
+				}
+			}
+			/* Spawn de fruit */
+			if (compteurGomme == 80 || compteurGomme == 160) {
+				int x = (int) d.getPositionFruit()[0];
+				int y = (int) d.getPositionFruit()[1];
+				Jouable j = (Jouable) tab[x][y];
+				Fruit f = d.getFruitNiveau(this.niveau);
+				j.setObjet(f);
+				tickSpawnFruit = 600;
+				fruitSpawn = true;
+			}
+			/* Grille ne contient plus de Gommes */
+			if (noGomme()) {
+				this.etatPartie = EStatutPartie.EN_PAUSE;
+				this.initialisation();
+			}
+			/*
+			 * Incrémentation du compteur de tick durant lequel les fantomes sont
+			 * vulnerables
+			 */
+			if (this.fantomeVulnerable) {
+				this.compteurVulnerable++;
+			}
+			/*
+			 * Incrémentation du compteur de tick durant lequel le fruit est présent sur la
+			 * grille
+			 */
+			if (fruitSpawn) {
+				tickSpawnFruit--;
+			}
+			/* Suppresion du fruit si le compteur de tick est à 0 */
+			if (tickSpawnFruit == 0) {
+				int x = (int) d.getPositionInitialePacman()[0];
+				int y = (int) d.getPositionInitialePacman()[1];
+				Jouable j = (Jouable) tab[x][y];
+				j.deleteObjet();
+				fruitSpawn = false;
+			}
+			compteurPartie++;
 		}
 	}
 
@@ -312,7 +309,7 @@ public class Partie implements IPartie {
 	public void pacMeurt() {
 		this.etatPartie = EStatutPartie.EN_PAUSE;
 		pac.meurt();
-		wait(2000);
+		this.etatPartie = EStatutPartie.EN_ANIMATION_PACMORT;
 		int x = (int) d.getPositionInitialePacman()[0];
 		int y = (int) d.getPositionInitialePacman()[1];
 		pac.setPosX(x);
@@ -320,16 +317,4 @@ public class Partie implements IPartie {
 		this.etatPartie = EStatutPartie.EN_COURS;
 	}
 
-	/**
-	 * 
-	 * 
-	 * @param ms
-	 */
-	private static void wait(int ms){
-		try {
-			Thread.sleep(ms);
-		} catch(InterruptedException ex) {
-			Thread.currentThread().interrupt();
-		}
-	}
 }

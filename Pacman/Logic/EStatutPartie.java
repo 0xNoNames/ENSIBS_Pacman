@@ -21,5 +21,17 @@ public enum EStatutPartie {
 	 * Pacman a perdu toutes ses vies, la partie est terminée, on affiche les
 	 * scores
 	 */
-	TERMINEE
+	EN_ANIMATION_PACMORT,
+
+	/**
+	 * 
+	 */
+	EN_ANIMATION_FANMORT,
+
+	/**
+	 * 
+	 */
+	EN_ANIMATION_DEBUT;
+
+
 }
