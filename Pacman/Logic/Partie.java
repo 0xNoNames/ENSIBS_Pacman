@@ -52,12 +52,12 @@ public class Partie implements IPartie {
 	/**
 	 * Variable indiquant si les fantome sont vulnerable ou pas
 	 */
-	private boolean fantome_vulnerable;
+	private boolean fantomeVulnerable;
 
 	/**
 	 * Variable représentant le nombre de tick pendant lequel les fantomes sont vulnerable
 	 */
-	private int compteur_vulnerable;
+	private int compteurVulnerable;
 
 	/**
 	 * Constructeur de la classe Partie
@@ -70,8 +70,8 @@ public class Partie implements IPartie {
 		this.niveau = 0;
 		this.compteurPartie = 0;
 		this.etatPartie = EStatutPartie.EN_PAUSE;
-		this.fantome_vulnerable = false;
-		this.compteur_vulnerable = 0;
+		this.fantomeVulnerable = false;
+		this.compteurVulnerable = 0;
 	}
 
 	/**
@@ -169,15 +169,15 @@ public class Partie implements IPartie {
 						for (Fantome f : fantomes) {
 							f.setStatut(EStatutFantome.VULNERABLE);
 						}
-						fantome_vulnerable = true;
+						fantomeVulnerable = true;
 					}
 					pacCase.deleteObjet();
 				}
 				/* Fantome sortent de l'état VULNERABLE */
-				if (compteur_vulnerable == 300) {
+				if (compteurVulnerable == 300) {
 					for (Fantome f : fantomes) {
 						f.setStatut(EStatutFantome.CHASSEUR);
-						fantome_vulnerable = false;
+						fantomeVulnerable = false;
 					}
 				}
 				/* Fantom meme case pacman */
@@ -214,10 +214,9 @@ public class Partie implements IPartie {
 					this.initialisation();
 				}
 				compteurPartie++;
-				if(this.fantome_vulnerable) {
-					this.compteur_vulnerable++;
+				if(this.fantomeVulnerable) {
+					this.compteurVulnerable++;
 				}
-				System.out.println(compteur_vulnerable);
 			}
 		}
 	}
