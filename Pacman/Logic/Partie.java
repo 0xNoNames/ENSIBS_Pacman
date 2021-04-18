@@ -189,6 +189,16 @@ public class Partie implements IPartie {
 		Fantome[] fantomes = { inky, clyde, pinky, blinky };
 		/* Début d'un tick de jeu */
 		if (this.niveau <= 256 && this.getVies() > 0) {
+			/* Sortie du bloc */
+			if(compteurPartie==0) {
+				for(Fantome f: fantomes) {
+					f.setStatut(EStatutFantome.DEBUTPARTIE);
+				}
+			} else if (compteurPartie >= 5 * tickParSeconde) {
+				for(Fantome f: fantomes) {
+					f.setStatut(EStatutFantome.CHASSEUR);
+				}
+			}
 			pac.deplacer();
 			pinky.deplacer(pac);
 			inky.deplacer(pac);
