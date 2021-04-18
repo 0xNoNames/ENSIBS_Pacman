@@ -28,13 +28,14 @@ public class dessinerPacman {
     public static void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
         dessinerSpritePacman(pacman, g2d, data);
 
+        // updateOffsets(pacman);
+
         // Si pacman est en mouvement alors on change de sprite.
         if (estMouvement(pacman)) {
             // Permet de ne pas avoir trop de mise à jour des sprites.
             if (waitSprite == 3) {
                 // Mise à jour du sprite actuel à selectionner.
                 updateSprite();
-                // updateOffsets(pacman);
                 waitSprite = 0;
             } else {
                 waitSprite++;
@@ -68,38 +69,6 @@ public class dessinerPacman {
                 && Double.compare(pacman.getPosition()[1], anciennePos[1]) == 0);
     }
 
-    // pacman[0;0];
-    // 4 offset 0
-    // pacman[0.5;0];
-    // 8 offset 4
-    // pacman[0.999;0];
-    // 11 offset 7
-
-    // 0 -> 0
-    // 0.5 -> 4
-    // 0.9-1 ~> 7
-
-    // 0.0 -> 0.125;
-    // 0 - 4
-    // 0.1 -> 0.2;
-    // 1 - 5
-    // 0.2 -> 0.3;
-    // 2 - 6
-    // 0.3 -> 0.4;
-    // 3 - 7
-    // 0.4 -> 0.5;
-    // 4 - 8
-    // 0.5 -> 0.6;
-    // 5 - 9
-    // 0.6 -> 0.7;
-    // 6 - 10
-    // 0.7 -> 0.8;
-    // 7 - 11
-    // 0.8 -> 0.9;
-    // 8 - 12
-    // 0.9 -> 1;
-    // 9 - 13
-
     /**
      * Met à jour le décalage X et Y des images.
      * 
@@ -110,8 +79,8 @@ public class dessinerPacman {
         double positionX = position[0] - (int) position[0];
         double positionY = position[1] - (int) position[1];
 
-        offsetX = (int) (positionX * 100 / 11);
-        offsetY = (int) (positionY * 100 / 11);
+        offsetX = (int) (positionX * 100 / 11) - 4;
+        offsetY = (int) (positionY * 100 / 11) + 24;
 
         // if (positionX >= 0.00 && positionX < 0.11) {
         // offsetX = 0;
@@ -164,14 +133,6 @@ public class dessinerPacman {
     private static void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 0:
-
-            // System.out.println("offset x : " + offsetX);
-            // System.out.println("pacman X : " + pacman.getposX());
-            // System.out.println("pacman int X : " + (int) pacman.getposX());
-            // System.out.println("pacman Y : " + pacman.getposY());
-            // System.out.println("Calcul total : " + ((int) pacman.getposX() * 8 + offsetX)
-            // + '\n');
-
             g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0],
                     (((int) pacman.getposX()) * 8) + offsetX, ((int) pacman.getposY() * 8) + offsetY, null);
             break;

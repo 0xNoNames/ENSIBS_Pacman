@@ -4,6 +4,7 @@ package Pacman.Logic;
  * Le classe Inky permet de représenter un des quatres fantomes du jeu
  * 
  * @author François JULLION & Louis-Baptiste SOBOLEWSKI
+ * @inv this.couleur == ECouleur.CYAN
  */
 public class Inky extends Fantome {
     
@@ -20,6 +21,7 @@ public class Inky extends Fantome {
      * @param p Pacman
      * @param b Blinky
      * @return cible d'Inky
+     * @post cible[0] >= 0 && cible[1] >= 0
      */
     private double[] getCible(Pacman p, Blinky b) {
         // la cible d'Inky est Pacman - (diff entre Pacman et Blinky)

@@ -4,6 +4,7 @@ package Pacman.Logic;
  * Classe représentant PacMan, l'entité du jeu que le joueur joue
  * 
  * @author François JULLION
+ * @inv this.vies >= 0
  */
 public class Pacman extends Entite {
 
@@ -39,7 +40,7 @@ public class Pacman extends Entite {
         return this.vies;
     }
 
-      /**
+    /**
      * Permet de définir le nombre de vie de Pacman
      * 
      * @return un entier représentant le nombre de vie de Pacman
@@ -51,7 +52,7 @@ public class Pacman extends Entite {
     /**
      * Permet de récupérer le dernier tick durant lequel pacman a mangé un fantome
      * 
-     * @return
+     * @return un entier représentant le tick durant lequel pacman a mangé un fantome
      */
     public int getTickDernierFantomeMange() {
         return this.tickDernierFantomeMange;
@@ -69,7 +70,7 @@ public class Pacman extends Entite {
     /**
      * Permet de récupérer le combo actuel de pacman
      * 
-     * @return
+     * @return un entier représentant le combo actuel de pacman
      */
     public int getCompteurCombo() {
         return this.compteurCombo;
@@ -78,7 +79,8 @@ public class Pacman extends Entite {
     /**
      * Permet de déterminer le combo actuel de pacman
      * 
-     * @param c
+     * @param c, en entier représentant un compteur de combo
+     * @pre c >= 0
      */
     public void setCompteurCombo(int c) {
         this.compteurCombo = c;

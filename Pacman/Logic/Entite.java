@@ -4,6 +4,7 @@ package Pacman.Logic;
  * Permet de représenter toutes les entités présentes dans le jeu
  * 
  * @author François JULLION
+ * @inv posX >=0 && posY >=0
  */
 public abstract class Entite implements IEntite {
 
@@ -76,7 +77,7 @@ public abstract class Entite implements IEntite {
     /**
      * Permet de récupérer la coordonnée en X de l'entité
      * 
-     * @return
+     * @return la coordonnées X en double de l'entité
      */
     public double getposX() {
         return this.posX;
@@ -85,7 +86,7 @@ public abstract class Entite implements IEntite {
     /**
      * Permet de récupérer la coordonnée en Y de l'entité
      * 
-     * @return
+     * @return la coordonnées Y en double de l'entité
      */
     public double getposY() {
         return this.posY;
@@ -95,6 +96,7 @@ public abstract class Entite implements IEntite {
      * Permet de définir la coordonnée X de l'entité
      * 
      * @param x, la futur coordonnée X de l'entité
+     * @pre x >= 0
      */
     public void setPosX(double x) {
         this.posX = x;
@@ -104,6 +106,7 @@ public abstract class Entite implements IEntite {
      * Permet de définir la coordonnée Y de l'entité
      * 
      * @param y, la futur coordonnée Y de l'entité
+     * @pre y >= 0
      */
     public void setPosY(double y) {
         this.posY = y;
@@ -113,6 +116,7 @@ public abstract class Entite implements IEntite {
      * Permet de définir la grille sur laquelle l'entité se situe
      * 
      * @param g, une grille de jeu
+     * @pre g != null
      */
     public void setGrille(Grille g) {
         this.grille = g;
@@ -122,6 +126,7 @@ public abstract class Entite implements IEntite {
      * Permet de définir la partie dans laquelle l'entité se situe
      * 
      * @param p, une partie de jeu
+     * @pre p != null
      */
     public void setPartie(Partie p) {
         this.partie = p;
@@ -144,6 +149,8 @@ public abstract class Entite implements IEntite {
      * @param posActuelle, tableau d'entiers représentant les coordonnées actuelles
      *                     de l'entité dans la grille
      * @return les coordonnées future de l'entité
+     * @post posVoulue[0] == posActuelle[0]+1 || posVoulue[0] == posActuelle[0]-1 || posVoulue[0] == posActuelle[0]
+     * @post posVoulue[1] == posActuelle[1]+1 || posVoulue[1] == posActuelle[1]-11 || posVoulue[1] == posActuelle[1]
      */
     protected int[] calculPosDirection(EDirection direction, int[] posActuelle) {
         int[] posVoulue = { 0, 0 };
@@ -199,7 +206,8 @@ public abstract class Entite implements IEntite {
     /**
      * Vérifie que l'entité est au milieu d'une intersection
      * 
-     * @return booléen
+     * @return booléen qui indique si l'entité est au milieu d'une intersection
+     * @pre vitesse > 0
      */
     protected boolean estMomentChangementDir(double vitesse)
     {

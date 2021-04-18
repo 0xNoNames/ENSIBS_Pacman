@@ -96,6 +96,7 @@ public class Grille {
      * Permet définir l'entite Clyde de la grille
      * 
      * @param p, une entite Clyde
+     * @pre c != null
      */
     public void setClyde(Clyde c) {
         this.clyde = c;
@@ -114,6 +115,7 @@ public class Grille {
      * Permet définir l'entite Inky de la grille
      * 
      * @param p, une entite Inky
+     * @pre i != null
      */
     public void setInky(Inky i) {
         this.inky = i;
@@ -132,6 +134,7 @@ public class Grille {
      * Permet définir l'entite BLinky de la grille
      * 
      * @param p, une Blinky Pinky
+     * @pre b != null
      */
     public void setBlinky(Blinky b) {
         this.blinky = b;
