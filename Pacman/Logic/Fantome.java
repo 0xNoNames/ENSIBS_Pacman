@@ -274,20 +274,25 @@ public class Fantome extends Entite {
      */
     protected void deplacerSelonCible(double[] cible)
     {
-        int[][] casesPossibles =
-            getCasesPossibles(this.getPosition(), this.getDirectionCourante());
-        
-        // on regarde quelle case possible est la plus proche de la cible
-        int indexPlusCourt = indexCasePlusProche(cible, casesPossibles);
-        
-        // on détermine la direction voulue
-        int[] caseVoulue = casesPossibles[indexPlusCourt];
-        this.dirVoulue = calculDirectionPos(getPositionI(), caseVoulue);
-
         // on vérifie si c'est le moment de changer de direction
-        if (dirCourante != dirVoulue && estMomentChangementDir(getVitesse()))
+        if (estMomentChangementDir(getVitesse()))
         {
-            dirCourante = dirVoulue;
+            int[][] casesPossibles = getCasesPossibles(
+                this.getPosition(), this.getDirectionCourante()
+            );
+
+            // on regarde quelle case possible est la plus proche de la cible
+            int indexPlusCourt = indexCasePlusProche(cible, casesPossibles);
+
+            // on détermine la direction voulue
+            int[] caseVoulue = casesPossibles[indexPlusCourt];
+            this.dirVoulue = calculDirectionPos(getPositionI(), caseVoulue);
+
+            // si la nouvelle direction est différente, on switch
+            if (dirCourante != dirVoulue)
+            {
+                dirCourante = dirVoulue;
+            }
         }
 
         // on déplace
@@ -330,6 +335,29 @@ public class Fantome extends Entite {
      */
     public double getVitesse()
     {
-        return Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur);
+        return Partie.d.getVitesseFantome(
+            this.partie.getNiveau(), this.couleur
+        );
+    }
+
+    /**
+     * Vérifie si le fantôme est actuellement dans la cabine à Fantome
+     * @return
+     */
+    protected boolean estDansLaCabine()
+    {
+        // [0, 1] = coin sup gauche, [2, 3] = coin inf droit
+        int[] posCab = {10, 12, 17, 17};
+        int[] posF = this.getPositionI();
+
+        if (posF[0] > posCab[0] && posF[1] > posCab[1]
+            && posF[0] < posCab[2] && posF[1] < posCab[3])
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

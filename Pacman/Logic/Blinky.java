@@ -31,6 +31,14 @@ public class Blinky extends Fantome {
      * @param p, l'entité Pacman
      */
     public void deplacer(Pacman p) {
-        this.deplacerSelonCible(this.getCible(p));
+        if (!estDansLaCabine())
+        {
+            this.deplacerSelonCible(this.getCible(p));
+        }
+        else
+        {
+            double[] horsCabine = {13, 11};
+            this.deplacerSelonCible(horsCabine);
+        }
     }
 }

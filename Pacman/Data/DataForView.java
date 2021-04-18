@@ -181,7 +181,6 @@ public class DataForView implements ISprites {
             fantomesSprites[i] = spriteComplet.getSubimage(
                 1 + 20 * (i - 36), 205, 16, 16
             );
-            System.out.println(i);
         }
     }
 
