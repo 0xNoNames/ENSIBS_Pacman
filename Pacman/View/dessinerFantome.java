@@ -3,6 +3,7 @@ package Pacman.View;
 import java.awt.Graphics2D;
 import Pacman.Data.DataForView;
 import Pacman.Logic.Fantome;
+import Pacman.Logic.Partie;
 
 /**
  * 
@@ -18,6 +19,7 @@ public class dessinerFantome {
 
     private Fantome fantome;
     private DataForView data;
+    private Partie partie;
 
     /**
      * Constructeur de la classe, assigne Fantome et DataForView aux attributs
@@ -26,9 +28,10 @@ public class dessinerFantome {
      * @param fantome Fantome que l'on va dessiner.
      * @param data    permet de récuperer les sprites depuis Data.
      */
-    public dessinerFantome(Fantome fantome, DataForView data) {
+    public dessinerFantome(Fantome fantome, Partie partie, DataForView data) {
         this.fantome = fantome;
         this.data = data;
+        this.partie = partie;
     }
 
     /**
@@ -36,8 +39,9 @@ public class dessinerFantome {
      * 
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
-    public void dessiner(Fantome fantome, Graphics2D g2d) {
+    public void dessiner(Fantome fantome, Partie partie, Graphics2D g2d) {
         this.fantome = fantome;
+        this.partie = partie;
         dessinerSpriteFantome(g2d);
         // updateOffsets();
         if (waitSprite == 4) {
@@ -120,8 +124,8 @@ public class dessinerFantome {
                         ((int) this.fantome.getposX()) * 8 + this.offsetX,
                         ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
                 break;
-
             case VULNERABLE:
+                System.out.println(this.partie.getCompteurVulnerable() / 60);
                 g2d.drawImage(this.data.getVulnerableFantomesSprites()[0],
                         ((int) this.fantome.getposX()) * 8 + this.offsetX, ((int) fantome.getposY()) * 8 + this.offsetY,
                         null);

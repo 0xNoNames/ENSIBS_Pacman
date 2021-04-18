@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
+import Pacman.Logic.EStatutFantome;
 import Pacman.Logic.Partie;
 
 /**
@@ -18,6 +19,7 @@ public class Plateau extends JPanel {
     private static DataForView data;
     private double scale;
     private Partie partie;
+    private int mortTick;
     private entreeClavier clavier;
     private dessinerFantome Blinky;
     private dessinerFantome Clyde;
@@ -38,11 +40,12 @@ public class Plateau extends JPanel {
         // Initialisation des attributs de la classe.
         this.scale = scale;
         this.partie = partie;
+        this.mortTick = 1;
         this.clavier = new entreeClavier(partie.getGrille());
-        this.Blinky = new dessinerFantome(partie.getGrille().getBlinky(), Plateau.data);
-        this.Clyde = new dessinerFantome(partie.getGrille().getClyde(), Plateau.data);
-        this.Inky = new dessinerFantome(partie.getGrille().getInky(), Plateau.data);
-        this.Pinky = new dessinerFantome(partie.getGrille().getPinky(), Plateau.data);
+        this.Blinky = new dessinerFantome(partie.getGrille().getBlinky(), partie, Plateau.data);
+        this.Clyde = new dessinerFantome(partie.getGrille().getClyde(), partie, Plateau.data);
+        this.Inky = new dessinerFantome(partie.getGrille().getInky(), partie, Plateau.data);
+        this.Pinky = new dessinerFantome(partie.getGrille().getPinky(), partie, Plateau.data);
 
         // Ajout du listener pour récupérer les entrées utilisateur.
         addKeyListener(this.clavier);
@@ -136,15 +139,24 @@ public class Plateau extends JPanel {
 
         // Affiche Pacman en rond au début.
 
-        // Affiche Pacman.
-        dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);
+        if (partie.getGrille().getBlinky().getStatut() == EStatutFantome.MORT && this.mortTick == 1) {
+            // partie.getGrille().getBlinky().dessiner()
+        } else if (partie.getGrille().getClyde().getStatut() == EStatutFantome.MORT && this.mortTick == 1) {
 
-        // Affiche les Fantômes.
-        Blinky.dessiner(partie.getGrille().getBlinky(), g2d);
-        Clyde.dessiner(partie.getGrille().getClyde(), g2d);
-        Inky.dessiner(partie.getGrille().getInky(), g2d);
-        Pinky.dessiner(partie.getGrille().getPinky(), g2d);
+        } else if (partie.getGrille().getInky().getStatut() == EStatutFantome.MORT && this.mortTick == 1) {
 
+        } else if (partie.getGrille().getPinky().getStatut() == EStatutFantome.MORT && this.mortTick == 1) {
+
+        } else {
+            // Affiche Pacman.
+            dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);
+
+            // Affiche les Fantômes.
+            Blinky.dessiner(partie.getGrille().getBlinky(), partie, g2d);
+            Clyde.dessiner(partie.getGrille().getClyde(), partie, g2d);
+            Inky.dessiner(partie.getGrille().getInky(), partie, g2d);
+            Pinky.dessiner(partie.getGrille().getPinky(), partie, g2d);
+        }
         // Avance de 1 tick la partie.
         partie.tick();
     }
