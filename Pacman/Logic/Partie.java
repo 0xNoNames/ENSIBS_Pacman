@@ -190,12 +190,12 @@ public class Partie implements IPartie {
 		/* Début d'un tick de jeu */
 		if (this.niveau <= 256 && this.getVies() > 0) {
 			/* Sortie du bloc */
-			if(compteurPartie==0) {
-				for(Fantome f: fantomes) {
+			if (compteurPartie == 0) {
+				for (Fantome f : fantomes) {
 					f.setStatut(EStatutFantome.DEBUTPARTIE);
 				}
 			} else if (compteurPartie >= 5 * tickParSeconde) {
-				for(Fantome f: fantomes) {
+				for (Fantome f : fantomes) {
 					f.setStatut(EStatutFantome.CHASSEUR);
 				}
 			}
@@ -322,6 +322,7 @@ public class Partie implements IPartie {
 		int y = (int) d.getPositionInitialePacman()[1];
 		pac.setPosX(x);
 		pac.setPosY(y);
+		pac.setDirectionCourante(EDirection.OUEST);
 	}
 
 }

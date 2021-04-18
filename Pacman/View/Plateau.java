@@ -30,7 +30,7 @@ public class Plateau extends JPanel {
     private int tickADebut = 80;
     private int tickAFin = 300;
     private int tickAFanMort = 15;
-    private int tickAPacMort = 250;
+    private int tickAPacMort = 150;
 
     /**
      * Constructeur de la classe.
@@ -157,10 +157,10 @@ public class Plateau extends JPanel {
     private void enAnimationPacMort(Graphics2D g2d) {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickAPacMort == 0) {
-            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
-
+            this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
+            tickAPacMort = 150;
             // Affiche la mort de pacman au bout de 0.5 secondes environ.
-        } else if (this.tickAPacMort <= 240) {
+        } else if (this.tickAPacMort <= 90) {
             dessinerPacman.dessinerMortPacman(partie.getGrille().getPacman(), g2d, data);
             // Fixe l'image pendant 0.5 seconces environ.
         } else {
@@ -186,6 +186,7 @@ public class Plateau extends JPanel {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickAFanMort == 0) {
             this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
+            this.tickAFanMort = 15;
         }
 
         // Affiche les Fantômes.
@@ -206,6 +207,7 @@ public class Plateau extends JPanel {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickADebut == 0) {
             this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            this.tickADebut = 80;
         }
 
         // Affiche les gommes.
@@ -229,6 +231,10 @@ public class Plateau extends JPanel {
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
     private void enAnimationFin(Graphics2D g2d) {
+        if (this.tickAFin == 0) {
+            this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
+            this.tickAFin = 80;
+        }
     }
 
     /**
