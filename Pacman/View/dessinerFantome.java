@@ -44,7 +44,7 @@ public class dessinerFantome {
         this.partie = partie;
         dessinerSpriteFantome(g2d);
         // updateOffsets();
-        if (waitSprite == 6) {
+        if (waitSprite == 8) {
             updateSprite();
             waitSprite = 0;
         } else {
