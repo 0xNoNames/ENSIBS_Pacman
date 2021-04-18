@@ -206,7 +206,7 @@ public class Partie implements IPartie {
 					pacCase.deleteObjet();
 				}
 				/* Fantome sortent de l'état VULNERABLE */
-				if (compteurVulnerable == 300) {
+				if (compteurVulnerable == 500) {
 					for (Fantome f : fantomes) {
 						f.setStatut(EStatutFantome.CHASSEUR);
 						fantomeVulnerable = false;
@@ -219,7 +219,8 @@ public class Partie implements IPartie {
 					int fantomeY = (int) f.getposY();
 					if (fantomeX == pacX && fantomeY == pacY) {
 						if (f.getStatut() == EStatutFantome.CHASSEUR) {
-							pac.meurt();
+							pacMeurt();
+							break;
 						} else if (f.getStatut() == EStatutFantome.VULNERABLE) {
 							f.meurt();
 							if (this.compteurPartie - pac.getTickDernierFantomeMange() < tickParSeconde * 1.5) {
@@ -293,5 +294,18 @@ public class Partie implements IPartie {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * 
+	 */
+	public void pacMeurt() {
+		this.etatPartie = EStatutPartie.EN_PAUSE;
+		pac.meurt();
+		int x = (int) d.getPositionInitialePacman()[0];
+		int y = (int) d.getPositionInitialePacman()[1];
+		pac.setPosX(x);
+		pac.setPosY(y);
+		this.etatPartie = EStatutPartie.EN_COURS;
 	}
 }
