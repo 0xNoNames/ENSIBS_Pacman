@@ -269,36 +269,7 @@ public class Fantome extends Entite {
         return Arrays.asList(distances).indexOf(minimum(distances));
     }
 
-    /**
-     * Applique le changement de position après que les directions aient été
-     * déterminées
-     */
-    private void effectuerDeplacement()
-    {
-        double distDeplacement =
-            Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-            / Partie.tickParSeconde;
-
-        switch (dirCourante)
-        {
-            case NORD:
-                this.posX = ((int) this.posX) + 0.0;
-                this.posY -= distDeplacement;
-                break;
-            case SUD:
-                this.posX = ((int) this.posX) + 0.0;
-                this.posY += distDeplacement;
-                break;
-            case OUEST:
-                this.posX -= distDeplacement;
-                this.posY = ((int) this.posY) + 0.0;
-                break;
-            case EST:
-                this.posX += distDeplacement;
-                this.posY = ((int) this.posY) + 0.0;
-                break;
-        }
-    }
+    
 
     /**
      * Déplace le fantôme en fonction d'une case cible

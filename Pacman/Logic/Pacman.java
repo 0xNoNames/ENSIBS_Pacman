@@ -129,35 +129,10 @@ public class Pacman extends Entite {
 
         /* Si une direction est possible on déplace */
         if (deplacementVouluePossible) {
-            switch (dirVoulue) {
-            case EST:
-                this.posX += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
-                break;
-            case OUEST:
-                this.posX -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
-                break;
-            case SUD:
-                this.posY += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
-                break;
-            case NORD:
-                this.posY -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
-                break;
-            }
+            dirCourante = dirVoulue;
+            effectuerDeplacement();
         } else if (deplacementCourantPossible) {
-            switch (dirCourante) {
-            case EST:
-                this.posX += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
-                break;
-            case OUEST:
-                this.posX -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
-                break;
-            case SUD:
-                this.posY += Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
-                break;
-            case NORD:
-                this.posY -= Partie.d.getVitessePacman(this.partie.getNiveau()) * (1.0 / Partie.tickParSeconde);
-                break;
-            }
+            effectuerDeplacement();
         }
     }
 

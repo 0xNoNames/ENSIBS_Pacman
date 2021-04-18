@@ -233,4 +233,47 @@ public abstract class Entite implements IEntite {
 
         return false;
     }
+
+    /**
+     * Applique le changement de position après que les directions aient été
+     * déterminées
+     */
+    protected void effectuerDeplacement()
+    {
+        double distDeplacement = getVitesse() / Partie.tickParSeconde;
+
+        switch (dirCourante)
+        {
+            case NORD:
+                this.posX = ((int) this.posX) + 0.0;
+                this.posY -= distDeplacement;
+                break;
+            case SUD:
+                this.posX = ((int) this.posX) + 0.0;
+                this.posY += distDeplacement;
+                break;
+            case OUEST:
+                this.posX -= distDeplacement;
+                this.posY = ((int) this.posY) + 0.0;
+                //passage du tunnel
+                if (this.posX < 0 && getPositionI()[1] == 14)
+                {
+                    System.out.println("pouet");
+                    this.posX += 28;
+                }
+                break;
+            case EST:
+                this.posX += distDeplacement;
+                this.posY = ((int) this.posY) + 0.0;
+                //passage du tunnel
+                if (this.posX > 28 && getPositionI()[1] == 14)
+                {
+                    System.out.println("pouet");
+                    this.posX -= 28;
+                }
+                break;
+        }
+    }
+
+    public abstract double getVitesse();
 }
