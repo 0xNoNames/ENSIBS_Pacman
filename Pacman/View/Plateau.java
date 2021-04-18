@@ -30,7 +30,7 @@ public class Plateau extends JPanel {
     private int tickADebut = 80;
     private int tickAFin = 300;
     private int tickAFanMort = 15;
-    private int tickAPacMort = 120;
+    private int tickAPacMort = 250;
 
     /**
      * Constructeur de la classe.
@@ -96,8 +96,8 @@ public class Plateau extends JPanel {
         // Gère l'affichage selon l'état de la partie.
         switch (this.partie.getEtatPartie()) {
         case EN_ANIMATION_PACMORT:
-            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
-            // enAnimationPacMort(g2d);
+            // this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            enAnimationPacMort(g2d);
             break;
         case EN_ANIMATION_FANMORT:
             this.partie.setEtatPartie(EStatutPartie.EN_COURS);
@@ -158,10 +158,15 @@ public class Plateau extends JPanel {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickAPacMort == 0) {
             this.partie.setEtatPartie(EStatutPartie.EN_COURS);
-        } else if (this.tickAPacMort <= 60) {
-            if (this.tickAPacMort % 4 == 0)
-                dessinerPacman.dessinerMortPacman(partie.getGrille().getPacman(), g2d, data);
+
+            // Affiche la mort de pacman au bout de 0.5 secondes environ.
+        } else if (this.tickAPacMort <= 240) {
+            dessinerPacman.dessinerMortPacman(partie.getGrille().getPacman(), g2d, data);
+            // Fixe l'image pendant 0.5 seconces environ.
         } else {
+            // Affiche Pacman.
+            dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);
+
             // Affiche les Fantômes.
             Blinky.dessiner(partie.getGrille().getBlinky(), partie, g2d);
             Clyde.dessiner(partie.getGrille().getClyde(), partie, g2d);
@@ -180,7 +185,7 @@ public class Plateau extends JPanel {
     private void enAnimationFanMort(Graphics2D g2d) {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickAFanMort == 0) {
-            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
         }
 
         // Affiche les Fantômes.
@@ -235,24 +240,15 @@ public class Plateau extends JPanel {
         // Affiche toutes les gommes.
         desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data, this.partie.getEtatPartie());
 
-        if (partie.getGrille().getBlinky().getStatut() == EStatutFantome.MORT && this.mortTick == 1) {
-            // partie.getGrille().getBlinky().dessiner()
-        } else if (partie.getGrille().getClyde().getStatut() == EStatutFantome.MORT && this.mortTick == 1) {
+        // Affiche Pacman.
+        dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);
 
-        } else if (partie.getGrille().getInky().getStatut() == EStatutFantome.MORT && this.mortTick == 1) {
+        // Affiche les Fantômes.
+        Blinky.dessiner(partie.getGrille().getBlinky(), partie, g2d);
+        Clyde.dessiner(partie.getGrille().getClyde(), partie, g2d);
+        Inky.dessiner(partie.getGrille().getInky(), partie, g2d);
+        Pinky.dessiner(partie.getGrille().getPinky(), partie, g2d);
 
-        } else if (partie.getGrille().getPinky().getStatut() == EStatutFantome.MORT && this.mortTick == 1) {
-
-        } else {
-            // Affiche Pacman.
-            dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);
-
-            // Affiche les Fantômes.
-            Blinky.dessiner(partie.getGrille().getBlinky(), partie, g2d);
-            Clyde.dessiner(partie.getGrille().getClyde(), partie, g2d);
-            Inky.dessiner(partie.getGrille().getInky(), partie, g2d);
-            Pinky.dessiner(partie.getGrille().getPinky(), partie, g2d);
-        }
         // Avance de 1 tick la partie.
         partie.tick();
     }
