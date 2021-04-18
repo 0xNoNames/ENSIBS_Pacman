@@ -4,6 +4,7 @@ package Pacman.Logic;
  * Le classe Blinky permet de représenter un des quatres fantomes du jeu
  * 
  * @author François JULLION & Louis-Baptiste SOBOLEWSKI
+ * @inv couleur == Ecouleur.ORANGE
  */
 public class Clyde extends Fantome {
     
