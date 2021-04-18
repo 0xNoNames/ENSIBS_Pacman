@@ -1,11 +1,15 @@
-Bonjour
+# Commandes
 
-Voici notre 3ième rendu pour le projet de POO
+`java -jar ./build/Pacman.jar`
 
-Pour lancer le projet :
-java -jar Pacman.jar
+# Jeu
 
-Le jeu se démarre tout seul.
 Il y a possibilité de faire pause en appuyant sur la barre espace
 
-Bon jeu !
+# Fichiers ressources
+
+Le fichier de configuration est `./Pacman/Data/config.json`. La spritesheet est `./Pacman/Data/sprites.png`.
+
+# Sources
+
+Le dossier `org` contient une librairie pour parser le JSON.
