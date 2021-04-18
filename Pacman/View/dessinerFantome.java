@@ -44,7 +44,7 @@ public class dessinerFantome {
         this.partie = partie;
         dessinerSpriteFantome(g2d);
         // updateOffsets();
-        if (waitSprite == 4) {
+        if (waitSprite == 8) {
             updateSprite();
             waitSprite = 0;
         } else {
@@ -125,10 +125,8 @@ public class dessinerFantome {
                         ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
                 break;
             case VULNERABLE:
-                System.out.println("compteur : " + this.partie.getCompteurVulnerable());
-                // System.out.println(this.partie.getCompteurVulnerable() >= 375);
                 if (this.partie.getCompteurVulnerable() >= 375) {
-                    g2d.drawImage(this.data.getVulnerableFantomesSprites()[2],
+                    g2d.drawImage(this.data.getVulnerableFantomesSprites()[3],
                             ((int) this.fantome.getposX()) * 8 + this.offsetX,
                             ((int) fantome.getposY()) * 8 + this.offsetY, null);
                 } else {

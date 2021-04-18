@@ -29,7 +29,7 @@ public class dessinerPacman {
         // Si pacman est en mouvement alors on change de sprite.
         if (estMouvement(pacman)) {
             // Permet de ne pas avoir trop de mise à jour des sprites.
-            if (waitSprite == 4) {
+            if (waitSprite == 3) {
                 // Mise à jour du sprite actuel à selectionner.
                 updateSprite();
                 // updateOffsets(pacman);
