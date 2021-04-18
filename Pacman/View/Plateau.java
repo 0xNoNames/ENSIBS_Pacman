@@ -214,7 +214,7 @@ public class Plateau extends JPanel {
         desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data, this.partie.getEtatPartie());
 
         // Affiche Pacman tout rond.
-        dessinerPacman.dessinerPacmanRond(partie.getGrille().getPacman(), g2d, data);
+        dessinerPacman.dessinerPacmanRond(g2d, data);
 
         // Affiche les Fantômes.
         Blinky.dessiner(partie.getGrille().getBlinky(), partie, g2d);

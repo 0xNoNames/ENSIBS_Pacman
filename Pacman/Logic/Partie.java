@@ -76,6 +76,11 @@ public class Partie implements IPartie {
 	private boolean fruitSpawn;
 
 	/**
+	 * Variable indiquant si pacman est mort
+	 */
+	private boolean mortPacman;
+
+	/**
 	 * Constructeur de la classe Partie
 	 */
 	public Partie() {
@@ -102,6 +107,7 @@ public class Partie implements IPartie {
 		this.compteurVulnerable = 0;
 		this.fruitSpawn = false;
 		this.fantomeVulnerable = false;
+		this.mortPacman = false;
 	}
 
 	/**
@@ -172,6 +178,15 @@ public class Partie implements IPartie {
 	 * Permet d'avancer dans le temps.
 	 */
 	public void tick() {
+		if (mortPacman) {
+			int x = (int) d.getPositionInitialePacman()[0];
+			int y = (int) d.getPositionInitialePacman()[1];
+			pac.setPosX(x);
+			pac.setPosY(y);
+			pac.setDirectionCourante(EDirection.OUEST);
+			pac.setDirectionVoulue(EDirection.OUEST);
+			mortPacman = false;
+		}
 		/* Récupération des entités de la grille */
 		Blinky blinky = this.grille.getBlinky();
 		Inky inky = this.grille.getInky();
@@ -318,13 +333,7 @@ public class Partie implements IPartie {
 	public void pacMeurt() {
 		pac.meurt();
 		this.etatPartie = EStatutPartie.EN_ANIMATION_PACMORT;
-		int x = (int) d.getPositionInitialePacman()[0];
-		int y = (int) d.getPositionInitialePacman()[1];
-		pac.setPosX(x);
-		pac.setPosY(y);
-		pac.setDirectionCourante(EDirection.OUEST);
-		pac.setDirectionVoulue(EDirection.OUEST);
-
+		mortPacman = true;
 	}
 
 }

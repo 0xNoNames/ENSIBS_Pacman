@@ -2,6 +2,7 @@ package Pacman.View;
 
 import java.awt.Graphics2D;
 import Pacman.Data.DataForView;
+import Pacman.Logic.EDirection;
 import Pacman.Logic.Pacman;
 
 /**
@@ -189,9 +190,8 @@ public class dessinerPacman {
      * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
      * @param data   permet de récuperer les sprites depuis Data.
      */
-    public static void dessinerPacmanRond(Pacman pacman, Graphics2D g2d, DataForView data) {
-        g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[2], (((int) pacman.getposX()) * 8) + 1,
-                ((int) pacman.getposY() * 8) + offsetY, null);
+    public static void dessinerPacmanRond(Graphics2D g2d, DataForView data) {
+        g2d.drawImage(data.getPacmanSprites(EDirection.OUEST)[2], 13, 48, null);
     }
 
     /**
