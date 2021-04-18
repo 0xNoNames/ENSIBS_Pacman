@@ -82,10 +82,7 @@ public class Plateau extends JPanel {
         // Donne l'échelle définie par la fenêtre.
         g2d.scale(this.scale, this.scale);
 
-        // Affichage des murs.
-        g2d.drawImage(Plateau.data.getGrille(), 0, 28, this);
-
-        // Affiche le score, le niveau actuel et les vies.
+        // Affiche le labyrinthe, le score, le niveau actuel et les vies.
         dessinerATH.dessiner(partie, g2d, data, this.clavier.getinGame());
 
         // Lorsque le joueur appuie sur la touche de pause, la partie se met en pause et

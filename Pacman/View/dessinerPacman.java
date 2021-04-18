@@ -32,13 +32,12 @@ public class dessinerPacman {
             if (waitSprite == 4) {
                 // Mise à jour du sprite actuel à selectionner.
                 updateSprite();
+                // updateOffsets(pacman);
                 waitSprite = 0;
             } else {
                 waitSprite++;
             }
         }
-
-        // updateOffsets(pacman);
 
         // Fixe la position actuelle comme l'ancienne postion de pacman;
         anciennePos[0] = pacman.getPosition()[0];
@@ -109,49 +108,48 @@ public class dessinerPacman {
         double positionX = position[0] - (int) position[0];
         double positionY = position[1] - (int) position[1];
 
-        if (positionX >= 0.0 && positionX < 0.11) {
-            offsetX = 0;
-        } else if (positionX >= 0.11 && positionX < 0.22) {
-            offsetX = 1;
-        } else if (positionX >= 0.22 && positionX < 0.33) {
-            offsetX = 2;
-        } else if (positionX >= 0.33 && positionX < 0.44) {
-            offsetX = 3;
-        } else if (positionX >= 0.44 && positionX < 0.55) {
-            offsetX = 4;
-        } else if (positionX >= 0.55 && positionX < 0.66) {
-            offsetX = 5;
-        } else if (positionX >= 0.66 && positionX < 0.77) {
-            offsetX = 6;
-        } else if (positionX >= 0.77 && positionX < 0.88) {
-            offsetX = 7;
-        } else if (positionX >= 0.88 && positionX < 1.0) {
-            offsetX = 0;
-        }
+        offsetX = (int) (positionX * 100 / 11);
+        offsetY = (int) (positionY * 100 / 11);
 
-        // System.out.println("positionY :" + position[1]);
-        // System.out.println("offsetY :" + offsetX);
-        // System.out.println("");
+        // if (positionX >= 0.00 && positionX < 0.11) {
+        // offsetX = 0;
+        // } else if (positionX >= 0.11 && positionX < 0.22) {
+        // offsetX = 1;
+        // } else if (positionX >= 0.22 && positionX < 0.33) {
+        // offsetX = 2;
+        // } else if (positionX >= 0.33 && positionX < 0.44) {
+        // offsetX = 3;
+        // } else if (positionX >= 0.44 && positionX < 0.55) {
+        // offsetX = 4;
+        // } else if (positionX >= 0.55 && positionX < 0.66) {
+        // offsetX = 5;
+        // } else if (positionX >= 0.66 && positionX < 0.77) {
+        // offsetX = 6;
+        // } else if (positionX >= 0.77 && positionX < 0.88) {
+        // offsetX = 7;
+        // } else if (positionX >= 0.88 && positionX < 1.00) {
+        // offsetX = 8;
+        // }
 
-        if (positionY >= 0.0 && positionY < 0.11) {
-            offsetY = 24;
-        } else if (positionY >= 0.11 && positionY < 0.22) {
-            offsetY = 25;
-        } else if (positionY >= 0.22 && positionY < 0.33) {
-            offsetY = 26;
-        } else if (positionY >= 0.33 && positionY < 0.44) {
-            offsetY = 27;
-        } else if (positionY >= 0.44 && positionY < 0.55) {
-            offsetY = 28;
-        } else if (positionY >= 0.55 && positionY < 0.66) {
-            offsetY = 29;
-        } else if (positionY >= 0.66 && positionY < 0.77) {
-            offsetY = 30;
-        } else if (positionY >= 0.77 && positionY < 0.88) {
-            offsetY = 31;
-        } else if (positionY >= 0.88 && positionY < 1.0) {
-            offsetY = 24;
-        }
+        // if (positionY >= 0.0 && positionY < 0.11) {
+        // offsetY = 24;
+        // } else if (positionY >= 0.11 && positionY < 0.22) {
+        // offsetY = 25;
+        // } else if (positionY >= 0.22 && positionY < 0.33) {
+        // offsetY = 26;
+        // } else if (positionY >= 0.33 && positionY < 0.44) {
+        // offsetY = 27;
+        // } else if (positionY >= 0.44 && positionY < 0.55) {
+        // offsetY = 28;
+        // } else if (positionY >= 0.55 && positionY < 0.66) {
+        // offsetY = 29;
+        // } else if (positionY >= 0.66 && positionY < 0.77) {
+        // offsetY = 30;
+        // } else if (positionY >= 0.77 && positionY < 0.88) {
+        // offsetY = 31;
+        // } else if (positionY >= 0.88 && positionY < 1.0) {
+        // offsetY = 24;
+        // }
     }
 
     /**
@@ -164,13 +162,21 @@ public class dessinerPacman {
     private static void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 0:
+
+            // System.out.println("offset x : " + offsetX);
+            // System.out.println("pacman X : " + pacman.getposX());
+            // System.out.println("pacman int X : " + (int) pacman.getposX());
+            // System.out.println("pacman Y : " + pacman.getposY());
+            // System.out.println("Calcul total : " + ((int) pacman.getposX() * 8 + offsetX)
+            // + '\n');
+
             g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0],
-                    ((int) pacman.getposX() * 8) + offsetX, ((int) pacman.getposY() * 8) + offsetY, null);
+                    (((int) pacman.getposX()) * 8) + offsetX, ((int) pacman.getposY() * 8) + offsetY, null);
             break;
 
         case 1:
             g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1],
-                    ((int) pacman.getposX() * 8 + offsetX), ((int) pacman.getposY() * 8) + offsetY, null);
+                    (((int) pacman.getposX()) * 8 + offsetX), ((int) pacman.getposY() * 8) + offsetY, null);
             break;
         }
     }

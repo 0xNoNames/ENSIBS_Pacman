@@ -1,16 +1,25 @@
 package Pacman.View;
 
 import java.awt.Graphics2D;
-import java.awt.Image;
+
+import javax.xml.crypto.Data;
 
 import Pacman.Data.DataForView;
 import Pacman.Logic.EDirection;
 import Pacman.Logic.Partie;
 
+/**
+ * 
+ * La classe dessinerATH (Affichage Tête Haute) permet de gérer les sprites du
+ * menu etc.
+ * 
+ * @author Arthur Pêtre
+ */
 public class dessinerATH {
 
     // Le score, les vies ainsi que le GAME OVER ou READY
     public static void dessiner(Partie partie, Graphics2D g2d, DataForView data, Boolean inGame) {
+        dessinerMurs(g2d, data);
         dessinerVies(partie, g2d, data);
         dessinerEtatPartie(partie, g2d, data, inGame);
         dessinerNiveau(partie, g2d, data);
@@ -44,8 +53,9 @@ public class dessinerATH {
      * @param data   permet de récuperer les sprites depuis Data.
      */
     private static void dessinerScore(Partie partie, Graphics2D g2d, DataForView data) {
-        g2d.drawImage(data.getRGOSprite()[3], 91, 4, null);
+        g2d.drawImage(data.getRGOSprite()[3], 92, 4, null);
 
+        // On récupère le score actuel et on met chaque chiffre dans un tableau.
         String score = Integer.toString(partie.getScore());
         int[] tableauScore = new int[score.length()];
         for (int i = 0; i < score.length(); i++) {
@@ -53,8 +63,13 @@ public class dessinerATH {
         }
 
         for (int i = 0; i < tableauScore.length; i++) {
-            g2d.drawImage(data.getLettresChiffres()[tableauScore[i]], 104 + 10 * i, 18, null);
+            g2d.drawImage(data.getLettresChiffres()[tableauScore[i]], 113 - (5 * tableauScore.length) + 10 * i, 18,
+                    null);
         }
+    }
+
+    private static void dessinerMurs(Graphics2D g2d, DataForView data) {
+        g2d.drawImage(data.getGrille(), 0, 28, null);
     }
 
     /**
