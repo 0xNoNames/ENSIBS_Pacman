@@ -12,8 +12,8 @@ import Pacman.Logic.Pacman;
  */
 public class dessinerPacman {
     private static int spriteActuel = 0;
-    private static int offsetX = -4;
-    private static int offsetY = 24;
+    private static int offsetX = 0;
+    private static int offsetY = 0;
     private static int waitSprite = 0;
     private static int spriteMort = 0;
     private static double[] anciennePos = { 0.0, 0.0 };
@@ -28,7 +28,7 @@ public class dessinerPacman {
     public static void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
         dessinerSpritePacman(pacman, g2d, data);
 
-        // updateOffsets(pacman);
+        updateOffsets(pacman);
 
         // Si pacman est en mouvement alors on change de sprite.
         if (estMouvement(pacman)) {
@@ -133,13 +133,19 @@ public class dessinerPacman {
     private static void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 0:
-            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0],
-                    (((int) pacman.getposX()) * 8) + offsetX, ((int) pacman.getposY() * 8) + offsetY, null);
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0], (int) (pacman.getposX() * 8) - 4,
+                    (int) (pacman.getposY() * 8) + 24, null);
+            // g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0],
+            // (((int) pacman.getposX()) * 8) + offsetX, ((int) pacman.getposY() * 8) +
+            // offsetY, null);
             break;
 
         case 1:
-            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1],
-                    (((int) pacman.getposX()) * 8 + offsetX), ((int) pacman.getposY() * 8) + offsetY, null);
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1], (int) (pacman.getposX() * 8) - 4,
+                    (int) (pacman.getposY() * 8) + 24, null);
+            // g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1],
+            // (((int) pacman.getposX()) * 8 + offsetX), ((int) pacman.getposY() * 8) +
+            // offsetY, null);
             break;
         }
     }
