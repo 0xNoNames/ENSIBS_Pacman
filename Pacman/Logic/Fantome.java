@@ -1,6 +1,5 @@
 package Pacman.Logic;
 
-import java.security.spec.EdDSAParameterSpec;
 import java.util.Arrays;
 
 /**
