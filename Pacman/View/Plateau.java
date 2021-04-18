@@ -30,7 +30,7 @@ public class Plateau extends JPanel {
     private int tickADebut = 80;
     private int tickAFin = 300;
     private int tickAFanMort = 15;
-    private int tickAPacMort = 150;
+    private int tickAPacMort = 180;
 
     /**
      * Constructeur de la classe.
@@ -158,9 +158,10 @@ public class Plateau extends JPanel {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickAPacMort == 0) {
             this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
-            tickAPacMort = 150;
+            dessinerPacman.resetSpriteMort();
+            tickAPacMort = 180;
             // Affiche la mort de pacman au bout de 0.5 secondes environ.
-        } else if (this.tickAPacMort <= 90) {
+        } else if (this.tickAPacMort <= 120) {
             dessinerPacman.dessinerMortPacman(partie.getGrille().getPacman(), g2d, data);
             // Fixe l'image pendant 0.5 seconces environ.
         } else {
