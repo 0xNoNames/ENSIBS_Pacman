@@ -4,7 +4,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import Pacman.Logic.EDirection;
+import Pacman.Logic.EStatutPartie;
 import Pacman.Logic.Grille;
+import Pacman.Logic.Partie;
 
 /**
  * La classe Input permet de gérer les entrées utilisateur.
@@ -14,6 +16,7 @@ import Pacman.Logic.Grille;
 public class entreeClavier extends KeyAdapter {
     boolean inGame;
     Grille grille;
+    Partie partie;
 
     /**
      * Constructeur de la classe.
@@ -21,9 +24,9 @@ public class entreeClavier extends KeyAdapter {
      * @param grille qui va permettre de modifier les déplacements de pacman selon
      *               l'entrée utilisateur.
      */
-    public entreeClavier(Grille grille) {
-        this.inGame = false;
-        this.grille = grille;
+    public entreeClavier(Partie partie) {
+        this.partie = partie;
+        this.grille = partie.getGrille();
     }
 
     /**
@@ -35,9 +38,9 @@ public class entreeClavier extends KeyAdapter {
         return this.inGame;
     }
 
-    // Méthode gérant la touche actuellement appuyée.
     /**
-     * Redéfinition nécéssaire de la méthode keyPressed de KeyAdapter.
+     * Redéfinition nécéssaire de la méthode keyPressed de KeyAdapter. Elle permet
+     * de gérer la touche actuellement appuyée.
      * 
      * @param e évènement touche actuellement pressé.
      */
@@ -48,16 +51,16 @@ public class entreeClavier extends KeyAdapter {
 
         // Si l'utilisateur appuis sur 'espace', la partie démarre/se met en pause.
         if (touche == KeyEvent.VK_SPACE) {
-            if (!inGame) {
-                this.inGame = true;
+            if (this.partie.getEtatPartie() == EStatutPartie.EN_COURS) {
+                this.partie.setEtatPartie(EStatutPartie.EN_PAUSE);
             } else {
-                this.inGame = false;
+                this.partie.setEtatPartie(EStatutPartie.EN_COURS);
             }
         }
 
         // Si la partie est en cours, on récupère les entrées flèches directionnelles
         // et/ou zqsd
-        if (this.inGame) {
+        if (this.partie.getEtatPartie() == EStatutPartie.EN_COURS) {
             switch (touche) {
             case KeyEvent.VK_UP:
                 grille.getPacman().setDirectionVoulue(EDirection.NORD);
