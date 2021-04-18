@@ -27,6 +27,8 @@ public class Plateau extends JPanel {
     private dessinerFantome Inky;
     private dessinerFantome Pinky;
     private final int tick = 16;
+    private int tickADebut = 80;
+    private int tickAFin = 300;
 
     /**
      * Constructeur de la classe.
@@ -100,12 +102,15 @@ public class Plateau extends JPanel {
             // enAnimationFanMort(g2d);
             break;
         case EN_ANIMATION_DEBUT:
-            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
-            // enAnimationDebut(g2d);
+            // this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            enAnimationDebut(g2d);
             break;
         case EN_ANIMATION_FIN:
             this.partie.setEtatPartie(EStatutPartie.EN_COURS);
             // enAnimationFin(g2d);
+            break;
+        case GAME_OVER:
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
             break;
         case EN_COURS:
             enJeu(g2d);
@@ -164,6 +169,9 @@ public class Plateau extends JPanel {
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
     private void enAnimationDebut(Graphics2D g2d) {
+        if (this.tickADebut == 0) {
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+        }
         // Affiche tous les éléments.
         dessinerATH.dessiner(partie, g2d, data, this.partie.getEtatPartie());
 
@@ -175,6 +183,8 @@ public class Plateau extends JPanel {
         Clyde.dessiner(partie.getGrille().getClyde(), partie, g2d);
         Inky.dessiner(partie.getGrille().getInky(), partie, g2d);
         Pinky.dessiner(partie.getGrille().getPinky(), partie, g2d);
+
+        this.tickADebut--;
     }
 
     /**
@@ -191,7 +201,6 @@ public class Plateau extends JPanel {
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
     private void enJeu(Graphics2D g2d) {
-
         // Affiche toutes les gommes.
         desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data);
 
