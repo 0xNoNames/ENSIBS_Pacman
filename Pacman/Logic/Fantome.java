@@ -1,5 +1,6 @@
 package Pacman.Logic;
 
+import java.security.spec.EdDSAParameterSpec;
 import java.util.Arrays;
 
 /**
@@ -90,9 +91,7 @@ public class Fantome extends Entite {
      */
     public void meurt() {
         this.statut = EStatutFantome.MORT;
-        wait(200);
         demiTour();
-        this.statut = EStatutFantome.CHASSEUR;
     }
 
     /**
@@ -269,36 +268,8 @@ public class Fantome extends Entite {
         return Arrays.asList(distances).indexOf(minimum(distances));
     }
 
-    /**
-     * Déplace le fantôme en fonction d'une case cible
-     * 
-     * @param p
-     * @param cible
-     */
-    protected void deplacerSelonCible(double[] cible)
+    private void effectuerDeplacement()
     {
-        // on vérifie si c'est le moment de changer de direction
-        if (estMomentChangementDir(getVitesse()))
-        {
-            int[][] casesPossibles = getCasesPossibles(
-                this.getPosition(), this.getDirectionCourante()
-            );
-
-            // on regarde quelle case possible est la plus proche de la cible
-            int indexPlusCourt = indexCasePlusProche(cible, casesPossibles);
-
-            // on détermine la direction voulue
-            int[] caseVoulue = casesPossibles[indexPlusCourt];
-            this.dirVoulue = calculDirectionPos(getPositionI(), caseVoulue);
-
-            // si la nouvelle direction est différente, on switch
-            if (dirCourante != dirVoulue)
-            {
-                dirCourante = dirVoulue;
-            }
-        }
-
-        // on déplace
         double distDeplacement =
             Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
             / Partie.tickParSeconde;
@@ -324,6 +295,69 @@ public class Fantome extends Entite {
     }
 
     /**
+     * Déplace le fantôme en fonction d'une case cible
+     * 
+     * @param cible coordonnées de la cible
+     */
+    protected void deplacerSelonCible(double[] cible)
+    {
+        // on vérifie si c'est le moment de changer de direction
+        if (estMomentChangementDir(getVitesse()))
+        {
+            int[][] casesPossibles = getCasesPossibles(
+                this.getPosition(), this.getDirectionCourante()
+            );
+
+            // on regarde quelle case possible est la plus proche de la cible
+            int indexPlusCourt = indexCasePlusProche(cible, casesPossibles);
+
+            // on détermine la direction voulue
+            int[] caseVoulue = casesPossibles[indexPlusCourt];
+            this.dirVoulue = calculDirectionPos(getPositionI(), caseVoulue);
+
+            // si la nouvelle direction est différente, on switch
+            if (dirCourante != dirVoulue)
+            {
+                dirCourante = dirVoulue;
+            }
+        }
+
+        // on déplace
+        this.effectuerDeplacement();
+    }
+
+    /**
+     * Déplace le fantôme en fonction de l'aléatoire
+     */
+    protected void deplacerAleatoire()
+    {
+        // on vérifie si c'est le moment de changer de direction
+        if (estMomentChangementDir(getVitesse()))
+        {
+            int[][] casesPossibles = getCasesPossibles(
+                this.getPosition(), this.getDirectionCourante()
+            );
+
+            // on choisit aléatoirement la case qui nous intéresse
+            int indexRnd =
+                ((int) (Math.random() * 100)) % casesPossibles.length;
+
+            // on détermine la direction voulue
+            int[] caseVoulue = casesPossibles[indexRnd];
+            this.dirVoulue = calculDirectionPos(getPositionI(), caseVoulue);
+
+            // si la nouvelle direction est différente, on switch
+            if (dirCourante != dirVoulue)
+            {
+                dirCourante = dirVoulue;
+            }
+        }
+
+        // on déplace
+        this.effectuerDeplacement();
+    }
+
+    /**
      * Quand un fantôme change de statut, il fait demi tour
      */
     public void demiTour()
@@ -341,26 +375,5 @@ public class Fantome extends Entite {
         return Partie.d.getVitesseFantome(
             this.partie.getNiveau(), this.couleur
         );
-    }
-
-    /**
-     * Vérifie si le fantôme est actuellement dans la cabine à Fantome
-     * @return
-     */
-    protected boolean estDansLaCabine()
-    {
-        // [0, 1] = coin sup gauche, [2, 3] = coin inf droit
-        int[] posCab = {10, 12, 17, 17};
-        int[] posF = this.getPositionI();
-
-        if (posF[0] > posCab[0] && posF[1] > posCab[1]
-            && posF[0] < posCab[2] && posF[1] < posCab[3])
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }

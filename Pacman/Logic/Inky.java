@@ -35,6 +35,14 @@ public class Inky extends Fantome {
      * @param p, l'entité Pacman
      */
     public void deplacer(Pacman p) {
-        this.deplacerSelonCible(getCible(p, this.grille.getBlinky()));
+        if (this.getStatut() != EStatutFantome.DEBUTPARTIE)
+        {
+            this.deplacerSelonCible(getCible(p, this.grille.getBlinky()));
+        }
+        else
+        {
+            double[] scatter = {grille.getCases().length / 4, 0};
+            this.deplacerSelonCible(scatter);
+        }
     }
 }
