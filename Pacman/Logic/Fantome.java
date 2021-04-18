@@ -344,4 +344,12 @@ public class Fantome extends Entite {
                 break;
         }
     }
+
+    /**
+     * Quand un fantôme change de statut, il fait demi tour
+     */
+    public void demiTour()
+    {
+        this.dirCourante = getDirectionOpposee(this.dirCourante);
+    }
 }
