@@ -3,7 +3,7 @@ package Pacman.Logic;
 /**
  * Le classe Blinky permet de représenter un des quatres fantomes du jeu
  * 
- * @author François JULLION
+ * @author François JULLION & Louis-Baptiste SOBOLEWSKI
  */
 public class Clyde extends Fantome {
     
@@ -16,63 +16,36 @@ public class Clyde extends Fantome {
     }
 
     /**
-     * Permet de déplacer aléatoirement Clyde
+     * Détermine la case cible de Clyde.
+     * 
+     * @param p Pacman
+     * @return cible de Clyde
      */
-    public void deplacer() {
-        /* Selection aléatoire d'une direction voulue */
-        EDirection[] tab = {EDirection.EST,EDirection.NORD,EDirection.SUD,EDirection.OUEST};
-        int indice = (int) (Math.random() * tab.length);
-        this.dirVoulue = tab[indice];
+    private double[] getCible(Pacman p)
+    {
+        double[] posP = p.getPosition();
+        double[] posC = this.getPosition();
+        double distPC = distance(posP[0], posP[1], posC[0], posC[1]);
 
-        /* Calcul de la position Voulue */
-        int[] posActuelle = getPositionI();
-        int[] posVoulue = calculPosDirection(this.dirVoulue, posActuelle);
-
-        /* Test si la direction voulue est possible */
-         boolean deplacementVouluPossible = estPositionPossible(posVoulue);
-
-        /* MAJ dirCourante si deplacement voulue possible*/
-         boolean deplacementCourantPossible = false;
-         if(deplacementVouluPossible) {
-             dirCourante = dirVoulue;
-        } else {
-             /* Sinon on vérifie si la direction courante est possible */
-             posVoulue = calculPosDirection(dirCourante, posActuelle);
-             deplacementCourantPossible = estPositionPossible(posVoulue); 
+        if (distPC > 8)
+        {
+            return posP;
         }
-
-        /* Si une direction est possible on déplace */
-        if(deplacementVouluPossible) {
-            switch(dirVoulue) {
-                case EST:
-                    this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case OUEST:
-                    this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case SUD:
-                    this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case NORD:
-                    this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-            }
-        } else if(deplacementCourantPossible) {
-            switch(dirCourante) {
-                case EST:
-                    this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case OUEST:
-                    this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case SUD:
-                    this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1.0/Partie.tickParSeconde);
-                    break;
-                case NORD:
-                    this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(),this.couleur) * (1/Partie.tickParSeconde);
-                    break;
-            }  
+        else
+        {
+            /* si Clyde est trop proche de Pacman, il part se réfugier dans le
+            coin sud ouest de la grille */
+            double[] cible = {0, this.grille.getCases()[0].length - 1};
+            return cible;
         }
-         
+    }
+
+    /**
+     * Permet de déplacer Clyde en fonction de pacman
+     * @param p
+     */
+    public void deplacer(Pacman p)
+    {
+        this.deplacerSelonCible(this.getCible(p));
     }
 }
