@@ -118,6 +118,12 @@ public class dessinerFantome {
         switch (this.spriteActuel) {
         case 0:
             switch (this.fantome.getStatut()) {
+            case DEBUTPARTIE:
+                g2d.drawImage(
+                        this.data.getFantomesSprites(this.fantome.getCouleur(), this.fantome.getDirectionCourante())[0],
+                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
+                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                break;
             case CHASSEUR:
                 g2d.drawImage(
                         this.data.getFantomesSprites(this.fantome.getCouleur(), this.fantome.getDirectionCourante())[0],
@@ -149,6 +155,12 @@ public class dessinerFantome {
 
         case 1:
             switch (this.fantome.getStatut()) {
+            case DEBUTPARTIE:
+                g2d.drawImage(
+                        this.data.getFantomesSprites(this.fantome.getCouleur(), this.fantome.getDirectionCourante())[1],
+                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
+                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                break;
             case CHASSEUR:
                 g2d.drawImage(
                         this.data.getFantomesSprites(this.fantome.getCouleur(), this.fantome.getDirectionCourante())[1],
