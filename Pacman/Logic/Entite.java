@@ -149,8 +149,10 @@ public abstract class Entite implements IEntite {
      * @param posActuelle, tableau d'entiers représentant les coordonnées actuelles
      *                     de l'entité dans la grille
      * @return les coordonnées future de l'entité
-     * @post posVoulue[0] == posActuelle[0]+1 || posVoulue[0] == posActuelle[0]-1 || posVoulue[0] == posActuelle[0]
-     * @post posVoulue[1] == posActuelle[1]+1 || posVoulue[1] == posActuelle[1]-11 || posVoulue[1] == posActuelle[1]
+     * @post posVoulue[0] == posActuelle[0]+1 || posVoulue[0] == posActuelle[0]-1 ||
+     *       posVoulue[0] == posActuelle[0]
+     * @post posVoulue[1] == posActuelle[1]+1 || posVoulue[1] == posActuelle[1]-11
+     *       || posVoulue[1] == posActuelle[1]
      */
     protected int[] calculPosDirection(EDirection direction, int[] posActuelle) {
         int[] posVoulue = { 0, 0 };
@@ -209,24 +211,19 @@ public abstract class Entite implements IEntite {
      * @return booléen qui indique si l'entité est au milieu d'une intersection
      * @pre vitesse > 0
      */
-    protected boolean estMomentChangementDir(double vitesse)
-    {
+    protected boolean estMomentChangementDir(double vitesse) {
         double arrondi = vitesse / Partie.tickParSeconde;
-        if (dirVoulue == EDirection.EST || dirVoulue == EDirection.OUEST)
-        {
+        if (dirVoulue == EDirection.EST || dirVoulue == EDirection.OUEST) {
             // il faut qu'on soit à x = ~.5 ± arrondi pour changer de dir
             double calcul = this.posX - ((int) this.posX);
-            if (calcul <= arrondi || calcul >= 1 - arrondi)
-            {
+            if (calcul <= arrondi || calcul >= 1 - arrondi) {
                 return true;
             }
-        }
-        else // NORD ou SUD
+        } else // NORD ou SUD
         {
             // il faut qu'on soit à y = ~.5 ± arrondi pour changer de dir
             double calcul = this.posY - ((int) this.posY);
-            if (calcul <= arrondi || calcul >= 1 - arrondi)
-            {
+            if (calcul <= arrondi || calcul >= 1 - arrondi) {
                 return true;
             }
         }
@@ -238,40 +235,36 @@ public abstract class Entite implements IEntite {
      * Applique le changement de position après que les directions aient été
      * déterminées
      */
-    protected void effectuerDeplacement()
-    {
+    protected void effectuerDeplacement() {
         double distDeplacement = getVitesse() / Partie.tickParSeconde;
 
-        switch (dirCourante)
-        {
-            case NORD:
-                this.posX = ((int) this.posX) + 0.0;
-                this.posY -= distDeplacement;
-                break;
-            case SUD:
-                this.posX = ((int) this.posX) + 0.0;
-                this.posY += distDeplacement;
-                break;
-            case OUEST:
-                this.posX -= distDeplacement;
-                this.posY = ((int) this.posY) + 0.0;
-                //passage du tunnel
-                if (this.posX < 0 && getPositionI()[1] == 14)
-                {
-                    System.out.println("pouet");
-                    this.posX += 28;
-                }
-                break;
-            case EST:
-                this.posX += distDeplacement;
-                this.posY = ((int) this.posY) + 0.0;
-                //passage du tunnel
-                if (this.posX > 28 && getPositionI()[1] == 14)
-                {
-                    System.out.println("pouet");
-                    this.posX -= 28;
-                }
-                break;
+        switch (dirCourante) {
+        case NORD:
+            this.posX = ((int) this.posX) + 0.0;
+            this.posY -= distDeplacement;
+            break;
+        case SUD:
+            this.posX = ((int) this.posX) + 0.0;
+            this.posY += distDeplacement;
+            break;
+        case OUEST:
+            this.posX -= distDeplacement;
+            this.posY = ((int) this.posY) + 0.0;
+            // passage du tunnel
+            if (this.posX < 0 && getPositionI()[1] == 14) {
+                System.out.println("pouet");
+                this.posX += 28;
+            }
+            break;
+        case EST:
+            this.posX += distDeplacement;
+            this.posY = ((int) this.posY) + 0.0;
+            // passage du tunnel
+            if (this.posX > 28 && getPositionI()[1] == 14) {
+                System.out.println("pouet");
+                this.posX -= 28;
+            }
+            break;
         }
     }
 

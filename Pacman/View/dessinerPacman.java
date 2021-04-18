@@ -12,8 +12,8 @@ import Pacman.Logic.Pacman;
  */
 public class dessinerPacman {
     private static int spriteActuel = 0;
-    private static int offsetX = 0;
-    private static int offsetY = 0;
+    private static int offsetX = -4;
+    private static int offsetY = 24;
     private static int waitSprite = 0;
     private static int spriteMort = 0;
     private static double[] anciennePos = { 0.0, 0.0 };
@@ -27,8 +27,6 @@ public class dessinerPacman {
      */
     public static void dessiner(Pacman pacman, Graphics2D g2d, DataForView data) {
         dessinerSpritePacman(pacman, g2d, data);
-
-        updateOffsets(pacman);
 
         // Si pacman est en mouvement alors on change de sprite.
         if (estMouvement(pacman)) {
@@ -70,60 +68,6 @@ public class dessinerPacman {
     }
 
     /**
-     * Met à jour le décalage X et Y des images.
-     * 
-     * @param pacman Pacman que l'on va dessiner.
-     */
-    private static void updateOffsets(Pacman pacman) {
-        double[] position = pacman.getPosition();
-        double positionX = position[0] - (int) position[0];
-        double positionY = position[1] - (int) position[1];
-
-        offsetX = (int) (positionX * 100 / 11) - 4;
-        offsetY = (int) (positionY * 100 / 11) + 24;
-
-        // if (positionX >= 0.00 && positionX < 0.11) {
-        // offsetX = 0;
-        // } else if (positionX >= 0.11 && positionX < 0.22) {
-        // offsetX = 1;
-        // } else if (positionX >= 0.22 && positionX < 0.33) {
-        // offsetX = 2;
-        // } else if (positionX >= 0.33 && positionX < 0.44) {
-        // offsetX = 3;
-        // } else if (positionX >= 0.44 && positionX < 0.55) {
-        // offsetX = 4;
-        // } else if (positionX >= 0.55 && positionX < 0.66) {
-        // offsetX = 5;
-        // } else if (positionX >= 0.66 && positionX < 0.77) {
-        // offsetX = 6;
-        // } else if (positionX >= 0.77 && positionX < 0.88) {
-        // offsetX = 7;
-        // } else if (positionX >= 0.88 && positionX < 1.00) {
-        // offsetX = 8;
-        // }
-
-        // if (positionY >= 0.0 && positionY < 0.11) {
-        // offsetY = 24;
-        // } else if (positionY >= 0.11 && positionY < 0.22) {
-        // offsetY = 25;
-        // } else if (positionY >= 0.22 && positionY < 0.33) {
-        // offsetY = 26;
-        // } else if (positionY >= 0.33 && positionY < 0.44) {
-        // offsetY = 27;
-        // } else if (positionY >= 0.44 && positionY < 0.55) {
-        // offsetY = 28;
-        // } else if (positionY >= 0.55 && positionY < 0.66) {
-        // offsetY = 29;
-        // } else if (positionY >= 0.66 && positionY < 0.77) {
-        // offsetY = 30;
-        // } else if (positionY >= 0.77 && positionY < 0.88) {
-        // offsetY = 31;
-        // } else if (positionY >= 0.88 && positionY < 1.0) {
-        // offsetY = 24;
-        // }
-    }
-
-    /**
      * Dessine Pacman selon sa direction et son sprite actuel.
      * 
      * @param pacman Pacman que l'on va dessiner.
@@ -133,19 +77,13 @@ public class dessinerPacman {
     private static void dessinerSpritePacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         switch (spriteActuel) {
         case 0:
-            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0], (int) (pacman.getposX() * 8) - 4,
-                    (int) (pacman.getposY() * 8) + 24, null);
-            // g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0],
-            // (((int) pacman.getposX()) * 8) + offsetX, ((int) pacman.getposY() * 8) +
-            // offsetY, null);
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[0],
+                    (int) (pacman.getposX() * 8) + offsetX, (int) (pacman.getposY() * 8) + offsetY, null);
             break;
 
         case 1:
-            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1], (int) (pacman.getposX() * 8) - 4,
-                    (int) (pacman.getposY() * 8) + 24, null);
-            // g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1],
-            // (((int) pacman.getposX()) * 8 + offsetX), ((int) pacman.getposY() * 8) +
-            // offsetY, null);
+            g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[1],
+                    (int) (pacman.getposX() * 8) + offsetX, (int) (pacman.getposY() * 8) + offsetY, null);
             break;
         }
     }
@@ -170,8 +108,8 @@ public class dessinerPacman {
      */
     public static void dessinerMortPacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         if (spriteMort < 11) {
-            g2d.drawImage(data.getMortPacmanSprites()[spriteMort], (((int) pacman.getposX()) * 8) + offsetX,
-                    ((int) pacman.getposY() * 8) + offsetY, null);
+            g2d.drawImage(data.getMortPacmanSprites()[spriteMort], (int) (pacman.getposX() * 8) + offsetX,
+                    (int) (pacman.getposY() * 8) + offsetY, null);
         }
         if (waitSprite == 5) {
             // Mise à jour du sprite actuel à selectionner.

@@ -43,7 +43,6 @@ public class dessinerFantome {
         this.fantome = fantome;
         this.partie = partie;
         dessinerSpriteFantome(g2d);
-        // updateOffsets();
 
         if (waitSprite == 8) {
             updateSprite();
@@ -65,18 +64,6 @@ public class dessinerFantome {
     }
 
     /**
-     * Met à jour le décalage X et Y des images.
-     */
-    private void updateOffsets() {
-        double[] position = this.fantome.getPosition();
-        double positionX = position[0] - (int) position[0];
-        double positionY = position[1] - (int) position[1];
-
-        offsetX = (int) ((positionX * 100.00 / 10.00)) + 4;
-        offsetY = (int) (positionY * 100.00 / 10.00) + 24;
-    }
-
-    /**
      * Dessine le Fantome voulu selon son état.
      * 
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
@@ -88,31 +75,31 @@ public class dessinerFantome {
             case DEBUTPARTIE:
                 g2d.drawImage(
                         this.data.getFantomesSprites(this.fantome.getCouleur(), this.fantome.getDirectionCourante())[0],
-                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                        (int) (this.fantome.getposX() * 8) + this.offsetX,
+                        (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 break;
             case CHASSEUR:
                 g2d.drawImage(
                         this.data.getFantomesSprites(this.fantome.getCouleur(), this.fantome.getDirectionCourante())[0],
-                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                        (int) (this.fantome.getposX() * 8) + this.offsetX,
+                        (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 break;
             case VULNERABLE:
                 if (this.partie.getCompteurVulnerable() >= 375) {
                     g2d.drawImage(this.data.getVulnerableFantomesSprites()[3],
-                            ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                            ((int) fantome.getposY()) * 8 + this.offsetY, null);
+                            (int) (this.fantome.getposX() * 8) + this.offsetX,
+                            (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 } else {
                     g2d.drawImage(this.data.getVulnerableFantomesSprites()[0],
-                            ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                            ((int) fantome.getposY()) * 8 + this.offsetY, null);
+                            (int) (this.fantome.getposX() * 8) + this.offsetX,
+                            (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 }
                 break;
 
             case MORT:
                 g2d.drawImage(this.data.getMortFantomeSprites(this.fantome.getDirectionCourante()),
-                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                        (int) (this.fantome.getposX() * 8) + this.offsetX,
+                        (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 break;
 
             default:
@@ -125,26 +112,26 @@ public class dessinerFantome {
             case DEBUTPARTIE:
                 g2d.drawImage(
                         this.data.getFantomesSprites(this.fantome.getCouleur(), this.fantome.getDirectionCourante())[1],
-                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                        (int) (this.fantome.getposX() * 8) + this.offsetX,
+                        (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 break;
             case CHASSEUR:
                 g2d.drawImage(
                         this.data.getFantomesSprites(this.fantome.getCouleur(), this.fantome.getDirectionCourante())[1],
-                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                        (int) (this.fantome.getposX() * 8) + this.offsetX,
+                        (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 break;
 
             case VULNERABLE:
                 g2d.drawImage(this.data.getVulnerableFantomesSprites()[1],
-                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                        (int) (this.fantome.getposX() * 8) + this.offsetX,
+                        (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 break;
 
             case MORT:
                 g2d.drawImage(this.data.getMortFantomeSprites(this.fantome.getDirectionCourante()),
-                        ((int) this.fantome.getposX()) * 8 + this.offsetX,
-                        ((int) this.fantome.getposY()) * 8 + this.offsetY, null);
+                        (int) (this.fantome.getposX() * 8) + this.offsetX,
+                        (int) (this.fantome.getposY() * 8) + this.offsetY, null);
                 break;
             }
             break;

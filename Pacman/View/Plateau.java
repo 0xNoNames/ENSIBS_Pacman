@@ -262,8 +262,6 @@ public class Plateau extends JPanel {
         // Affiche toutes les gommes.
         desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data, this.partie.getEtatPartie());
 
-        // g2d.drawImage(data.getPacmanSprites(EDirection.OUEST)[0], 8, 32, null);
-
         // Affiche Pacman.
         dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);
 

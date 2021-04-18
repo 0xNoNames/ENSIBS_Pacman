@@ -41,9 +41,7 @@ public class Fenetre extends JFrame {
         this.getRootPane().addComponentListener(new ComponentListener() {
             public void componentResized(ComponentEvent e) {
                 double height = e.getComponent().getBounds().getHeight();
-                // double height = width * 2;
                 plateau.setScale(height / 295.0);
-                // setSize((int) width, (int) height);
             }
 
             @Override
