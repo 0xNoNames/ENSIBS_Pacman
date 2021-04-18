@@ -149,6 +149,13 @@ public class Partie implements IPartie {
 	}
 
 	/**
+	 * Permet de récupérer le nombre de tick pendant lequel les fantomes sont vulnérable
+	 * @return entier
+	 */
+	public int getCompteurVulnerable() {
+		return this.compteurVulnerable;
+	}
+	/**
 	 * Permet d'avancer dans le temps.
 	 */
 	public void tick() {
