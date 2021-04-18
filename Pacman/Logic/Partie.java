@@ -178,6 +178,11 @@ public class Partie implements IPartie {
 	 * Permet d'avancer dans le temps.
 	 */
 	public void tick() {
+		/* Récupération des entités de la grille */
+		Blinky blinky = this.grille.getBlinky();
+		Inky inky = this.grille.getInky();
+		Clyde clyde = this.grille.getClyde();
+		Pinky pinky = this.grille.getPinky();
 		if (mortPacman) {
 			int x = (int) d.getPositionInitialePacman()[0];
 			int y = (int) d.getPositionInitialePacman()[1];
@@ -186,12 +191,21 @@ public class Partie implements IPartie {
 			pac.setDirectionCourante(EDirection.OUEST);
 			pac.setDirectionVoulue(EDirection.OUEST);
 			mortPacman = false;
+			
+			// reset des fantomes
+			blinky.setPosX(d.getPositionInitialeFantome(ECouleur.ROUGE)[0]);
+			blinky.setPosY(d.getPositionInitialeFantome(ECouleur.ROUGE)[1]);
+			blinky.setStatut(EStatutFantome.DEBUTPARTIE);
+			inky.setPosX(d.getPositionInitialeFantome(ECouleur.CYAN)[0]);
+			inky.setPosY(d.getPositionInitialeFantome(ECouleur.CYAN)[1]);
+			inky.setStatut(EStatutFantome.DEBUTPARTIE);
+			clyde.setPosX(d.getPositionInitialeFantome(ECouleur.ORANGE)[0]);
+			clyde.setPosY(d.getPositionInitialeFantome(ECouleur.ORANGE)[1]);
+			clyde.setStatut(EStatutFantome.DEBUTPARTIE);
+			pinky.setPosX(d.getPositionInitialeFantome(ECouleur.ROSE)[0]);
+			pinky.setPosY(d.getPositionInitialeFantome(ECouleur.ROSE)[1]);
+			pinky.setStatut(EStatutFantome.DEBUTPARTIE);
 		}
-		/* Récupération des entités de la grille */
-		Blinky blinky = this.grille.getBlinky();
-		Inky inky = this.grille.getInky();
-		Clyde clyde = this.grille.getClyde();
-		Pinky pinky = this.grille.getPinky();
 		/* Définition de la partie pour chaque entité */
 		pac.setPartie(this);
 		blinky.setPartie(this);

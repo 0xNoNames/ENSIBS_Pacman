@@ -42,7 +42,7 @@ public class Inky extends Fantome {
                 break;
             case DEBUTPARTIE:
                 this.setPosX(11.5);
-                this.setPosY(12);
+                this.setPosY(11.5);
                 this.setStatut(EStatutFantome.CHASSEUR);
                 break;
             case VULNERABLE:

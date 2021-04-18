@@ -268,6 +268,10 @@ public class Fantome extends Entite {
         return Arrays.asList(distances).indexOf(minimum(distances));
     }
 
+    /**
+     * Applique le changement de position après que les directions aient été
+     * déterminées
+     */
     private void effectuerDeplacement()
     {
         double distDeplacement =
