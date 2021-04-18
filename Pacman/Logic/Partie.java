@@ -194,7 +194,7 @@ public class Partie implements IPartie {
 				for (Fantome f : fantomes) {
 					f.setStatut(EStatutFantome.DEBUTPARTIE);
 				}
-			} else if (compteurPartie >= 5 * tickParSeconde) {
+			} else if (compteurPartie >= 3.5 * tickParSeconde) {
 				for (Fantome f : fantomes) {
 					f.setStatut(EStatutFantome.CHASSEUR);
 				}
