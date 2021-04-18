@@ -113,8 +113,7 @@ public class Pacman extends Entite {
 
         /* Test si la direction voulue est possible */
         boolean deplacementVouluePossible =
-            estPositionPossible(posVoulue)
-            && estMomentChangementDir(getVitesse());
+            estPositionPossible(posVoulue);
 
         /* MAJ dirCourante si deplacement voulue possible */
         boolean deplacementCourantPossible = false;

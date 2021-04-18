@@ -47,6 +47,14 @@ public class Clyde extends Fantome {
      */
     public void deplacer(Pacman p)
     {
-        this.deplacerSelonCible(this.getCible(p));
+        if (this.getStatut() != EStatutFantome.DEBUTPARTIE)
+        {
+            this.deplacerSelonCible(this.getCible(p));
+        }
+        else
+        {
+            double[] scatter = {grille.getCases().length / 4 * 3, 0};
+            this.deplacerSelonCible(scatter);
+        }
     }
 }
