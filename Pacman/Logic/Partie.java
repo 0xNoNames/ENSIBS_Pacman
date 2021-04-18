@@ -1,6 +1,7 @@
 package Pacman.Logic;
 
 import Pacman.Data.DataForLogic;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Classe représentant une partie de jeu
@@ -235,8 +236,8 @@ public class Partie implements IPartie {
 				}
 				/* Spawn de fruit */
 				if (compteurGomme == 80 || compteurGomme == 160) {
-					int x = (int) d.getPositionInitialePacman()[0];
-					int y = (int) d.getPositionInitialePacman()[1];
+					int x = (int) d.getPositionFruit()[0];
+					int y = (int) d.getPositionFruit()[1];
 					Jouable j = (Jouable) tab[x][y];
 					Fruit f = d.getFruitNiveau(this.niveau);
 					j.setObjet(f);
@@ -302,10 +303,19 @@ public class Partie implements IPartie {
 	public void pacMeurt() {
 		this.etatPartie = EStatutPartie.EN_PAUSE;
 		pac.meurt();
+		wait(2000);
 		int x = (int) d.getPositionInitialePacman()[0];
 		int y = (int) d.getPositionInitialePacman()[1];
 		pac.setPosX(x);
 		pac.setPosY(y);
 		this.etatPartie = EStatutPartie.EN_COURS;
+	}
+
+	private static void wait(int ms){
+		try {
+			Thread.sleep(ms);
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
 	}
 }
