@@ -43,7 +43,6 @@ public class dessinerATH {
             g2d.drawImage(data.getRGOSprite()[0], 89, 164, null);
         } else if (etat == EStatutPartie.EN_ANIMATION_FIN) {
             g2d.drawImage(data.getRGOSprite()[1], 89, 164, null);
-
         }
     }
 

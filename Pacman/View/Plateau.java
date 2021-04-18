@@ -169,11 +169,16 @@ public class Plateau extends JPanel {
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
     private void enAnimationDebut(Graphics2D g2d) {
+        // Démarre la partie au bout d'un petite moment.
         if (this.tickADebut == 0) {
             this.partie.setEtatPartie(EStatutPartie.EN_COURS);
         }
+
         // Affiche tous les éléments.
         dessinerATH.dessiner(partie, g2d, data, this.partie.getEtatPartie());
+
+        // Affiche les gommes.
+        desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data, this.partie.getEtatPartie());
 
         // Affiche Pacman tout rond.
         dessinerPacman.dessinerPacmanRond(partie.getGrille().getPacman(), g2d, data);
@@ -202,7 +207,7 @@ public class Plateau extends JPanel {
      */
     private void enJeu(Graphics2D g2d) {
         // Affiche toutes les gommes.
-        desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data);
+        desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data, this.partie.getEtatPartie());
 
         // Affiche Pacman en rond au début.
 
