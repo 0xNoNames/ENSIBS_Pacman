@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Classe représentant l'entité Fantome
  * 
- * @author François JULLION
+ * @author François JULLION & Louis-Baptiste SOBOLEWSKI
  */
 public class Fantome extends Entite {
 
@@ -91,116 +91,6 @@ public class Fantome extends Entite {
         this.posY = Partie.d.getPositionInitialePacman()[1];
         this.statut = EStatutFantome.CHASSEUR;
     }
-
-    /**
-     * Permet de définir la direction voulue afin de se déplacer vers Pacman
-     * 
-     * @param p, l'entité pacman
-     * @return la direction voulue
-     */
-    protected EDirection directionVoulueVersPacman(Pacman p) {
-        double diffX = p.getposX() - this.getposX();
-        double diffY = p.getposY() - this.getposY();
-        if (diffX != 0 && diffY == 0) {
-            if (diffX > 0) {
-                return EDirection.EST;
-            } else {
-                return EDirection.OUEST;
-            }
-        } else if (diffY != 0 && diffX == 0) {
-            if (diffY > 0) {
-                return EDirection.SUD;
-            } else {
-                return EDirection.NORD;
-            }
-        } else if (diffX != 0 && diffY != 0) {
-            if (diffY > diffX) {
-                if (diffY > 0) {
-                    return EDirection.SUD;
-                } else {
-                    return EDirection.NORD;
-                }
-            } else {
-                if (diffX > 0) {
-                    return EDirection.EST;
-                } else {
-                    return EDirection.OUEST;
-                }
-            }
-        } else {
-            EDirection[] tab = { EDirection.EST, EDirection.NORD, EDirection.SUD, EDirection.OUEST };
-            int indice = (int) (Math.random() * tab.length);
-            return tab[indice];
-        }
-    }
-
-    /**
-     * Permet de se déplacer vers Pacman
-     * 
-     * @param p, l'entité Pacman
-     */
-    protected void deplacerVersPacman(Pacman p) {
-        /* Calcul de la direction Voulue */
-        int[] posActuelle = getPositionI();
-        dirVoulue = directionVoulueVersPacman(p);
-        int[] posVoulue = calculPosDirection(dirVoulue, posActuelle);
-
-        /* Test si la direction voulue est possible */
-        boolean deplacementVouluPossible = estPositionPossible(posVoulue);
-
-        /* MAJ dirCourante si deplacement voulue possible */
-        boolean deplacementCourantPossible = false;
-        if (deplacementVouluPossible) {
-            dirCourante = dirVoulue;
-        } else {
-            /* Sinon on vérifie si la direction courante est possible */
-            posVoulue = calculPosDirection(dirCourante, posActuelle);
-            deplacementCourantPossible = estPositionPossible(posVoulue);
-        }
-
-        /* Si une direction est possible on déplace */
-        if (deplacementVouluPossible) {
-            switch (dirVoulue) {
-            case EST:
-                this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-                        * (1.0 / Partie.tickParSeconde);
-                break;
-            case OUEST:
-                this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-                        * (1.0 / Partie.tickParSeconde);
-                break;
-            case SUD:
-                this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-                        * (1.0 / Partie.tickParSeconde);
-                break;
-            case NORD:
-                this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-                        * (1.0 / Partie.tickParSeconde);
-                break;
-            }
-        } else if (deplacementCourantPossible) {
-            switch (dirCourante) {
-            case EST:
-                this.posX += Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-                        * (1.0 / Partie.tickParSeconde);
-                break;
-            case OUEST:
-                this.posX -= Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-                        * (1.0 / Partie.tickParSeconde);
-                break;
-            case SUD:
-                this.posY += Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-                        * (1.0 / Partie.tickParSeconde);
-                break;
-            case NORD:
-                this.posY -= Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
-                        * (1.0 / Partie.tickParSeconde);
-                break;
-            }
-        }
-    }
-
-
 
     /**
      * Renvoie la direction opposée à celle passée en argument
