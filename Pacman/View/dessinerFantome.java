@@ -44,6 +44,7 @@ public class dessinerFantome {
         this.partie = partie;
         dessinerSpriteFantome(g2d);
         // updateOffsets();
+
         if (waitSprite == 8) {
             updateSprite();
             waitSprite = 0;
@@ -68,45 +69,11 @@ public class dessinerFantome {
      */
     private void updateOffsets() {
         double[] position = this.fantome.getPosition();
-        if (position[0] >= 0 && position[0] < 0.11) {
-            this.offsetX = 0;
-        } else if (position[0] >= 0.11 && position[0] < 0.22) {
-            this.offsetX = 1;
-        } else if (position[0] >= 0.22 && position[0] < 0.33) {
-            this.offsetX = 2;
-        } else if (position[0] >= 0.33 && position[0] < 0.44) {
-            this.offsetX = 3;
-        } else if (position[0] >= 0.44 && position[0] < 0.55) {
-            this.offsetX = 4;
-        } else if (position[0] >= 0.55 && position[0] < 0.66) {
-            this.offsetX = 5;
-        } else if (position[0] >= 0.66 && position[0] < 0.77) {
-            this.offsetX = 6;
-        } else if (position[0] >= 0.77 && position[0] < 0.88) {
-            this.offsetX = 7;
-        } else if (position[0] >= 0.88 && position[0] < 0) {
-            this.offsetX = 8;
-        }
+        double positionX = position[0] - (int) position[0];
+        double positionY = position[1] - (int) position[1];
 
-        if (position[1] >= 0 && position[1] < 0.11) {
-            this.offsetY = 24;
-        } else if (position[1] >= 0.11 && position[1] < 0.22) {
-            this.offsetY = 25;
-        } else if (position[1] >= 0.22 && position[1] < 0.33) {
-            this.offsetY = 26;
-        } else if (position[1] >= 0.33 && position[1] < 0.44) {
-            this.offsetY = 27;
-        } else if (position[1] >= 0.44 && position[1] < 0.55) {
-            this.offsetY = 28;
-        } else if (position[1] >= 0.55 && position[1] < 0.66) {
-            this.offsetY = 29;
-        } else if (position[1] >= 0.66 && position[1] < 0.77) {
-            this.offsetY = 30;
-        } else if (position[1] >= 0.77 && position[1] < 0.88) {
-            this.offsetY = 31;
-        } else if (position[1] >= 0.88 && position[1] < 0) {
-            this.offsetY = 32;
-        }
+        offsetX = (int) ((positionX * 100.00 / 10.00)) + 4;
+        offsetY = (int) (positionY * 100.00 / 10.00) + 24;
     }
 
     /**

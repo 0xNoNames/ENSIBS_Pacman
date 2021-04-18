@@ -29,7 +29,7 @@ public class Plateau extends JPanel {
     private int tickADebut = 80;
     private int tickAFin = 200;
     private int tickAGameOver = 300;
-    private int tickAFanMort = 15;
+    private int tickAFanMort = 20;
     private int tickAPacMort = 180;
 
     /**
@@ -82,8 +82,6 @@ public class Plateau extends JPanel {
      * @param g objet Graphics permettant de mettre à jour les sprites.
      */
     private void dessiner(Graphics g) {
-        // Toolkit.getDefaultToolkit().sync();
-
         Graphics2D g2d = (Graphics2D) g;
 
         // Donne l'échelle définie par la fenêtre.
@@ -98,8 +96,8 @@ public class Plateau extends JPanel {
             enAnimationPacMort(g2d);
             break;
         case EN_ANIMATION_FANMORT:
-            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
-            // enAnimationFanMort(g2d);
+            // this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            enAnimationFanMort(g2d);
             break;
         case EN_ANIMATION_DEBUT:
             // this.partie.setEtatPartie(EStatutPartie.EN_COURS);
@@ -187,9 +185,12 @@ public class Plateau extends JPanel {
     private void enAnimationFanMort(Graphics2D g2d) {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickAFanMort == 0) {
-            this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
-            this.tickAFanMort = 15;
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            this.tickAFanMort = 20;
         }
+
+        // Affiche les gommes.
+        desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data, this.partie.getEtatPartie());
 
         // Affiche les Fantômes.
         Blinky.dessiner(partie.getGrille().getBlinky(), partie, g2d);
