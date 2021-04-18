@@ -182,13 +182,25 @@ public class dessinerPacman {
     }
 
     /**
+     * Dessine Pacman tout rond pour l'animation de début de partie.
+     * 
+     * @param pacman Pacman que l'on va dessiner.
+     * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
+     * @param data   permet de récuperer les sprites depuis Data.
+     */
+    public static void dessinerPacmanRond(Pacman pacman, Graphics2D g2d, DataForView data) {
+        g2d.drawImage(data.getPacmanSprites(pacman.getDirectionCourante())[2], (((int) pacman.getposX()) * 8) + 1,
+                ((int) pacman.getposY() * 8) + offsetY, null);
+    }
+
+    /**
      * Dessine l'animation de mort de Pacman.
      * 
      * @param pacman Pacman que l'on va dessiner.
      * @param g2d    objet Graphics2D permettant de mettre à jour les sprites.
      * @param data   permet de récuperer les sprites depuis Data.
      */
-    private void dessinerMortPacman(Pacman pacman, Graphics2D g2d, DataForView data) {
+    public void dessinerMortPacman(Pacman pacman, Graphics2D g2d, DataForView data) {
         // 11 sprites + 1 bouche fermée.
     }
 }

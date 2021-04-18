@@ -164,6 +164,17 @@ public class Plateau extends JPanel {
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
     private void enAnimationDebut(Graphics2D g2d) {
+        // Affiche tous les éléments.
+        dessinerATH.dessiner(partie, g2d, data, this.partie.getEtatPartie());
+
+        // Affiche Pacman tout rond.
+        dessinerPacman.dessinerPacmanRond(partie.getGrille().getPacman(), g2d, data);
+
+        // Affiche les Fantômes.
+        Blinky.dessiner(partie.getGrille().getBlinky(), partie, g2d);
+        Clyde.dessiner(partie.getGrille().getClyde(), partie, g2d);
+        Inky.dessiner(partie.getGrille().getInky(), partie, g2d);
+        Pinky.dessiner(partie.getGrille().getPinky(), partie, g2d);
     }
 
     /**
