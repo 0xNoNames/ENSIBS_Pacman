@@ -83,12 +83,7 @@ public class Fantome extends Entite {
      */
     public void meurt() {
         this.statut = EStatutFantome.MORT;
-        int cmp = 0;
-        while (cmp < 180) {
-            cmp++;
-        }
-        this.posX = Partie.d.getPositionInitialePacman()[0];
-        this.posY = Partie.d.getPositionInitialePacman()[1];
+        demiTour();
         this.statut = EStatutFantome.CHASSEUR;
     }
 

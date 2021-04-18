@@ -2,6 +2,7 @@ package Pacman.View;
 
 import Pacman.Data.DataForView;
 import Pacman.Logic.Case;
+import Pacman.Logic.EStatutPartie;
 import Pacman.Logic.Jouable;
 
 import java.awt.Graphics2D;
@@ -24,12 +25,12 @@ public class desssinerGrille {
      * @param g2d    Graphics2D permettant de mettre à jour les sprites
      * @param data   permet de récuperer les sprites depuis Data.
      */
-    public static void dessiner(Case[][] grille, Graphics2D g2d, DataForView data) {
+    public static void dessiner(Case[][] grille, Graphics2D g2d, DataForView data, EStatutPartie etat) {
 
         // Permet de ne pas avoir trop de mise à jour des sprites.
         if (waitSprite == 10) {
             // Mise à jour du sprite actuel à selectionner.
-            updateGrosseGomme();
+            updateGrosseGomme(etat);
             waitSprite = 0;
         } else {
             waitSprite++;
@@ -53,7 +54,7 @@ public class desssinerGrille {
                             g2d.drawImage(data.getFruitSprites()[0], (i * 8), (8 * j) + 24, null);
                             break;
                         case "Fraise":
-                            g2d.drawImage(data.getFruitSprites()[1], (i * 8) , (8 * j) + 24, null);
+                            g2d.drawImage(data.getFruitSprites()[1], (i * 8), (8 * j) + 24, null);
                             break;
                         case "Orange":
                             g2d.drawImage(data.getFruitSprites()[2], (i * 8), (8 * j) + 24, null);
@@ -90,7 +91,8 @@ public class desssinerGrille {
     /**
      * Affiche ou non les grosses gommes pour les faire clignoter.
      */
-    private static void updateGrosseGomme() {
-        afficherGG = !afficherGG;
+    private static void updateGrosseGomme(EStatutPartie etat) {
+        if (etat != EStatutPartie.EN_ANIMATION_DEBUT)
+            afficherGG = !afficherGG;
     }
 }

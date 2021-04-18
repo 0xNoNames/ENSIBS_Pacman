@@ -44,7 +44,7 @@ public class entreeClavier extends KeyAdapter {
         if (touche == KeyEvent.VK_SPACE) {
             if (this.partie.getEtatPartie() == EStatutPartie.EN_COURS) {
                 this.partie.setEtatPartie(EStatutPartie.EN_PAUSE);
-            } else {
+            } else if (this.partie.getEtatPartie() == EStatutPartie.EN_PAUSE) {
                 this.partie.setEtatPartie(EStatutPartie.EN_COURS);
             }
         }

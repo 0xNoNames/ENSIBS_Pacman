@@ -38,9 +38,11 @@ public class dessinerATH {
      * @param g2d
      * @param data
      */
-    private static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data, EStatutPartie etat) {
-        if (etat == EStatutPartie.EN_PAUSE) {
+    public static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data, EStatutPartie etat) {
+        if (etat == EStatutPartie.EN_ANIMATION_DEBUT) {
             g2d.drawImage(data.getRGOSprite()[0], 89, 164, null);
+        } else if (etat == EStatutPartie.EN_ANIMATION_FIN) {
+            g2d.drawImage(data.getRGOSprite()[1], 89, 164, null);
         }
     }
 
@@ -87,129 +89,129 @@ public class dessinerATH {
             break;
         case 2:
             g2d.drawImage(data.getFruitSprites()[0], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[1], 177, 278, null);
+            g2d.drawImage(data.getFruitSprites()[1], 180, 278, null);
             break;
         case 3:
             g2d.drawImage(data.getFruitSprites()[0], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[1], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 165, 278, null);
+            g2d.drawImage(data.getFruitSprites()[1], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 168, 278, null);
             break;
         case 4:
             g2d.drawImage(data.getFruitSprites()[0], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[1], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 153, 278, null);
+            g2d.drawImage(data.getFruitSprites()[1], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 156, 278, null);
             break;
         case 5:
             g2d.drawImage(data.getFruitSprites()[0], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[1], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 141, 278, null);
+            g2d.drawImage(data.getFruitSprites()[1], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 144, 278, null);
             break;
         case 6:
             g2d.drawImage(data.getFruitSprites()[0], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[1], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[1], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 132, 278, null);
             break;
         case 7:
             g2d.drawImage(data.getFruitSprites()[1], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 132, 278, null);
             break;
         case 8:
             g2d.drawImage(data.getFruitSprites()[2], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[2], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[2], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 132, 278, null);
             break;
         case 9:
             g2d.drawImage(data.getFruitSprites()[2], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 132, 278, null);
             break;
         case 10:
             g2d.drawImage(data.getFruitSprites()[3], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[3], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[3], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 132, 278, null);
             break;
         case 11:
             g2d.drawImage(data.getFruitSprites()[3], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 132, 278, null);
             break;
         case 12:
             g2d.drawImage(data.getFruitSprites()[4], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[4], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[4], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 132, 278, null);
             break;
         case 13:
             g2d.drawImage(data.getFruitSprites()[4], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 132, 278, null);
             break;
         case 14:
             g2d.drawImage(data.getFruitSprites()[5], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[5], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[5], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 132, 278, null);
             break;
         case 15:
             g2d.drawImage(data.getFruitSprites()[5], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 132, 278, null);
             break;
         case 16:
             g2d.drawImage(data.getFruitSprites()[6], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[6], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[6], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 132, 278, null);
             break;
         case 17:
             g2d.drawImage(data.getFruitSprites()[6], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 132, 278, null);
             break;
         default:
             g2d.drawImage(data.getFruitSprites()[7], 192, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 177, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 165, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 153, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 141, 278, null);
-            g2d.drawImage(data.getFruitSprites()[7], 129, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 180, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 168, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 156, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 144, 278, null);
+            g2d.drawImage(data.getFruitSprites()[7], 132, 278, null);
             break;
         }
     }

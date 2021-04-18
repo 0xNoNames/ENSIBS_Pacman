@@ -1,7 +1,6 @@
 package Pacman.Logic;
 
 import Pacman.Data.DataForLogic;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Classe représentant une partie de jeu
@@ -86,7 +85,7 @@ public class Partie implements IPartie {
 		this.score = 0;
 		this.niveau = 0;
 		this.compteurPartie = 0;
-		this.etatPartie = EStatutPartie.EN_PAUSE;
+		this.etatPartie = EStatutPartie.EN_ANIMATION_DEBUT;
 		this.fantomeVulnerable = false;
 		this.compteurVulnerable = 0;
 		this.tickSpawnFruit = 600;
