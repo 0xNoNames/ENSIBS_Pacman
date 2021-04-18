@@ -20,7 +20,6 @@ public class Plateau extends JPanel {
     private static DataForView data;
     private double scale;
     private Partie partie;
-    private int mortTick;
     private entreeClavier clavier;
     private dessinerFantome Blinky;
     private dessinerFantome Clyde;
@@ -28,7 +27,7 @@ public class Plateau extends JPanel {
     private dessinerFantome Pinky;
     private final int tick = 16;
     private int tickADebut = 80;
-    private int tickAFin = 300;
+    private int tickAFin = 200;
     private int tickAFanMort = 15;
     private int tickAPacMort = 180;
 
@@ -108,8 +107,7 @@ public class Plateau extends JPanel {
             enAnimationDebut(g2d);
             break;
         case EN_ANIMATION_FIN:
-            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
-            // enAnimationFin(g2d);
+            enAnimationFin(g2d);
             break;
         case GAME_OVER:
             this.partie.setEtatPartie(EStatutPartie.EN_COURS);
@@ -234,8 +232,9 @@ public class Plateau extends JPanel {
     private void enAnimationFin(Graphics2D g2d) {
         if (this.tickAFin == 0) {
             this.partie.setEtatPartie(EStatutPartie.EN_ANIMATION_DEBUT);
-            this.tickAFin = 80;
+            this.tickAFin = 200;
         }
+        this.tickAFin--;
     }
 
     /**
