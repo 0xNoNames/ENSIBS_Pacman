@@ -29,6 +29,7 @@ public class Jouable extends Case implements ICase{
     /**
      * Permet de définir l'objet présent dans la case Jouable
      * @param o, un objet
+     * @pre o != null
      */
     public void setObjet(Objet o) {
         this.objet = o;

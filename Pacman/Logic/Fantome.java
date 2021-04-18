@@ -62,10 +62,20 @@ public class Fantome extends Entite {
         this.statut = s;
     }
 
+    /**
+     * Permet de définir la direction courante du fantome
+     * 
+     * @param dircour, une enumeration de direction
+     */
     public void setDirectionCourante(EDirection dircour) {
         this.dirCourante = dircour;
     }
 
+    /**
+     * Permet de récupérer la direction courante du fantome
+     * 
+     * @return la direction courante sous forme d'énumeration
+     */
     public EDirection getDirectionCourante() {
         return this.dirCourante;
     }
@@ -79,13 +89,6 @@ public class Fantome extends Entite {
         return this.couleur;
     }
 
-    public static void wait(int ms){
-        try {
-            Thread.sleep(ms);
-        } catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
     /**
      * Permet de faire mourir le fantome et de le ramener à sa position initiale
      */
@@ -135,7 +138,6 @@ public class Fantome extends Entite {
                 indexN++;
             }
         }
-
         return nTableau;
     }
 
