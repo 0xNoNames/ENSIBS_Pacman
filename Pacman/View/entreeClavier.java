@@ -30,15 +30,6 @@ public class entreeClavier extends KeyAdapter {
     }
 
     /**
-     * Getter de l'état de la partie (si l'utilisateur a mis pause ou non).
-     * 
-     * @return vrai si la partie est en cours, faux sinon.
-     */
-    public boolean getinGame() {
-        return this.inGame;
-    }
-
-    /**
      * Redéfinition nécéssaire de la méthode keyPressed de KeyAdapter. Elle permet
      * de gérer la touche actuellement appuyée.
      * 

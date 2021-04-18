@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import Pacman.Data.DataForView;
 import Pacman.Logic.EStatutFantome;
+import Pacman.Logic.EStatutPartie;
 import Pacman.Logic.Partie;
 
 /**
@@ -41,7 +42,7 @@ public class Plateau extends JPanel {
         this.scale = scale;
         this.partie = partie;
         this.mortTick = 1;
-        this.clavier = new entreeClavier(partie.getGrille());
+        this.clavier = new entreeClavier(partie);
         this.Blinky = new dessinerFantome(partie.getGrille().getBlinky(), partie, Plateau.data);
         this.Clyde = new dessinerFantome(partie.getGrille().getClyde(), partie, Plateau.data);
         this.Inky = new dessinerFantome(partie.getGrille().getInky(), partie, Plateau.data);
@@ -86,11 +87,11 @@ public class Plateau extends JPanel {
         g2d.scale(this.scale, this.scale);
 
         // Affiche le labyrinthe, le score, le niveau actuel et les vies.
-        dessinerATH.dessiner(partie, g2d, data, this.clavier.getinGame());
+        dessinerATH.dessiner(partie, g2d, data, this.partie.getEtatPartie());
 
         // Lorsque le joueur appuie sur la touche de pause, la partie se met en pause et
         // vice-versa
-        if (this.clavier.getinGame()) {
+        if (this.partie.getEtatPartie() == EStatutPartie.EN_COURS) {
             enJeu(g2d);
         } else {
             enPause(g2d);

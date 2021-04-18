@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import Pacman.Data.DataForView;
 import Pacman.Logic.EDirection;
+import Pacman.Logic.EStatutPartie;
 import Pacman.Logic.Partie;
 
 /**
@@ -16,10 +17,10 @@ import Pacman.Logic.Partie;
 public class dessinerATH {
 
     // Le score, les vies ainsi que le GAME OVER ou READY
-    public static void dessiner(Partie partie, Graphics2D g2d, DataForView data, Boolean inGame) {
+    public static void dessiner(Partie partie, Graphics2D g2d, DataForView data, EStatutPartie etat) {
         dessinerMurs(g2d, data);
         dessinerVies(partie, g2d, data);
-        dessinerEtatPartie(partie, g2d, data, inGame);
+        dessinerEtatPartie(partie, g2d, data, etat);
         dessinerNiveau(partie, g2d, data);
         dessinerScore(partie, g2d, data);
     }
@@ -37,8 +38,8 @@ public class dessinerATH {
      * @param g2d
      * @param data
      */
-    private static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data, Boolean inGame) {
-        if (!inGame) {
+    private static void dessinerEtatPartie(Partie partie, Graphics2D g2d, DataForView data, EStatutPartie etat) {
+        if (etat == EStatutPartie.EN_PAUSE) {
             g2d.drawImage(data.getRGOSprite()[0], 89, 164, null);
         }
     }
