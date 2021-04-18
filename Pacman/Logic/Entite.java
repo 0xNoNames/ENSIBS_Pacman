@@ -258,7 +258,6 @@ public abstract class Entite implements IEntite {
                 //passage du tunnel
                 if (this.posX < 0 && getPositionI()[1] == 14)
                 {
-                    System.out.println("pouet");
                     this.posX += 28;
                 }
                 break;
@@ -268,7 +267,6 @@ public abstract class Entite implements IEntite {
                 //passage du tunnel
                 if (this.posX > 28 && getPositionI()[1] == 14)
                 {
-                    System.out.println("pouet");
                     this.posX -= 28;
                 }
                 break;
