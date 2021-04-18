@@ -39,6 +39,15 @@ public class Pacman extends Entite {
         return this.vies;
     }
 
+      /**
+     * Permet de définir le nombre de vie de Pacman
+     * 
+     * @return un entier représentant le nombre de vie de Pacman
+     */
+    public void setVies(int vies) {
+        this.vies = vies;
+    }
+
     /**
      * Permet de récupérer le dernier tick durant lequel pacman a mangé un fantome
      * 

@@ -301,6 +301,8 @@ public class Partie implements IPartie {
 			compteurPartie++;
 		} else {
 			this.etatPartie = EStatutPartie.EN_ANIMATION_GAME_OVER;
+			this.niveau = 3;
+			pac = 3;
 		}
 	}
 
