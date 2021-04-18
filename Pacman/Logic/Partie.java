@@ -323,6 +323,8 @@ public class Partie implements IPartie {
 		pac.setPosX(x);
 		pac.setPosY(y);
 		pac.setDirectionCourante(EDirection.OUEST);
+		pac.setDirectionVoulue(EDirection.OUEST);
+
 	}
 
 }
