@@ -28,6 +28,7 @@ public class Plateau extends JPanel {
     private final int tick = 16;
     private int tickADebut = 80;
     private int tickAFin = 200;
+    private int tickAGameOver = 300;
     private int tickAFanMort = 15;
     private int tickAPacMort = 180;
 
@@ -197,10 +198,23 @@ public class Plateau extends JPanel {
     }
 
     /**
-     * Affiche l'animation de début du niveau.
+     * Affiche l'animation de fin de partie.
      * 
      * @param g2d objet Graphics2D permettant de mettre à jour les sprites.
      */
+    private void enAnimationGameOver(Graphics2D g2d) {
+        // Démarre la partie au bout d'un petite moment.
+        if (this.tickAGameOver == 0) {
+            this.partie.setEtatPartie(EStatutPartie.EN_COURS);
+            this.tickAGameOver = 300;
+        }
+
+        // Affiche les gommes.
+        desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data, this.partie.getEtatPartie());
+
+        this.tickAGameOver--;
+    }
+
     private void enAnimationDebut(Graphics2D g2d) {
         // Démarre la partie au bout d'un petite moment.
         if (this.tickADebut == 0) {
