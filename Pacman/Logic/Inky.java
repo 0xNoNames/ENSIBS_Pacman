@@ -37,14 +37,25 @@ public class Inky extends Fantome {
      * @param p, l'entité Pacman
      */
     public void deplacer(Pacman p) {
-        if (this.getStatut() != EStatutFantome.DEBUTPARTIE)
+        switch (this.getStatut())
         {
-            this.deplacerSelonCible(getCible(p, this.grille.getBlinky()));
-        }
-        else
-        {
-            double[] scatter = {grille.getCases().length / 4, 0};
-            this.deplacerSelonCible(scatter);
+            case CHASSEUR:
+                this.deplacerSelonCible(getCible(p, this.grille.getBlinky()));
+                break;
+            case DEBUTPARTIE:
+                this.setPosX(11.5);
+                this.setPosY(12);
+                this.setStatut(EStatutFantome.CHASSEUR);
+                break;
+            case VULNERABLE:
+                this.deplacerAleatoire();
+                break;
+            case MORT:
+                if (deplacementMort())
+                {
+                    setStatut(EStatutFantome.CHASSEUR);
+                }
+                break;
         }
     }
 }
