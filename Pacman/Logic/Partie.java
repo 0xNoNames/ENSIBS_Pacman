@@ -142,6 +142,15 @@ public class Partie implements IPartie {
 	}
 
 	/**
+     * Permet de fixer l'état de la partie.
+	 * 
+     * @param etat l'état de la partie voulue
+     */
+    public void setEtatPartie(EStatutPartie etat) {
+        this.etatPartie = etat;
+    }
+
+	/**
 	 * Permet de récupérer la grille actuelle.
 	 *
 	 * @return retourne une matrice de Case.
@@ -181,8 +190,6 @@ public class Partie implements IPartie {
 			Case[][] tab = this.grille.getCases();
 			/* Définition d'un tableau représentant l'ensemble des fantomes */
 			Fantome[] fantomes = { inky, clyde, pinky, blinky };
-			// Compteur de gomme mangé
-			// compteur de tick pour le spawn d'un fruit
 			/* Début d'un tick de jeu */
 			if (this.niveau <= 256 && this.getVies() > 0) {
 				pac.deplacer();
@@ -202,6 +209,7 @@ public class Partie implements IPartie {
 							f.setStatut(EStatutFantome.VULNERABLE);
 						}
 						fantomeVulnerable = true;
+						compteurVulnerable = 0;
 					}
 					compteurGomme++;
 					pacCase.deleteObjet();
@@ -231,6 +239,7 @@ public class Partie implements IPartie {
 							}
 							this.score += d.getPointsCombo(pac.getCompteurCombo());
 							pac.setTickDernierFantomeMange(compteurPartie);
+							wait(200);
 						}
 					}
 				}
@@ -311,6 +320,11 @@ public class Partie implements IPartie {
 		this.etatPartie = EStatutPartie.EN_COURS;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param ms
+	 */
 	private static void wait(int ms){
 		try {
 			Thread.sleep(ms);
