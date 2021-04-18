@@ -1,6 +1,6 @@
 {
     "_comment0": "Vitesses des entités selon leur niveau : vitesseBase*coeff",
-    "vitesseBase": 3,
+    "vitesseBase": 5,
     "vitessePacman":
     {
         "1": 0.8,

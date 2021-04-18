@@ -25,7 +25,7 @@ public class Clyde extends Fantome {
         this.dirVoulue = tab[indice];
 
         /* Calcul de la position Voulue */
-        int[] posActuelle = getPositionActuelle();
+        int[] posActuelle = getPositionI();
         int[] posVoulue = calculPosDirection(this.dirVoulue, posActuelle);
 
         /* Test si la direction voulue est possible */

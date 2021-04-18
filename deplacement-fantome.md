@@ -9,7 +9,7 @@ Puis il détermine la prochaine case la plus proche de la target :
  - il ne peut pas faire demi tour.
  - il ne peut pas aller dans un mur.
  - si deux cases sont à distance égale de la target, l'ordre est le suivant :
-   - nord > ouest > sud > est
+   - nord > ouest > sud > est (ignoré)
 
 La distance est sqrt[(xb - xa)^2 + (yb - ya)^2]. La racine n'est peut être pas importante ?
 

@@ -139,7 +139,7 @@ public class Fantome extends Entite {
      */
     protected void deplacerVersPacman(Pacman p) {
         /* Calcul de la direction Voulue */
-        int[] posActuelle = getPositionActuelle();
+        int[] posActuelle = getPositionI();
         dirVoulue = directionVoulueVersPacman(p);
         int[] posVoulue = calculPosDirection(dirVoulue, posActuelle);
 

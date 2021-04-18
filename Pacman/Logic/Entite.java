@@ -191,7 +191,7 @@ public abstract class Entite implements IEntite {
      * 
      * @return tableau d'entiers contenant la position actuelle
      */
-    protected int[] getPositionActuelle() {
+    protected int[] getPositionI() {
         int[] position = { (int) this.posX, (int) this.posY };
         return position;
     }

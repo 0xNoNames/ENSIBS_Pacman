@@ -99,7 +99,7 @@ public class Pacman extends Entite {
      */
     public void deplacer() {
         /* Calcul de la direction Voulue */
-        int[] posActuelle = getPositionActuelle();
+        int[] posActuelle = getPositionI();
         int[] posVoulue = calculPosDirection(dirVoulue, posActuelle);
 
         /* Test si la direction voulue est possible */
