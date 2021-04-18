@@ -44,8 +44,14 @@ public class Blinky extends Fantome {
                 this.deplacerAleatoire();
                 break;
             case MORT:
-                double[] cible = {13, 13};
+                double[] cible = {14, 11};
                 this.deplacerSelonCible(cible);
+                
+                int[] nPos = getPositionI();
+                if (cible[0] == nPos[0] && cible[1] == nPos[1])
+                {
+                    setStatut(EStatutFantome.CHASSEUR);
+                }
                 break;
         }
     }

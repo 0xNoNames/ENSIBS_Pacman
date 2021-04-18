@@ -91,9 +91,7 @@ public class Fantome extends Entite {
      */
     public void meurt() {
         this.statut = EStatutFantome.MORT;
-        wait(200);
         demiTour();
-        this.statut = EStatutFantome.CHASSEUR;
     }
 
     /**
@@ -378,24 +376,4 @@ public class Fantome extends Entite {
             this.partie.getNiveau(), this.couleur
         );
     }
-
-    /**
-     * Vérifie si le fantôme est actuellement dans la cabine à Fantome
-     * @return
-     */
-    protected boolean estDansLaCabine(int[] position)
-    {
-        // [0, 1] = coin sup gauche, [2, 3] = coin inf droit
-        int[] posCab = {10, 12, 17, 17};
-
-        if (position[0] >= posCab[0] && position[1] >= posCab[1]
-            && position[0] <= posCab[2] && position[1] <= posCab[3])
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }   
 }
