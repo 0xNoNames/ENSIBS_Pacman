@@ -202,8 +202,16 @@ public class dessinerPacman {
      * @param data   permet de récuperer les sprites depuis Data.
      */
     public static void dessinerMortPacman(Pacman pacman, Graphics2D g2d, DataForView data) {
-        g2d.drawImage(data.getMortPacmanSprites()[spriteMort], (((int) pacman.getposX()) * 8) + offsetX,
-                ((int) pacman.getposY() * 8) + offsetY, null);
-        spriteMort++;
+        if (spriteMort < 11) {
+            g2d.drawImage(data.getMortPacmanSprites()[spriteMort], (((int) pacman.getposX()) * 8) + offsetX,
+                    ((int) pacman.getposY() * 8) + offsetY, null);
+        }
+        if (waitSprite == 4) {
+            // Mise à jour du sprite actuel à selectionner.
+            spriteMort++;
+            waitSprite = 0;
+        } else {
+            waitSprite++;
+        }
     }
 }

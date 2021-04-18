@@ -226,7 +226,6 @@ public class Partie implements IPartie {
 				if (fantomeX == pacX && fantomeY == pacY) {
 					if (f.getStatut() == EStatutFantome.CHASSEUR) {
 						pacMeurt();
-						this.etatPartie = EStatutPartie.EN_ANIMATION_PACMORT;
 						break;
 					} else if (f.getStatut() == EStatutFantome.VULNERABLE) {
 						f.meurt();
@@ -313,7 +312,6 @@ public class Partie implements IPartie {
 		int y = (int) d.getPositionInitialePacman()[1];
 		pac.setPosX(x);
 		pac.setPosY(y);
-		this.etatPartie = EStatutPartie.EN_COURS;
 	}
 
 }
