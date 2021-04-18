@@ -267,36 +267,6 @@ public class Fantome extends Entite {
     }
 
     /**
-     * Vérifie que l'entité est au milieu d'une intersection
-     * 
-     * @return booléen
-     */
-    protected boolean estMomentChangementDir()
-    {
-        double vitesse =
-            Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur);
-        double arrondi = vitesse / Partie.tickParSeconde;
-        if (dirVoulue == EDirection.EST || dirVoulue == EDirection.OUEST)
-        {
-            // il faut qu'on soit à y = ~.0 ± arrondi pour changer de dir
-            if (this.posY - ((int) this.posY) <= arrondi)
-            {
-                return true;
-            }
-        }
-        else // NORD ou SUD
-        {
-            // il faut qu'on soit à x = ~.0 ± arrondi pour changer de dir
-            if (this.posX - ((int) this.posX) <= arrondi)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
      * Déplace le fantôme en fonction d'une case cible
      * 
      * @param p
@@ -315,7 +285,7 @@ public class Fantome extends Entite {
         this.dirVoulue = calculDirectionPos(getPositionI(), caseVoulue);
 
         // on vérifie si c'est le moment de changer de direction
-        if (dirCourante != dirVoulue && estMomentChangementDir())
+        if (dirCourante != dirVoulue && estMomentChangementDir(getVitesse()))
         {
             dirCourante = dirVoulue;
         }
@@ -351,5 +321,15 @@ public class Fantome extends Entite {
     public void demiTour()
     {
         this.dirCourante = getDirectionOpposee(this.dirCourante);
+    }
+
+    /**
+     * Permet d'obtenir la vitesse actuelle du Fantome
+     * 
+     * @return vitesse en double
+     */
+    public double getVitesse()
+    {
+        return Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur);
     }
 }

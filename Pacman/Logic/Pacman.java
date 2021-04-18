@@ -103,7 +103,9 @@ public class Pacman extends Entite {
         int[] posVoulue = calculPosDirection(dirVoulue, posActuelle);
 
         /* Test si la direction voulue est possible */
-        boolean deplacementVouluePossible = estPositionPossible(posVoulue);
+        boolean deplacementVouluePossible =
+            estPositionPossible(posVoulue)
+            && estMomentChangementDir(getVitesse());
 
         /* MAJ dirCourante si deplacement voulue possible */
         boolean deplacementCourantPossible = false;
@@ -163,4 +165,12 @@ public class Pacman extends Entite {
         return null;
     }
 
+    /**
+     * Permet d'obtenir la vitesse actuelle de Pacman
+     * 
+     * @return vitesse en double
+     */
+    public double getVitesse() {
+        return Partie.d.getVitessePacman(this.partie.getNiveau());
+    }
 }

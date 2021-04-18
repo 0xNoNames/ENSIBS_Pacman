@@ -195,4 +195,34 @@ public abstract class Entite implements IEntite {
         int[] position = { (int) this.posX, (int) this.posY };
         return position;
     }
+
+    /**
+     * Vérifie que l'entité est au milieu d'une intersection
+     * 
+     * @return booléen
+     */
+    protected boolean estMomentChangementDir(double vitesse)
+    {
+        double arrondi = vitesse / Partie.tickParSeconde;
+        if (dirVoulue == EDirection.EST || dirVoulue == EDirection.OUEST)
+        {
+            // il faut qu'on soit à y = ~.5 ± arrondi pour changer de dir
+            double calcul = this.posY - ((int) this.posY);
+            if (calcul <= arrondi || calcul >= 1 - arrondi)
+            {
+                return true;
+            }
+        }
+        else // NORD ou SUD
+        {
+            // il faut qu'on soit à x = ~.5 ± arrondi pour changer de dir
+            double calcul = this.posX - ((int) this.posX);
+            if (calcul <= arrondi || calcul >= 1 - arrondi)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
