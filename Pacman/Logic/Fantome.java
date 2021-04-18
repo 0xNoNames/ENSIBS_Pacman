@@ -273,6 +273,7 @@ public class Fantome extends Entite {
         double distDeplacement =
             Partie.d.getVitesseFantome(this.partie.getNiveau(), this.couleur)
             / Partie.tickParSeconde;
+
         switch (dirCourante)
         {
             case NORD:
@@ -375,5 +376,14 @@ public class Fantome extends Entite {
         return Partie.d.getVitesseFantome(
             this.partie.getNiveau(), this.couleur
         );
+    }
+
+    public boolean deplacementMort()
+    {
+        double[] cible = {14, 11};
+        deplacerSelonCible(cible);
+
+        int[] nPos = getPositionI();
+        return (cible[0] == nPos[0] && cible[1] == nPos[1]);
     }
 }

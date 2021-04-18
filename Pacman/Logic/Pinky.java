@@ -45,14 +45,25 @@ public class Pinky extends Fantome {
      * @param p, l'entité Pacman
      */
     public void deplacer(Pacman p) {
-        if (this.getStatut() != EStatutFantome.DEBUTPARTIE)
+        switch (this.getStatut())
         {
-            this.deplacerSelonCible(this.getCible(p));
-        }
-        else
-        {
-            double[] scatter = {grille.getCases().length / 2, 0};
-            this.deplacerSelonCible(scatter);
+            case CHASSEUR:
+                this.deplacerSelonCible(this.getCible(p));
+                break;
+            case DEBUTPARTIE:
+                this.setPosX(13.5);
+                this.setPosY(11.5);
+                this.setStatut(EStatutFantome.CHASSEUR);
+                break;
+            case VULNERABLE:
+                this.deplacerAleatoire();
+                break;
+            case MORT:
+                if (deplacementMort())
+                {
+                    setStatut(EStatutFantome.CHASSEUR);
+                }
+                break;
         }
     }
 }
