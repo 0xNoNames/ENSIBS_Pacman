@@ -127,7 +127,7 @@ public class Plateau extends JPanel {
      */
     private void enJeu(Graphics2D g2d) {
 
-        // if (pacmant.getstatus() = mort) {
+        // if (pacman.getstatus() = mort) {
         // animemort();
         // } else {
 

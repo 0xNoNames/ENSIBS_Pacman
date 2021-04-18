@@ -2,8 +2,6 @@ package Pacman.View;
 
 import java.awt.Graphics2D;
 
-import javax.xml.crypto.Data;
-
 import Pacman.Data.DataForView;
 import Pacman.Logic.EDirection;
 import Pacman.Logic.Partie;
@@ -62,6 +60,8 @@ public class dessinerATH {
             tableauScore[i] = score.charAt(i) - '0';
         }
 
+        // On décale chaque chiffre par rapport au nombre de chiffre pour centrer le
+        // score.
         for (int i = 0; i < tableauScore.length; i++) {
             g2d.drawImage(data.getLettresChiffres()[tableauScore[i]], 113 - (5 * tableauScore.length) + 10 * i, 18,
                     null);
