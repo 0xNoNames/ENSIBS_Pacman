@@ -50,6 +50,16 @@ public class Partie implements IPartie {
 	private Pacman pac;
 
 	/**
+	 * Variable indiquant si les fantome sont vulnerable ou pas
+	 */
+	private boolean fantome_vulnerable;
+
+	/**
+	 * Variable représentant le nombre de tick pendant lequel les fantomes sont vulnerable
+	 */
+	private int compteur_vulnerable;
+
+	/**
 	 * Constructeur de la classe Partie
 	 */
 	public Partie() {
@@ -60,6 +70,8 @@ public class Partie implements IPartie {
 		this.niveau = 0;
 		this.compteurPartie = 0;
 		this.etatPartie = EStatutPartie.EN_PAUSE;
+		this.fantome_vulnerable = false;
+		this.compteur_vulnerable = 0;
 	}
 
 	/**
@@ -137,11 +149,6 @@ public class Partie implements IPartie {
 			Case[][] tab = this.grille.getCases();
 			/* Définition d'un tableau représentant l'ensemble des fantomes */
 			Fantome[] fantomes = { inky, clyde, pinky, blinky };
-			/* Définition de variable pour le changement d'état des fantomes*/
-			boolean vulnerable = false;
-			int cmpt_vul = 0;
-			/* */
-			int temps_niveau = 0;
 			/* Début d'un tick de jeu */
 			if (this.niveau <= 256 && this.getVies() > 0) {
 				pac.deplacer();
@@ -161,16 +168,16 @@ public class Partie implements IPartie {
 					if (o instanceof GrosseGomme) {
 						for (Fantome f : fantomes) {
 							f.setStatut(EStatutFantome.VULNERABLE);
-							vulnerable = true;
 						}
+						fantome_vulnerable = true;
 					}
 					pacCase.deleteObjet();
 				}
 				/* Fantome sortent de l'état VULNERABLE */
-				if (cmpt_vul == 300) {
+				if (compteur_vulnerable == 300) {
 					for (Fantome f : fantomes) {
 						f.setStatut(EStatutFantome.CHASSEUR);
-						vulnerable = false;
+						fantome_vulnerable = false;
 					}
 				}
 				/* Fantom meme case pacman */
@@ -207,9 +214,10 @@ public class Partie implements IPartie {
 					this.initialisation();
 				}
 				compteurPartie++;
-				if(vulnerable) {
-					cmpt_vul++;
+				if(this.fantome_vulnerable) {
+					this.compteur_vulnerable++;
 				}
+				System.out.println(compteur_vulnerable);
 			}
 		}
 	}
