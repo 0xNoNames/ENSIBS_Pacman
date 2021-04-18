@@ -5,7 +5,6 @@ import java.awt.*;
 import javax.swing.*;
 
 import Pacman.Data.DataForView;
-import Pacman.Logic.EStatutFantome;
 import Pacman.Logic.EStatutPartie;
 import Pacman.Logic.Partie;
 
@@ -262,6 +261,8 @@ public class Plateau extends JPanel {
     private void enJeu(Graphics2D g2d) {
         // Affiche toutes les gommes.
         desssinerGrille.dessiner(partie.getGrille().getCases(), g2d, data, this.partie.getEtatPartie());
+
+        // g2d.drawImage(data.getPacmanSprites(EDirection.OUEST)[0], 8, 32, null);
 
         // Affiche Pacman.
         dessinerPacman.dessiner(partie.getGrille().getPacman(), g2d, data);

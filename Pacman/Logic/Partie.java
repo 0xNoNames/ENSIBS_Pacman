@@ -184,6 +184,7 @@ public class Partie implements IPartie {
 		Clyde clyde = this.grille.getClyde();
 		Pinky pinky = this.grille.getPinky();
 		if (mortPacman) {
+			// reset de pacman
 			int x = (int) d.getPositionInitialePacman()[0];
 			int y = (int) d.getPositionInitialePacman()[1];
 			pac.setPosX(x);
@@ -191,7 +192,7 @@ public class Partie implements IPartie {
 			pac.setDirectionCourante(EDirection.OUEST);
 			pac.setDirectionVoulue(EDirection.OUEST);
 			mortPacman = false;
-			
+
 			// reset des fantomes
 			blinky.setPosX(d.getPositionInitialeFantome(ECouleur.ROUGE)[0]);
 			blinky.setPosY(d.getPositionInitialeFantome(ECouleur.ROUGE)[1]);
@@ -249,7 +250,9 @@ public class Partie implements IPartie {
 			/* Fantome sortent de l'état VULNERABLE */
 			if (compteurVulnerable == 500) {
 				for (Fantome f : fantomes) {
-					f.setStatut(EStatutFantome.CHASSEUR);
+					if (f.getStatut() == EStatutFantome.VULNERABLE) {
+						f.setStatut(EStatutFantome.CHASSEUR);
+					}
 					fantomeVulnerable = false;
 					compteurVulnerable = 0;
 				}
