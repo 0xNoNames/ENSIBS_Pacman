@@ -79,11 +79,19 @@ public class Fantome extends Entite {
         return this.couleur;
     }
 
+    public static void wait(int ms){
+        try {
+            Thread.sleep(ms);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
     /**
      * Permet de faire mourir le fantome et de le ramener à sa position initiale
      */
     public void meurt() {
         this.statut = EStatutFantome.MORT;
+        wait(200);
         demiTour();
         this.statut = EStatutFantome.CHASSEUR;
     }
